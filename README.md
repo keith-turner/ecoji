@@ -38,7 +38,7 @@ To make a quantitative assessment of the usefulness of Ecoji, the following data
 | base64 | 64K             | 88K              |             0    |
 | ecoji  | 64K             | 210K             |             9    |
 
-Then Turner's Law was applied to the data.  If your memory if fuzzy, below is a reminder
+Then Turner's Law was applied to the data.  If your memory is fuzzy, below is a reminder
 
 ```
 Turner's Law = outputSize / inputSize * warmFuzzies
