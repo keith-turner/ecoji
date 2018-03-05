@@ -7,7 +7,7 @@ Ecoji encodes data as emojis.  As a bonus, includes code to decode emojis to ori
 This is my first Go project, so I have no fucking idea what I am doing.  Any tips would be appreciated.
 
 ```bash
-git clone xxx
+git clone https://github.com/keith-turner/Ecoji.git
 cd ecoji
 export GOPATH=`pwd`
 go install com.github/keith-turner/cmd/decoji/ com.github/keith-turner/cmd/ecoji/
