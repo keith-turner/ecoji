@@ -15,14 +15,14 @@ go install com.github/keith-turner/cmd/decoji/ com.github/keith-turner/cmd/ecoji
 
 ## Examples of running
 
-To encode data, do :
+Encode example :
 
 ```bash
 $ echo "Base64 is so boring, isn't there something better?" | ./bin/ecoji
 🏖📧🎦🐆🎛📖🔭🚙💝😻🇭🕋💙🖊🥅🚥🍉🖋🎨📷💠📗🏧🌭💙🔣🇱🤙💅🔨🏧🌱💉🕎🇭🔶💡🚿🐬🔐🇽🔚
 ```
 
-To decode data, do :
+Decode example :
 
 ```bash
 $ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🇭🕋💙🖊🥅🚥🍉🖋🎨📷💠📗🏧🌭💙🔣🇱🤙💅🔨🏧🌱💉🕎🇭🔶💡🚿🐬🔐🇽🔚 | ./bin/decoji 
