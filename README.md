@@ -8,8 +8,8 @@ This is my first Go project, so I have no fucking idea what I am doing.  Any tip
 
 ```bash
 git clone https://github.com/keith-turner/Ecoji.git
-cd ecoji
-export GOPATH=`pwd`
+cd Ecoji
+export GOPATH=$(pwd)
 go install com.github/keith-turner/cmd/decoji/ com.github/keith-turner/cmd/ecoji/
 ```
 
