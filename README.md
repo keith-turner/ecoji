@@ -4,7 +4,7 @@ Ecoji encodes data as emojis.  As a bonus, includes code to decode emojis to ori
 
 ## Build instructions.
 
-This is my first Go project, so I have no fucking idea what I am doing.  Any tips would be appreciated.
+This is my first Go project, so I have no clue what I am doing.  Any tips would be appreciated.
 
 ```bash
 git clone https://github.com/keith-turner/Ecoji.git
@@ -26,7 +26,7 @@ Decode example :
 
 ```bash
 $ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🇭🕋💙🖊🥅🚥🍉🖋🎨📷💠📗🏧🌭💙🔣🇱🤙💅🔨🏧🌱💉🕎🇭🔶💡🚿🐬🔐🇽🔚 | ./bin/decoji 
-Base64 is so boring, isn't there something better?
+Base64 is so 1999, isn't there something better?
 ```
 
 ## Analysis of usefulness.
