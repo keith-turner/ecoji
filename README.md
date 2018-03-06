@@ -29,20 +29,11 @@ $ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🆖🐉🎱🤽🚁🌱💝😫�
 Base64 is so 1999, isn't there something better?
 ```
 
-## Analysis of usefulness.
+## Technical details
 
-To make a quantitative assessment of the usefulness of Ecoji, the following data was collected.
+Encoding works by repeatedly reading 10 bits from the input.  Every 10 bit
+integer has a unique [Unicode emoji][emoji] character assigned to it.  So for
+each 10 bit integer, its assigned emoji is output as utf8.  To decode, this
+process is reversed.
 
-| Method | Input data size | Output data size | Warm and fuzzies |
-|--------|-----------------|------------------|------------------|
-| base64 | 64K             | 88K              |             0    |
-| ecoji  | 64K             | 210K             |             9    |
-
-Then Turner's Law was applied to the data.  If your memory is fuzzy, below is a reminder
-
-```
-Turner's Law = outputSize / inputSize * warmFuzzies
-```
-
-Applying Turner's law to the data, Ecoji scores 29.53 while base64 scores 0.  The data clearly shows that Ecoji is infinitely better than base64.
-
+[emoji]: https://unicode.org/emoji/
