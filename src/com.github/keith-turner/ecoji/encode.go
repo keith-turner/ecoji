@@ -63,12 +63,12 @@ func readFully(r io.Reader, buffer []byte) (n int, e error) {
 }
 
 //Maps every 10 bits from the reader to one of 1024 Unicode emojis, writing the emojis.
-func Encode(r io.Reader, w *bufio.Writer) {
+func Encode(r io.Reader, w *bufio.Writer, wrap uint) {
 
 	initMapping()
 
 	buffer := make([]byte, 5)
-	printed := 0
+	printed := uint(0)
 
 	for {
 		num, err := readFully(r, buffer)
@@ -81,10 +81,12 @@ func Encode(r io.Reader, w *bufio.Writer) {
 		}
 		//TODO check err
 		encode(buffer[0:num], w)
-		printed += 4
-		if printed >= 72 {
-			w.WriteByte('\n')
-			printed = 0
+		if wrap > 0 {
+			printed += 4
+			if printed >= wrap {
+				w.WriteByte('\n')
+				printed = 0
+			}
 		}
 
 	}

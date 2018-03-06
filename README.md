@@ -10,7 +10,7 @@ This is my first Go project, so I have no clue what I am doing.  Any tips would 
 git clone https://github.com/keith-turner/Ecoji.git
 cd Ecoji
 export GOPATH=$(pwd)
-go install com.github/keith-turner/cmd/decoji/ com.github/keith-turner/cmd/ecoji/
+go install com.github/keith-turner/cmd/ecoji/
 ```
 
 ## Examples of running
@@ -25,8 +25,22 @@ $  echo "Base64 is so 1999, isn't there something better?" | ./bin/ecoji
 Decode example :
 
 ```bash
-$ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🆖🐉🎱🤽🚁🌱💝😫💭🇵💡🕣🐬🔶🍉🚯🦎🐵💡🕣🔬🔸🍉📶🐭🌼👥🚜🥯📐🔚 | ./bin/decoji
+$ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🆖🐉🎱🤽🚁🌱💝😫💭🇵💡🕣🐬🔶🍉🚯🦎🐵💡🕣🔬🔸🍉📶🐭🌼👥🚜🥯📐🔚 | ./bin/ecoji -d
 Base64 is so 1999, isn't there something better?
+```
+
+Usage :
+
+```bash
+$ ./bin/ecoji -h
+usage: ecoji [OPTIONS]... [FILE]
+
+Encode or decode data as Unicode emojis. 😁
+
+Options:
+    -d, --decode          decode data
+    -w, --wrap=COLS       wrap encoded lines after COLS character (default 76).
+                          Use 0 to disable line wrapping
 ```
 
 ## Technical details
