@@ -36,4 +36,6 @@ integer has a unique [Unicode emoji][emoji] character assigned to it.  So for
 each 10 bit integer, its assigned emoji is output as utf8.  To decode, this
 process is reversed.
 
+Ecoji is base1024 using a subset of emojis as its numerals.
+
 [emoji]: https://unicode.org/emoji/
