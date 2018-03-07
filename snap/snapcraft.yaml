@@ -1,0 +1,18 @@
+name: ecoji
+version: git
+summary: An interactive web server.
+description: |
+  HTTPLab let you inspect HTTP requests and forge responses.
+
+grade: devel
+confinement: devmode
+
+parts:
+  ecoji:
+    source: .
+    plugin: go
+    go-importpath: github.com/keith-turner/ecoji
+
+apps:
+  ecoji:
+    command: bin/ecoji

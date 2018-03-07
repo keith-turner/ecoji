@@ -4,13 +4,18 @@ Ecoji encodes data as emojis.  As a bonus, includes code to decode emojis to ori
 
 ## Build instructions.
 
-This is my first Go project, so I have no clue what I am doing.  Any tips would be appreciated.
+This is my first Go project, I am starting to get my bearings. If you are new I would recommend [this video](https://www.youtube.com/watch?v=XCsL89YtqCs) and the [tour](https://tour.golang.org/welcome/1).
 
 ```bash
-git clone https://github.com/keith-turner/Ecoji.git
-cd Ecoji
-export GOPATH=$(pwd)
-go install github.com/keith-turner/cmd/ecoji/
+# The following are general go setup instructions.  Ignore if you know Go, I am new to it.
+export GOPATH=~/go
+export PATH=$GOPATH/bin:$PATH
+
+# This will download project to $GOPATH/src
+go get github.com/keith-turner/ecoji
+
+# This will build the ecoji command and put it in $GOPATH/bin
+go install github.com/keith-turner/ecoji/cmd/ecoji
 ```
 
 ## Examples of running
@@ -18,14 +23,14 @@ go install github.com/keith-turner/cmd/ecoji/
 Encode example :
 
 ```bash
-$  echo "Base64 is so 1999, isn't there something better?" | ./bin/ecoji
+$  echo "Base64 is so 1999, isn't there something better?" | ecoji
 🏖📧🎦🐆🎛📖🔭🚙💝😻🆖🐉🎱🤽🚁🌱💝😫💭🇵💡🕣🐬🔶🍉🚯🦎🐵💡🕣🔬🔸🍉📶🐭🌼👥🚜🥯📐🔚
 ```
 
 Decode example :
 
 ```bash
-$ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🆖🐉🎱🤽🚁🌱💝😫💭🇵💡🕣🐬🔶🍉🚯🦎🐵💡🕣🔬🔸🍉📶🐭🌼👥🚜🥯📐🔚 | ./bin/ecoji -d
+$ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🆖🐉🎱🤽🚁🌱💝😫💭🇵💡🕣🐬🔶🍉🚯🦎🐵💡🕣🔬🔸🍉📶🐭🌼👥🚜🥯📐🔚 | ecoji -d
 Base64 is so 1999, isn't there something better?
 ```
 
@@ -51,5 +56,9 @@ each 10 bit integer, its assigned emoji is output as utf8.  To decode, this
 process is reversed.
 
 Ecoji is base1024 using a subset of emojis as its numerals.
+
+## Library
+
+I am new to Go, but I think this project also builds a library that anyone could use.
 
 [emoji]: https://unicode.org/emoji/
