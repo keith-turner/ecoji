@@ -4,7 +4,8 @@ Ecoji encodes data as emojis.  As a bonus, includes code to decode emojis to ori
 
 ## Build instructions.
 
-This is my first Go project, I am starting to get my bearings. If you are new I would recommend [this video](https://www.youtube.com/watch?v=XCsL89YtqCs) and the [tour](https://tour.golang.org/welcome/1).
+This is my first Go project, I am starting to get my bearings. If you are new
+to Go I would recommend this [video] and the [tour].
 
 ```bash
 # The following are general go setup instructions.  Ignore if you know Go, I am new to it.
@@ -37,7 +38,7 @@ Base64 is so 1999, isn't there something better?
 Usage :
 
 ```bash
-$ ./bin/ecoji -h
+$ ecoji -h
 usage: ecoji [OPTIONS]... [FILE]
 
 Encode or decode data as Unicode emojis. 😁
@@ -62,3 +63,5 @@ Ecoji is base1024 using a subset of emojis as its numerals.
 I am new to Go, but I think this project also builds a library that anyone could use.
 
 [emoji]: https://unicode.org/emoji/
+[video]: https://www.youtube.com/watch?v=XCsL89YtqCs
+[tour]: https://tour.golang.org/welcome/1
