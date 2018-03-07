@@ -8,11 +8,11 @@ This is my first Go project, I am starting to get my bearings. If you are new
 to Go I would recommend this [video] and the [tour].
 
 ```bash
-# The following are general go setup instructions.  Ignore if you know Go, I am new to it.
+# The following are general Go setup instructions.  Ignore if you know Go, I am new to it.
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
-# This will download project to $GOPATH/src
+# This will download Ecoji to $GOPATH/src
 go get github.com/keith-turner/ecoji
 
 # This will build the ecoji command and put it in $GOPATH/bin
