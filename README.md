@@ -10,7 +10,7 @@ This is my first Go project, so I have no clue what I am doing.  Any tips would 
 git clone https://github.com/keith-turner/Ecoji.git
 cd Ecoji
 export GOPATH=$(pwd)
-go install com.github/keith-turner/cmd/ecoji/
+go install github.com/keith-turner/cmd/ecoji/
 ```
 
 ## Examples of running

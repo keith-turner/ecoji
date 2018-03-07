@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"com.github/keith-turner/ecoji"
+	"github.com/keith-turner/ecoji"
 	"flag"
 	"fmt"
 	"os"
