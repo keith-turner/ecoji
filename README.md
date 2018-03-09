@@ -35,6 +35,19 @@ $ echo 🏖📧🎦🐆🎛📖🔭🚙💝😻🆖🐉🎱🤽🚁🌱💝😫�
 Base64 is so 1999, isn't there something better?
 ```
 
+Concatenation :
+
+```bash
+$ echo -n abc | ecoji
+👕📶🎈🔚
+$ echo -n 6789 | ecoji
+🎥🤝📞❎
+$ echo XY | ecoji
+🐱👠🕝🔚
+$ echo 👕📶🎈🔚🎥🤝📞❎🐱👠🕝🔚 | ecoji -d
+abc6789XY
+```
+
 Usage :
 
 ```bash
