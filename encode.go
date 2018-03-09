@@ -32,21 +32,40 @@ func encode(s []byte, w *bufio.Writer) {
 	// read 8 bits from 1st byte and 2 bits from 2nd byte
 	w.WriteRune(mapping[b0<<2|b1>>6])
 
-	if len(s) >= 2 {
-		// read 6 bits from 2nd byte and 4 bits from 3rd byte
+	switch len(s) {
+	case 1:
+		w.WriteRune(padding)
+		w.WriteRune(padding)
+		w.WriteRune(padding)
+	case 2:
 		w.WriteRune(mapping[(b1&0x3f)<<4|b2>>4])
-	}
-	if len(s) >= 3 {
-		// read 4 bits from 3rd byte and 6 bits from 4th byte
+		w.WriteRune(padding)
+		w.WriteRune(padding)
+	case 3:
+		w.WriteRune(mapping[(b1&0x3f)<<4|b2>>4])
 		w.WriteRune(mapping[(b2&0x0f)<<6|b3>>2])
-	}
-	if len(s) >= 4 {
-		// read 2 bits from 4th byte and 8 bits from 5th byte
-		w.WriteRune(mapping[(b3&0x03)<<8|b4])
-	}
+		w.WriteRune(padding)
+	case 4:
+		w.WriteRune(mapping[(b1&0x3f)<<4|b2>>4])
+		w.WriteRune(mapping[(b2&0x0f)<<6|b3>>2])
+		switch b3 & 0x03 {
+		case 0:
+			w.WriteRune(padding40)
+		case 1:
+			w.WriteRune(padding41)
+		case 2:
+			w.WriteRune(padding42)
+		case 3:
+			w.WriteRune(padding43)
+		}
 
-	if len(s) < 5 {
-		w.WriteRune(endRune)
+	case 5:
+		w.WriteRune(mapping[(b1&0x3f)<<4|b2>>4])
+		w.WriteRune(mapping[(b2&0x0f)<<6|b3>>2])
+		w.WriteRune(mapping[(b3&0x03)<<8|b4])
+	default:
+		panic("unexpected length " + string(len(s)))
+
 	}
 }
 

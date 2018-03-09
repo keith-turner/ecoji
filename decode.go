@@ -17,7 +17,7 @@ func ReadRune(r *bufio.Reader) (c rune, size int, err error) {
 
 	// check to see if this is a valid emoji rune
 	_, exists := revMapping[c]
-	if !exists && c != endRune {
+	if !exists && c != padding && c != padding40 && c != padding41 && c != padding42 && c != padding43 {
 		panic("Invalid rune " + string(c))
 	}
 
@@ -30,6 +30,7 @@ func Decode(r *bufio.Reader, w io.Writer) {
 
 	for {
 
+		//TODO error check reads
 		r1, _, e1 := ReadRune(r)
 		if e1 == io.EOF {
 			break
@@ -42,7 +43,21 @@ func Decode(r *bufio.Reader, w io.Writer) {
 		bits1 := revMapping[r1]
 		bits2 := revMapping[r2]
 		bits3 := revMapping[r3]
-		bits4 := revMapping[r4]
+		var bits4 int
+
+		switch r4 {
+		case padding40:
+			bits4 = 0
+		case padding41:
+			bits4 = 1 << 8
+		case padding42:
+			bits4 = 2 << 8
+		case padding43:
+			bits4 = 3 << 8
+		default:
+			bits4 = revMapping[r4]
+
+		}
 
 		out := []byte{0, 0, 0, 0, 0}
 
@@ -52,22 +67,15 @@ func Decode(r *bufio.Reader, w io.Writer) {
 		out[3] = byte((bits3 & 0x3f << 2) | (bits4 >> 8))
 		out[4] = byte(bits4 & 0xff)
 
-		if r2 == endRune {
+		switch {
+		case r2 == padding:
 			out = out[:1]
-		} else if r3 == endRune {
+		case r3 == padding:
 			out = out[:2]
-		} else if r4 == endRune {
+		case r4 == padding:
 			out = out[:3]
-		} else {
-			r5, _, e5 := ReadRune(r)
-			if e5 != io.EOF {
-				if r5 == endRune {
-					out = out[:4]
-				} else {
-					r.UnreadRune()
-					//TODO check err
-				}
-			}
+		case r4 == padding40 || r4 == padding41 || r4 == padding42 || r4 == padding43:
+			out = out[:4]
 		}
 
 		//TODO check err

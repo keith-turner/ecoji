@@ -1,6 +1,10 @@
 package ecoji
 
-const endRune rune = 0x1F51A
+const padding rune = 0x1F51A
+const padding40 rune = 0x274C
+const padding41 rune = 0x274E
+const padding42 rune = 0x2620
+const padding43 rune = 0x263A
 
 var mapping [1024]rune
 var revMapping map[rune]int
