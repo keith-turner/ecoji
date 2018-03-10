@@ -1,4 +1,4 @@
-# Ecoji
+# Ecoji 🏢🔇🦍🔺
 
 Ecoji encodes data as emojis.  As a bonus, includes code to decode emojis to original data. 
 
