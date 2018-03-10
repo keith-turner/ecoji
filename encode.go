@@ -1,11 +1,15 @@
 package ecoji
 
 import (
-	"bufio"
 	"io"
 )
 
-func encode(s []byte, w *bufio.Writer) (err error) {
+type RuneWriter interface {
+	WriteByte(byte) error
+	WriteRune(rune) (int, error)
+}
+
+func encode(s []byte, w RuneWriter) (err error) {
 
 	if len(s) == 0 {
 		panic("expected data")
@@ -88,7 +92,7 @@ func readFully(r io.Reader, buffer []byte) (n int, e error) {
 }
 
 //Maps every 10 bits from the reader to one of 1024 Unicode emojis, writing the emojis.
-func Encode(r io.Reader, w *bufio.Writer, wrap uint) (err error) {
+func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
 
 	initMapping()
 

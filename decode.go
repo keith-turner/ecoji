@@ -1,12 +1,15 @@
 package ecoji
 
 import (
-	"bufio"
 	"errors"
 	"io"
 )
 
-func readRune(r *bufio.Reader) (c rune, size int, err error) {
+type RuneReader interface {
+	ReadRune() (rune, int, error)
+}
+
+func readRune(r RuneReader) (c rune, size int, err error) {
 	c, s, e := r.ReadRune()
 	for c == '\n' {
 		c, s, e = r.ReadRune()
@@ -21,14 +24,14 @@ func readRune(r *bufio.Reader) (c rune, size int, err error) {
 	// check to see if this is a valid emoji rune
 	_, exists := revMapping[c]
 	if !exists && c != padding && c != padding40 && c != padding41 && c != padding42 && c != padding43 {
-		panic("Invalid rune " + string(c))
+		return 0, 0, errors.New("Invalid rune " + string(c))
 	}
 
 	return c, s, e
 }
 
 //Reads unicode emojis, map each emoji to a 10 bit integer, writes 10 bit intergers
-func Decode(r *bufio.Reader, w io.Writer) (err error) {
+func Decode(r RuneReader, w io.Writer) (err error) {
 	initMapping()
 
 	for {
