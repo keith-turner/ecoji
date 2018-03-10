@@ -2,16 +2,19 @@ package ecoji
 
 import (
 	"bufio"
+	"errors"
 	"io"
 )
 
-func ReadRune(r *bufio.Reader) (c rune, size int, err error) {
+func readRune(r *bufio.Reader) (c rune, size int, err error) {
 	c, s, e := r.ReadRune()
 	for c == '\n' {
 		c, s, e = r.ReadRune()
 	}
 
 	if e == io.EOF {
+		return c, s, e
+	} else if e != nil {
 		return c, s, e
 	}
 
@@ -25,27 +28,37 @@ func ReadRune(r *bufio.Reader) (c rune, size int, err error) {
 }
 
 //Reads unicode emojis, map each emoji to a 10 bit integer, writes 10 bit intergers
-func Decode(r *bufio.Reader, w io.Writer) {
+func Decode(r *bufio.Reader, w io.Writer) (err error) {
 	initMapping()
 
 	for {
+		var runes [4]rune
 
 		//TODO error check reads
-		r1, _, e1 := ReadRune(r)
+		r1, _, e1 := readRune(r)
 		if e1 == io.EOF {
 			break
+		} else if e1 != nil {
+			return e1
+		}
+		runes[0] = r1
+
+		for i := 1; i < 4; i++ {
+			r, _, err := readRune(r)
+			if err == io.EOF {
+				return errors.New("Unexpected end of data, input data size not multiple of 4")
+			} else if err != nil {
+				return err
+			}
+			runes[i] = r
 		}
 
-		r2, _, _ := ReadRune(r)
-		r3, _, _ := ReadRune(r)
-		r4, _, _ := ReadRune(r)
-
-		bits1 := revMapping[r1]
-		bits2 := revMapping[r2]
-		bits3 := revMapping[r3]
+		bits1 := revMapping[runes[0]]
+		bits2 := revMapping[runes[1]]
+		bits3 := revMapping[runes[2]]
 		var bits4 int
 
-		switch r4 {
+		switch runes[3] {
 		case padding40:
 			bits4 = 0
 		case padding41:
@@ -55,7 +68,7 @@ func Decode(r *bufio.Reader, w io.Writer) {
 		case padding43:
 			bits4 = 3 << 8
 		default:
-			bits4 = revMapping[r4]
+			bits4 = revMapping[runes[3]]
 
 		}
 
@@ -68,18 +81,30 @@ func Decode(r *bufio.Reader, w io.Writer) {
 		out[4] = byte(bits4 & 0xff)
 
 		switch {
-		case r2 == padding:
+		case runes[1] == padding:
 			out = out[:1]
-		case r3 == padding:
+		case runes[2] == padding:
 			out = out[:2]
-		case r4 == padding:
+		case runes[3] == padding:
 			out = out[:3]
-		case r4 == padding40 || r4 == padding41 || r4 == padding42 || r4 == padding43:
+		case runes[3] == padding40 || runes[3] == padding41 || runes[3] == padding42 || runes[3] == padding43:
 			out = out[:4]
 		}
 
-		//TODO check err
-		w.Write(out)
+		for {
+			num, err := w.Write(out)
+
+			if err != nil {
+				return err
+			}
+
+			if num == len(out) {
+				break
+			}
+
+			out = out[num:]
+		}
 	}
 
+	return nil
 }

@@ -2,9 +2,10 @@ package main
 
 import (
 	"bufio"
-	"github.com/keith-turner/ecoji"
 	"flag"
 	"fmt"
+	"github.com/keith-turner/ecoji"
+	"log"
 	"os"
 )
 
@@ -78,9 +79,13 @@ func main() {
 	stdout := bufio.NewWriter(os.Stdout)
 
 	if !decode {
-		ecoji.Encode(in, stdout, wrap)
+		if err := ecoji.Encode(in, stdout, wrap); err != nil {
+			log.Fatal(err)
+		}
 	} else {
-		ecoji.Decode(in, stdout)
+		if err := ecoji.Decode(in, stdout); err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	stdout.Flush()
