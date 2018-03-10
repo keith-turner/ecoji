@@ -48,6 +48,17 @@ $ echo 👕📶🎈🔚🎥🤝📞❎🐱👠🕝🔚 | ecoji -d
 abc6789XY
 ```
 
+Make your hashes much more interesting.
+
+```
+$ cat encode.go  | openssl dgst -binary -sha1 | ecoji
+🖖🏗💒🐷💒🌶🏒🚾🤚😵🇦🐆🛶🥉🆖🇮
+$ echo 🖖🏗💒🐷💒🌶🏒🚾🤚😵🇦🐆🛶🥉🆖🇮 | ecoji -d | openssl base64
+pxCnCWdwhuQXRdwuwEU22LnAMBk=
+$ cat encode.go  | openssl dgst -binary -sha1 | openssl base64
+pxCnCWdwhuQXRdwuwEU22LnAMBk=
+```
+
 Usage :
 
 ```bash
