@@ -1,11 +1,12 @@
 name: ecoji
-version: git
-summary: An interactive web server.
+version: 1.0.0
+summary: Ecoji encodes data as emojis.
 description: |
-  HTTPLab let you inspect HTTP requests and forge responses.
+  Ecoji encodes data as 1024 Unicode emojis.  The encoding supports concatenation.
+  Encoded data sorts in the same order as the original data.
 
-grade: devel
-confinement: devmode
+grade: stable
+confinement: strict
 
 parts:
   ecoji:
