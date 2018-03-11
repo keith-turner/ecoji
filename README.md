@@ -80,6 +80,15 @@ Options:
     -v, --version         Print version information.
 ```
 
+## Libraries
+
+Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit PR to add a library to the table.
+
+| Language | Link | Comments
+|----------|------|----------
+| Go       |      | This repository offers a Go library package with two functions [ecoji.Encode()](encode.go) and [ecoji.Decode()](decode.go).
+| Java     |      | Coming soon, I plan to implement this and publish to maven central unless someone else does.
+
 ## Build instructions.
 
 This is my first Go project, I am starting to get my bearings. If you are new
@@ -96,15 +105,6 @@ go get github.com/keith-turner/ecoji
 # This will build the ecoji command and put it in $GOPATH/bin
 go install github.com/keith-turner/ecoji/cmd/ecoji
 ```
-
-## Libraries
-
-Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit PR to add a library to the table. 
-
-| Language | Link | Comments
-|----------|------|----------
-| Go       |      | This repository offers a Go library package with two functions [ecoji.Encode()](encode.go) and [ecoji.Decode()](decode.go).
-| Java     |      | Coming soon, I plan to implement this and publish to maven central unless someone else does.
 
 [emoji]: https://unicode.org/emoji/
 [video]: https://www.youtube.com/watch?v=XCsL89YtqCs
