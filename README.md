@@ -93,6 +93,8 @@ Options:
     -d, --decode          decode data
     -w, --wrap=COLS       wrap encoded lines after COLS character (default 76).
                           Use 0 to disable line wrapping
+    -h, --help            Print this message
+    -v, --version         Print version information.
 ```
 
 ## Library

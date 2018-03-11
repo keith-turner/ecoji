@@ -17,6 +17,14 @@ Options:
     -d, --decode          decode data
     -w, --wrap=COLS       wrap encoded lines after COLS character (default 76).
                           Use 0 to disable line wrapping
+    -h, --help            Print this message
+    -v, --version         Print version information.
+`
+
+var versionMessage = `Ecoji version 1.0.0
+  Copyright   : (C) 2018 Keith Turner
+  License     : Apache 2.0
+  Source code : https://github.com/keith-turner/ecoji
 `
 
 func openFile(name string) *os.File {
@@ -46,10 +54,18 @@ func openFile(name string) *os.File {
 func main() {
 
 	decode := false
+	help := false
+	version := false
 	wrap := uint(76)
 
 	flag.BoolVar(&decode, "d", false, "")
 	flag.BoolVar(&decode, "decode", false, "")
+
+	flag.BoolVar(&help, "h", false, "")
+	flag.BoolVar(&help, "help", false, "")
+
+	flag.BoolVar(&version, "v", false, "")
+	flag.BoolVar(&version, "version", false, "")
 
 	flag.UintVar(&wrap, "w", 76, "")
 	flag.UintVar(&wrap, "wrap", 76, "")
@@ -65,6 +81,16 @@ func main() {
 	if len(args) > 1 {
 		fmt.Print(usageMessage)
 		os.Exit(2)
+	}
+
+	if help {
+		fmt.Print(usageMessage)
+		return
+	}
+
+	if version {
+		fmt.Print(versionMessage)
+		return
 	}
 
 	var in *bufio.Reader
