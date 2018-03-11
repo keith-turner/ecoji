@@ -1,6 +1,6 @@
 # Ecoji 🏣🔉🦐🔼
 
-Ecoji encodes data as emojis.  As a bonus, includes code to decode emojis to original data. 
+Ecoji encodes data as [emojis][emoji].  As a bonus, includes code to decode emojis to original data.
 
 ## Installing
 
