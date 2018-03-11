@@ -33,22 +33,19 @@ func encode(s []byte, w RuneWriter) (err error) {
 		b4 = int(s[4])
 	}
 
-	runes := []rune{mapping[b0<<2|b1>>6], padding, padding, padding}
-
-	// read 8 bits from 1st byte and 2 bits from 2nd byte
-	runes[0] = mapping[b0<<2|b1>>6]
+	runes := []rune{emojis[b0<<2|b1>>6], padding, padding, padding}
 
 	switch len(s) {
 	case 1:
 	//nothing to do, all padding
 	case 2:
-		runes[1] = mapping[(b1&0x3f)<<4|b2>>4]
+		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
 	case 3:
-		runes[1] = mapping[(b1&0x3f)<<4|b2>>4]
-		runes[2] = mapping[(b2&0x0f)<<6|b3>>2]
+		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
+		runes[2] = emojis[(b2&0x0f)<<6|b3>>2]
 	case 4:
-		runes[1] = mapping[(b1&0x3f)<<4|b2>>4]
-		runes[2] = mapping[(b2&0x0f)<<6|b3>>2]
+		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
+		runes[2] = emojis[(b2&0x0f)<<6|b3>>2]
 
 		switch b3 & 0x03 {
 		case 0:
@@ -62,9 +59,9 @@ func encode(s []byte, w RuneWriter) (err error) {
 		}
 
 	case 5:
-		runes[1] = mapping[(b1&0x3f)<<4|b2>>4]
-		runes[2] = mapping[(b2&0x0f)<<6|b3>>2]
-		runes[3] = mapping[(b3&0x03)<<8|b4]
+		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
+		runes[2] = emojis[(b2&0x0f)<<6|b3>>2]
+		runes[3] = emojis[(b3&0x03)<<8|b4]
 	default:
 		panic("unexpected length " + string(len(s)))
 
@@ -93,8 +90,6 @@ func readFully(r io.Reader, buffer []byte) (n int, e error) {
 
 //Maps every 10 bits from the reader to one of 1024 Unicode emojis, writing the emojis.
 func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
-
-	initMapping()
 
 	buffer := make([]byte, 5)
 	printed := uint(0)

@@ -22,7 +22,7 @@ func readRune(r RuneReader) (c rune, size int, err error) {
 	}
 
 	// check to see if this is a valid emoji rune
-	_, exists := revMapping[c]
+	_, exists := revEmojis[c]
 	if !exists && c != padding && c != padding40 && c != padding41 && c != padding42 && c != padding43 {
 		return 0, 0, errors.New("Invalid rune " + string(c))
 	}
@@ -32,7 +32,6 @@ func readRune(r RuneReader) (c rune, size int, err error) {
 
 //Reads unicode emojis, map each emoji to a 10 bit integer, writes 10 bit intergers
 func Decode(r RuneReader, w io.Writer) (err error) {
-	initMapping()
 
 	for {
 		var runes [4]rune
@@ -56,9 +55,9 @@ func Decode(r RuneReader, w io.Writer) (err error) {
 			runes[i] = r
 		}
 
-		bits1 := revMapping[runes[0]]
-		bits2 := revMapping[runes[1]]
-		bits3 := revMapping[runes[2]]
+		bits1 := revEmojis[runes[0]]
+		bits2 := revEmojis[runes[1]]
+		bits3 := revEmojis[runes[2]]
 		var bits4 int
 
 		switch runes[3] {
@@ -71,7 +70,7 @@ func Decode(r RuneReader, w io.Writer) (err error) {
 		case padding43:
 			bits4 = 3 << 8
 		default:
-			bits4 = revMapping[runes[3]]
+			bits4 = revEmojis[runes[3]]
 
 		}
 
