@@ -4,7 +4,7 @@ Ecoji encodes data as [emojis][emoji].  As a bonus, includes code to decode emoj
 
 ## Installing
 
-Ecoji is published to [snapcraft.io](https://snapcraft.io/store) and can be installed with :
+Ecoji is published to [snapcraft.io](https://snapcraft.io/ecoji) and can be installed with :
 
 ```bash
 sudo snap install ecoji
