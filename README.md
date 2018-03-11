@@ -69,7 +69,6 @@ $ echo -n abcd | ecoji >> /tmp/test.ecoji
 $ echo -n ac | ecoji >> /tmp/test.ecoji
 $ echo -n b | ecoji >> /tmp/test.ecoji
 $ echo -n ba | ecoji >> /tmp/test.ecoji
-
 $ export LC_ALL=C
 $ sort /tmp/test.ecoji > /tmp/test-sorted.ecoji
 $ diff /tmp/test.ecoji /tmp/test-sorted.ecoji
