@@ -53,7 +53,7 @@ GhAkTyOY/Pta78KImgvofylL19M=
 Data encoded with Ecoji sorts the same as the input data.
 
 ```bash
-$ echo -n a | ecoji > /tmp/stest.ecoji
+$ echo -n a | ecoji > /tmp/test.ecoji
 $ echo -n ab | ecoji >> /tmp/test.ecoji
 $ echo -n abc | ecoji >> /tmp/test.ecoji
 $ echo -n abcd | ecoji >> /tmp/test.ecoji
@@ -64,6 +64,7 @@ $ export LC_ALL=C
 $ sort /tmp/test.ecoji > /tmp/test-sorted.ecoji
 $ diff /tmp/test.ecoji /tmp/test-sorted.ecoji
 $ cat /tmp/test-sorted.ecoji
+👕☕☕☕
 👖📲☕☕
 👖📸🎈☕
 👖📸🎦⚜
