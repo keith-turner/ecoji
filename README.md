@@ -95,6 +95,7 @@ Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit P
 
 | Language | Comments
 |----------|----------
+| [D](https://github.com/ohdatboi/ecoji-d) | Implementation of Ecoji written in the D programming language.
 | Go       | This repository offers a Go library package with two functions [ecoji.Encode()](encode.go) and [ecoji.Decode()](decode.go).
 | Java     | Coming soon, I plan to implement this and publish to maven central unless someone else does.
 
