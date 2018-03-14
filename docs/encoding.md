@@ -1,6 +1,6 @@
-# Encoji encoding standard
+# Ecoji encoding standard
 
-Encoji maps input data into 1024 Unicode emojis (plus 5 padding emojis).  Ten
+Ecoji maps input data into 1024 Unicode emojis (plus 5 padding emojis).  Ten
 bits are needed to represent 1024. Ecoji reads 5 bytes at a time because this
 is 40 bits which is a multiple of 10.  For each 5 bytes read, 4 emojis are
 output.  When less than 5 bytes are available, special padding emojis are
