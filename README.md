@@ -1,6 +1,8 @@
 # Ecoji 🏣🔉🦐🔼
 
-Ecoji encodes data as 1024 [emojis][emoji], its base1024 with an emoji character set.  As a bonus, includes code to decode emojis to original data.
+Ecoji encodes data as 1024 [emojis][emoji], its base1024 with an emoji character set.  As a bonus, includes code to decode emojis to original data.  
+
+Many have asked how Ecoji compares to base64.  The short answer is that Ecoji is more bytes, but less visible characters. For example sha256 is 112 bytes when encoded using Ecoji. For base64, sha256 is 44 bytes. For sha256, Ecoji has 28 visible chars and base64 44. With base64 each visible char encodes 6 bits of data and each visible char is one byte. With Ecoji each visible char encodes 10 bits of data, but each visible character is multi-byte.
 
 ## Installing
 
