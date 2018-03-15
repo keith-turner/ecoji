@@ -39,7 +39,7 @@ $ echo 👖📸🎈☕🎥🤠📠🏍🐲👡🕟☕ | ecoji -d
 abc6789XY
 ```
 
-Make your hashes more interesting.
+Make your hashes more interesting. Security discliamer, while using Ecoji may make hash verification fun it could be problematic in the case of similar emojis and different fonts.  Recommend including Ecoji in addition to standards like base64.
 
 ```bash
 $ cat encode.go  | openssl dgst -binary -sha1 | ecoji
