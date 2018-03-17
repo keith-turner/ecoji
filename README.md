@@ -57,7 +57,6 @@ Make a cool URL shortener.  Four base1024 emojis can represent 1 trillion unique
 ```
 $ printf "https://ecoji.io/%s\n" $(echo af82dd48f7 | xxd -r -p | ecoji)
 https://ecoji.io/😉🈚🛠🏄
-
 ```
 
 Data encoded with Ecoji sorts the same as the input data.
