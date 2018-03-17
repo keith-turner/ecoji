@@ -52,7 +52,7 @@ $ cat encode.go  | openssl dgst -binary -sha1 | openssl base64
 GhAkTyOY/Pta78KImgvofylL19M=
 ```
 
-Make a cool URL shortener.  Four base1024 emojis can represent 1 trillion unique IDs.  In the example below `af82dd48f7` represents a 5 byte id for a URL in a key value store like [Accumulo](https://accumulo.apache.org).  When someone enter the URL, the 5 byte id could be used to obtain the actual URL from the database.
+Make a cool URL shortener.  Four base1024 emojis can represent 1 trillion unique IDs.  In the example below `af82dd48f7` represents a 5 byte id for a URL in a key value store like [Accumulo](https://accumulo.apache.org).  When someone enters the URL, the 5 byte id could be used to obtain the actual URL from the database and the redirect.
 
 ```
 $ printf "https://ecoji.io/%s\n" $(echo af82dd48f7 | xxd -r -p | ecoji)
