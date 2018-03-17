@@ -41,7 +41,7 @@ $ echo 👖📸🎈☕🎥🤠📠🏍🐲👡🕟☕ | ecoji -d
 abc6789XY
 ```
 
-Make your hashes more interesting. Security discliamer, while using Ecoji may make hash verification fun it could be problematic in the case of similar emojis, non utf8 systems, and different fonts.  Recommend including Ecoji in addition to standards like base64.
+Make your hashes more interesting. When using for hashes, consideration should be given for older systems without utf8 emoji support, different fonts, and similar emojis.
 
 ```bash
 $ cat encode.go  | openssl dgst -binary -sha1 | ecoji
@@ -50,6 +50,14 @@ $ echo 🌰🏐🏡🚟🔶🦅😡😺🚆🍑🕡🦞📍🖊🙀🦉 | ecoji 
 GhAkTyOY/Pta78KImgvofylL19M=
 $ cat encode.go  | openssl dgst -binary -sha1 | openssl base64
 GhAkTyOY/Pta78KImgvofylL19M=
+```
+
+Make a cool URL shortener.  Four base1024 emojis can represent 1 trillion unique IDs.  In the example below `af82dd48f7` represents a 5 byte id for a URL in a key value store like [Accumulo](https://accumulo.apache.org).  When someone enter the URL, the 5 byte id could be used to obtain the actual URL from the database.
+
+```
+$ printf "https://ecoji.io/%s\n" $(echo af82dd48f7 | xxd -r -p | ecoji)
+https://ecoji.io/😉🈚🛠🏄
+
 ```
 
 Data encoded with Ecoji sorts the same as the input data.
