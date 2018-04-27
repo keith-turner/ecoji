@@ -116,6 +116,7 @@ Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit P
 | [Java](https://github.com/netvl/ecoji-java) | Implementation of Ecoji written in Java, usable in any JVM language.
 | [PHP](https://github.com/Rayne/ecoji-php) | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji).
 | [Rust](https://github.com/netvl/ecoji.rs) | Implementation of Ecoji written in the Rust programming language.
+| [Python](https://github.com/mecforlove/ecoji-py) | Implementation of Ecoji written in the Python3 programming language.
 
 ## Build instructions.
 
