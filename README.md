@@ -1,8 +1,8 @@
 # Ecoji 🏣🔉🦐🔼
 
-Ecoji encodes data as 1024 [emojis][emoji], its base1024 with an emoji character set.  As a bonus, includes code to decode emojis to original data.  
+Ecoji encodes data as 1024 [emojis][emoji].  It's base1024 with an emoji character set.  As a bonus, this repo includes code to decode emojis to the original data they represent.
 
-Many have asked how Ecoji compares to base64.  The short answer is that Ecoji is more bytes, but less visible characters. With Ecoji each visible char represents 10 bits, but each character is multi-byte.  With base64 each char represents 6 bits and is one byte.  The following table shows encoding sha256 in different ways.
+Many have asked how Ecoji compares to base64.  The short answer is that a string encoded with Ecoji will have more bytes, but fewer visible characters, than the same string encoded with base64. With Ecoji, each visible char represents 10 bits, but each character is multi-byte.  With base64 each char represents 6 bits and is one byte.  The following table shows encoding sha256 in different ways.
 
 Encoding | Bytes | Characters 
 ---------|-------|-----------
@@ -13,29 +13,45 @@ ecoji    | 112   | 28
 
 ## Installing
 
-Ecoji is published to [snapcraft.io](https://snapcraft.io/ecoji) and can be installed with :
+Ecoji is published on [snapcraft.io](https://snapcraft.io/ecoji) and can be installed with :
 
 ```bash
 sudo snap install ecoji
 ```
 
-## Examples of running
+## Usage
 
-Encode example :
+```bash
+$ ecoji -h
+usage: ecoji [OPTIONS]... [FILE]
+
+Encode or decode data as Unicode emojis. 😁
+
+Options:
+    -d, --decode          decode data
+    -w, --wrap=COLS       wrap encoded lines after COLS character (default 76).
+                          Use 0 to disable line wrapping
+    -h, --help            Print this message
+    -v, --version         Print version information.
+```
+
+## Examples
+
+### Encoding:
 
 ```bash
 $ echo "Base64 is so 1999, isn't there something better?" | ecoji
 🏗📩🎦🐇🎛📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🇵💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑
 ```
 
-Decode example :
+### Decoding:
 
 ```bash
 $ echo 🏗📩🎦🐇🎛📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🇵💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑 | ecoji -d
 Base64 is so 1999, isn't there something better?
 ```
 
-Concatenation :
+### Concatenation:
 
 ```bash
 $ echo -n abc | ecoji
@@ -48,7 +64,7 @@ $ echo 👖📸🎈☕🎥🤠📠🏍🐲👡🕟☕ | ecoji -d
 abc6789XY
 ```
 
-Make your hashes more interesting. When using for hashes, consideration should be given for older systems without utf8 emoji support, different fonts, and similar emojis.
+### Making Hashes More Interesting
 
 ```bash
 $ cat encode.go  | openssl dgst -binary -sha1 | ecoji
@@ -59,12 +75,19 @@ $ cat encode.go  | openssl dgst -binary -sha1 | openssl base64
 GhAkTyOY/Pta78KImgvofylL19M=
 ```
 
-Make a cool URL shortener.  Four base1024 emojis can represent 1 trillion unique IDs.  In the example below `af82dd48f7` represents a 5 byte id for a URL in a key value store like [Accumulo](https://accumulo.apache.org).  When someone enters the URL, the 5 byte id could be used to obtain the actual URL from the database and then redirect.
+(If you want to use Ecoji for hashes, consider the dangers inherent in older systems without utf8 emoji support, different fonts, and similar emojis.)
+
+
+### A URL Shortener
+
+Four base1024 emojis can represent 1 trillion unique IDs.  In the example below `af82dd48f7` represents a 5 byte id for a URL in a key value store like [Accumulo](https://accumulo.apache.org).  When someone enters the URL, the 5 byte id could be used to obtain the actual URL from the database and then redirect.
 
 ```
 $ printf "https://ecoji.io/%s\n" $(echo af82dd48f7 | xxd -r -p | ecoji)
 https://ecoji.io/😉🈚🛠🏄
 ```
+
+### Sorting Ecoji-Encoded Data
 
 Data encoded with Ecoji sorts the same as the input data.
 
@@ -89,23 +112,7 @@ $ cat /tmp/test-sorted.ecoji
 👚📢☕☕
 ```
 
-Usage :
-
-```bash
-$ ecoji -h
-usage: ecoji [OPTIONS]... [FILE]
-
-Encode or decode data as Unicode emojis. 😁
-
-Options:
-    -d, --decode          decode data
-    -w, --wrap=COLS       wrap encoded lines after COLS character (default 76).
-                          Use 0 to disable line wrapping
-    -h, --help            Print this message
-    -v, --version         Print version information.
-```
-
-## Libraries
+## Implementations
 
 Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit PR to add a library to the table.
 
@@ -120,9 +127,9 @@ Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit P
 | [Swift](https://github.com/Robindiddams/ecoji-swift) | Implementation of Ecoji written in the Swift programming language.
 
 
-## Build instructions.
+## Building
 
-This is my first Go project, I am starting to get my bearings. If you are new
+This is my first Go project and I am starting to get my bearings. If you are new
 to Go I would recommend this [video] and the [tour].
 
 ```bash
