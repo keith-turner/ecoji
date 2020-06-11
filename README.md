@@ -118,7 +118,7 @@ Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit P
 | [Python](https://github.com/mecforlove/ecoji-py) | Implementation of Ecoji written in the Python3 programming language.
 | [Rust](https://github.com/netvl/ecoji.rs) | Implementation of Ecoji written in the Rust programming language.
 | [Swift](https://github.com/Robindiddams/ecoji-swift) | Implementation of Ecoji written in the Swift programming language.
-
+| [.NET](https://github.com/abock/dotnet-ecoji) | Implementation of Ecoji written in the .NET Framework, C# programming language.
 
 ## Build instructions.
 
