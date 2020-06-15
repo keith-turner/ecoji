@@ -121,6 +121,7 @@ Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit P
 | [D](https://github.com/ohdatboi/ecoji-d) | Implementation of Ecoji written in the D programming language.
 | Go       | This repository offers a Go library package with two functions [ecoji.Encode()](encode.go) and [ecoji.Decode()](decode.go).
 | [Java](https://github.com/netvl/ecoji-java) | Implementation of Ecoji written in Java, usable in any JVM language.
+| [.NET](https://github.com/abock/dotnet-ecoji) | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji).
 | [PHP](https://github.com/Rayne/ecoji-php) | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji).
 | [Python](https://github.com/mecforlove/ecoji-py) | Implementation of Ecoji written in the Python3 programming language.
 | [Rust](https://github.com/netvl/ecoji.rs) | Implementation of Ecoji written in the Rust programming language.
