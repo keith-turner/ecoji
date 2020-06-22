@@ -13,14 +13,12 @@
                         function doEncode(){
 				var data = document.getElementById('plain').value
 				var encoded = ecojiEncode(data)
-				console.log(encoded)
 				document.getElementById('encoded').value = encoded
 			}
 
                         function doDecode(){
 				var data = document.getElementById('encoded').value
 				var decoded = ecojiDecode(data)
-				console.log(decoded)
 				document.getElementById('plain').value = decoded
 			}
 
@@ -38,15 +36,15 @@
 		<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 			<header class="masthead mb-auto">
     				<div class="inner justify-content-left">
-      					<h3 class="masthead-brand">ecoji.io : 👦🔉🦐🔼🎁🖌🥰☕</h3>
+      					<h3 class="masthead-brand">Ecoji.io | 🏣🔉🦐🔼🎁🖌🥰☕</h3>
     				</div>
   			</header>
 			<main role="main" class="inner cover">
-				<p class="lead"> Enter message to encode using <a href="https://github.com/keith-turner/ecoji">Ecoji</a> below.</p>
+				<p class="lead">Encode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
 				<textarea id="plain" class="form-control" rows="4" oninput="doEncode()"></textarea>
 				<br/>
 				<p/>
-				<p class="lead">Paste Ecoji encoded message below</p>
+				<p class="lead">Decode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
 				<textarea id="encoded" class="form-control" rows="4" oninput="doDecode()"></textarea>
 			</main>
 
