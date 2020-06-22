@@ -11,19 +11,17 @@
 			});
 
                         function doEncode(){
-				var data = document.getElementById('data').value
+				var data = document.getElementById('plain').value
 				var encoded = ecojiEncode(data)
 				console.log(encoded)
-				document.getElementById("ecojiOutput").innerHTML = encoded
-
+				document.getElementById('encoded').value = encoded
 			}
 
                         function doDecode(){
-				var data = document.getElementById('data').value
+				var data = document.getElementById('encoded').value
 				var decoded = ecojiDecode(data)
 				console.log(decoded)
-				document.getElementById("ecojiOutput").innerHTML = decoded
-
+				document.getElementById('plain').value = decoded
 			}
 
 		</script>
@@ -44,19 +42,12 @@
     				</div>
   			</header>
 			<main role="main" class="inner cover">
-				<p class="lead">Encode and decode messages using <a href="https://github.com/keith-turner/ecoji">Ecoji</a>.</p>
+				<p class="lead">Encode and decode messages using <a href="https://github.com/keith-turner/ecoji">Ecoji</a>. Enter message to encode in the text box below.</p>
+				<textarea id="plain" class="form-control" rows="5" oninput="doEncode()"></textarea>
 				<br/>
-				<br/>
-				<textarea id="data" class="form-control" rows="5"></textarea>
 				<p/>
-				<p class="lead">
-					<button class="btn btn-primary"  onclick="doEncode()">Encode</button> &nbsp;
-					<button class="btn btn-primary" onclick="doDecode()">Decode</button>
-				</p>
-				<p/>
-				<br/>
-				<br/>
-				<p id="ecojiOutput" class="text-left lead"></p>
+				<p class="lead">Paste Ecoji encoded message below</p>
+				<textarea id="encoded" class="form-control" rows="5" oninput="doDecode()"></textarea>
 			</main>
 
 
