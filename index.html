@@ -34,7 +34,7 @@
 				var data = document.getElementById('plain').value
                                 var encoded = ecojiEncode(data)
 				encoded = "http://ecoji.io/?d="+encoded
-				document.getElementById('encoded').value = encoded
+				document.getElementById('link').innerHTML = encoded
 			}
 
 		</script>
@@ -61,7 +61,9 @@
 				<p/>
 				<p class="lead">Decode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
 				<textarea id="encoded" class="form-control" rows="4" oninput="doDecode()"></textarea>
-				<p>
+				<p/>
+				<br/>
+				<p id=link> </p>
 				<br/>
 				<button type="button" class="btn btn-primary" onclick="doLinkEncode()">Link</button>
 			</main>
