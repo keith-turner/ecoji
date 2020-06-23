@@ -6,10 +6,11 @@
 		<script src="wasm_exec.js"></script>
 		<script>
 			const go = new Go();
-			WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+			const ecojiPromise = WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
 				go.run(result.instance);
-			});
 
+			});
+console.log("here")
                         function doEncode(){
 				var data = document.getElementById('plain').value
 				var encoded = ecojiEncode(data)
@@ -20,6 +21,21 @@
 				var data = document.getElementById('encoded').value
 				var decoded = ecojiDecode(data)
 				document.getElementById('plain').value = decoded
+			}
+
+			function doPopulate(ep) {
+				if(ep) {
+					document.getElementById('encoded').value = ep
+                                	var decoded = ecojiDecode(ep)
+                                	document.getElementById('plain').value = decoded
+				}
+			}
+
+			function doLinkEncode(){
+				var data = document.getElementById('plain').value
+                                var encoded = ecojiEncode(data)
+				encoded = "http://ecoji.io/?d="+encoded
+				document.getElementById('encoded').value = encoded
 			}
 
 		</script>
@@ -46,6 +62,9 @@
 				<p/>
 				<p class="lead">Decode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
 				<textarea id="encoded" class="form-control" rows="4" oninput="doDecode()"></textarea>
+				<p>
+				<br/>
+				<button type="button" class="btn btn-primary" onclick="doLinkEncode()">Link</button>
 			</main>
 
 
@@ -61,6 +80,9 @@
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script>
+			ecojiPromise.then(() => {doPopulate(new URLSearchParams(window.location.search).get("d"))})
+		</script>
 
 	</body>
 </html>
