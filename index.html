@@ -33,8 +33,10 @@
 			function doLinkEncode(){
 				var data = document.getElementById('plain').value
                                 var encoded = ecojiEncode(data)
-				encoded = "http://ecoji.io/?d="+encoded
-				document.getElementById('link').innerHTML = encoded
+				if(encoded) {
+					encoded = "https://ecoji.io/?d="+encoded
+					document.getElementById('link').innerHTML = encoded
+				}
 			}
 
 		</script>
