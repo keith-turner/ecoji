@@ -119,6 +119,7 @@ Libraries [implementing](docs/encoding.md) the Ecoji encoding standard. Submit P
 | Language | Comments
 |----------|----------
 | [D](https://github.com/ohdatboi/ecoji-d) | Implementation of Ecoji written in the D programming language.
+| [Gleam](https://github.com/lpil/ecoji) | Implementation of Ecoji written in Gleam, usable in any BEAM language.
 | Go       | This repository offers a Go library package with two functions [ecoji.Encode()](encode.go) and [ecoji.Decode()](decode.go).
 | [Java](https://github.com/netvl/ecoji-java) | Implementation of Ecoji written in Java, usable in any JVM language.
 | [.NET](https://github.com/abock/dotnet-ecoji) | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji).
