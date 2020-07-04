@@ -1,6 +1,6 @@
 # ecoji.io source code
 
-Source code for ecoji.io. All of the web page source is in [index.html](index.html).  The web page calls the ecoji go project using web assembly.  The following builds the web assembly file. 
+Source code for ecoji.io. All of the web page source is in [index.html](index.html).  The web page calls the ecoji go project using web assembly.  The following builds the web assembly file, however building this is not necessary to edit index.html.
 
 ```
 GOOS=js GOARCH=wasm go build -o main.wasm main.go
