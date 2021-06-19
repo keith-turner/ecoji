@@ -1,5 +1,7 @@
 # Ecoji 🏣🔉🦐🔼
 
+**WARNING :** This branch contains a work in progress version of Ecoji V2. Any data encoded using this branch may not be compatible with the final version of Ecoji V2.
+
 Ecoji encodes data as 1024 [emojis][emoji].  It's base1024 with an emoji character set and it preserves sort order.  This repository implements Ecoji using Go.  There are links to other implementations below.  Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
 
 Many have asked how Ecoji compares to base64.  The short answer is that a string encoded with Ecoji will have more bytes, but fewer visible characters, than the same string encoded with base64. With Ecoji, each visible char represents 10 bits, but each character is multi-byte.  With base64 each char represents 6 bits and is one byte.  The following table shows encoding sha256 in different ways.
