@@ -1,6 +1,7 @@
 package ecoji
 
 import (
+	"fmt"
 	"io"
 )
 
@@ -63,7 +64,7 @@ func encode(s []byte, w RuneWriter) (err error) {
 		runes[2] = emojis[(b2&0x0f)<<6|b3>>2]
 		runes[3] = emojis[(b3&0x03)<<8|b4]
 	default:
-		panic("unexpected length " + string(len(s)))
+		panic(fmt.Sprintf("unexpected length %d", len(s)))
 
 	}
 
