@@ -57,21 +57,26 @@ var mappingTemplate = template.Must(template.New("").Parse(`// Code generated; D
 package ecoji
 
 //This should sort before everything.  This is output when 3 or less input bytes are present.
-const padding rune = 0x2615
+const padding rune = 0x2615 
+const paddingV1 rune = padding
 
 //The following paddings are used when only 4 of 5 input bytes are present.
 
 //This should sort between padding and emojis[0]
-const padding40 rune = 0x269C
+const padding40 rune = 0x1FAB4
+const padding40V1 rune = 0x269C
 
 //This should sort between emojis[255] and emojis[256]
-const padding41 rune = 0x1F3CD
+const padding41 rune = 0x1F6FC
+const padding41V1 rune = 0x1F3CD
 
 //This should sort between emojis[511] and emojis[512]
 const padding42 rune = 0x1F4D1
+const padding42V1 rune = padding42
 
 //This should sort between emojis[767] and emojis[768]
 const padding43 rune = 0x1F64B
+const padding43V1 rune = padding43
 
 var emojis = [1024]rune{
 {{- range $i, $emoji := .Emojis }}
