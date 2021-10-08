@@ -91,6 +91,8 @@ func readRune(r io.RuneReader, currver *ecojiver) (c rune, size int, err error) 
 				return 0, 0, errors.New("Invalid rune " + string(c))
 			}
 		}
+	default:
+		panic("Unexpected ecoji ver")
 
 	}
 
