@@ -5,6 +5,15 @@ import (
 	"io"
 )
 
+type ecojiver int
+
+const (
+	BOTH ecojiver = 1
+	V1   ecojiver = 2
+	V2   ecojiver = 3
+	NONE ecojiver = 4
+)
+
 func isPadding(r rune) bool {
 	return r == padding || r == padding40 || r == padding41 || r == padding42 || r == padding43
 }
@@ -20,14 +29,31 @@ func checkRuneV1(r rune) bool {
 	return true
 }
 
-func checkRune(r rune) bool {
+func checkRuneV2(r rune) bool {
 	if _, exists := revEmojis[r]; !exists && !isPadding(r) {
 		return false
 	}
 	return true
 }
 
-func readRune(r io.RuneReader, ecojiV1 *bool) (c rune, size int, err error) {
+func checkRune(r rune) ecojiver {
+	//TODO create a map where the value is ecojiver, will be more efficient
+	isV1 := checkRuneV1(r)
+	isV2 := checkRuneV2(r)
+
+	if isV1 && isV2 {
+		return BOTH
+	} else if isV1 {
+		return V1
+	} else if isV2 {
+		return V2
+	} else {
+		return NONE
+	}
+
+}
+
+func readRune(r io.RuneReader, currver *ecojiver) (c rune, size int, err error) {
 	c, s, e := r.ReadRune()
 	for c == '\n' {
 		c, s, e = r.ReadRune()
@@ -38,33 +64,48 @@ func readRune(r io.RuneReader, ecojiV1 *bool) (c rune, size int, err error) {
 	} else if e != nil {
 		return c, s, e
 	}
+
 	// check to see if this is a valid emoji rune
-	if *ecojiV1 {
-		if ok := checkRuneV1(c); !ok {
+	switch ver := checkRune(c); ver {
+	case NONE:
+		{
 			return 0, 0, errors.New("Invalid rune " + string(c))
 		}
-	} else {
-		if ok := checkRune(c); !ok {
-			// try to fallback to ecoji v1
-			if isV1 := checkRuneV1(c); isV1 {
-				*ecojiV1 = true
-			} else {
+	case BOTH:
+		{
+			//noop
+		}
+	case V1:
+		{
+			if *currver == BOTH {
+				*currver = V1
+			} else if *currver != V1 {
 				return 0, 0, errors.New("Invalid rune " + string(c))
 			}
 		}
+	case V2:
+		{
+			if *currver == BOTH {
+				*currver = V2
+			} else if *currver != V2 {
+				return 0, 0, errors.New("Invalid rune " + string(c))
+			}
+		}
+
 	}
+
 	return c, s, e
 }
 
 //Reads unicode emojis, map each emoji to a 10 bit integer, writes 10 bit intergers
 func Decode(r io.RuneReader, w io.Writer) (err error) {
-	var ecojiV1 bool
+	ver := BOTH
 
 	for {
 		var runes [4]rune
 
 		//TODO error check reads
-		r1, _, e1 := readRune(r, &ecojiV1)
+		r1, _, e1 := readRune(r, &ver)
 		if e1 == io.EOF {
 			break
 		} else if e1 != nil {
@@ -73,7 +114,7 @@ func Decode(r io.RuneReader, w io.Writer) (err error) {
 		runes[0] = r1
 
 		for i := 1; i < 4; i++ {
-			r, _, err := readRune(r, &ecojiV1)
+			r, _, err := readRune(r, &ver)
 			if err == io.EOF {
 				return errors.New("Unexpected end of data, input data size not multiple of 4")
 			} else if err != nil {
@@ -83,7 +124,7 @@ func Decode(r io.RuneReader, w io.Writer) (err error) {
 		}
 		var bits1, bits2, bits3, bits4 int
 
-		if ecojiV1 {
+		if ver == V1 {
 			bits1 = revEmojisV1[runes[0]]
 			bits2 = revEmojisV1[runes[1]]
 			bits3 = revEmojisV1[runes[2]]
@@ -127,7 +168,7 @@ func Decode(r io.RuneReader, w io.Writer) (err error) {
 		out[3] = byte((bits3 & 0x3f << 2) | (bits4 >> 8))
 		out[4] = byte(bits4 & 0xff)
 
-		if ecojiV1 {
+		if ver == V1 {
 			switch {
 			case runes[1] == paddingV1:
 				out = out[:1]
