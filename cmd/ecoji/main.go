@@ -13,16 +13,23 @@ var usageMessage = `usage: ecoji [OPTIONS]... [FILE]
 
 Encode or decode data as Unicode emojis. 😁
 
+For compatability, when given no options stdin will be encoded using Ecoji 
+version 1. When using the new -e option, stdin is encoded using Ecoji 
+version 2.  The -e and -d options are mutually exclusive.
+
 Options:
-    -d, --decode          decode data
+    -e, --encode          Encode data using Ecoji version 2.  Omitting this
+                          option will encode using Ecoji version 1.
+    -d, --decode          Decodes data encoded using the Ecoji version 1 or 2 standard.
     -w, --wrap=COLS       wrap encoded lines after COLS character (default 76).
-                          Use 0 to disable line wrapping
+                          Use 0 to disable line wrapping.  This options is
+                          ignored when decoding.
     -h, --help            Print this message
     -v, --version         Print version information.
 `
 
-var versionMessage = `Ecoji version 1.0.0
-  Copyright   : (C) 2018 Keith Turner
+var versionMessage = `Ecoji version 2.0.0
+  Copyright   : (C) 2021 Keith Turner
   License     : Apache 2.0
   Source code : https://github.com/keith-turner/ecoji
 `
@@ -53,10 +60,14 @@ func openFile(name string) *os.File {
 
 func main() {
 
+	encode := false
 	decode := false
 	help := false
 	version := false
 	wrap := uint(76)
+
+	flag.BoolVar(&encode, "e", false, "")
+	flag.BoolVar(&encode, "encode", false, "")
 
 	flag.BoolVar(&decode, "d", false, "")
 	flag.BoolVar(&decode, "decode", false, "")
@@ -78,7 +89,7 @@ func main() {
 
 	args := flag.Args()
 
-	if len(args) > 1 {
+	if len(args) > 1 || (encode && decode) {
 		fmt.Print(usageMessage)
 		os.Exit(2)
 	}
@@ -104,7 +115,11 @@ func main() {
 
 	stdout := bufio.NewWriter(os.Stdout)
 
-	if !decode {
+	if encode {
+		if err := ecoji.EncodeV2(in, stdout, wrap); err != nil {
+			log.Fatal(err)
+		}
+	} else if !decode {
 		if err := ecoji.Encode(in, stdout, wrap); err != nil {
 			log.Fatal(err)
 		}

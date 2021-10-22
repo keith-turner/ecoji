@@ -10,7 +10,7 @@ type RuneWriter interface {
 	WriteRune(rune) (int, error)
 }
 
-func encode(s []byte, w RuneWriter) (err error) {
+func encode(s []byte, w RuneWriter, emojis []rune, padding []rune) (err error) {
 
 	if len(s) == 0 {
 		panic("expected data")
@@ -34,7 +34,7 @@ func encode(s []byte, w RuneWriter) (err error) {
 		b4 = int(s[4])
 	}
 
-	runes := []rune{emojis[b0<<2|b1>>6], padding, padding, padding}
+	runes := []rune{emojis[b0<<2|b1>>6], padding[0], padding[0], padding[0]}
 
 	switch len(s) {
 	case 1:
@@ -50,13 +50,13 @@ func encode(s []byte, w RuneWriter) (err error) {
 
 		switch b3 & 0x03 {
 		case 0:
-			runes[3] = padding40
+			runes[3] = padding[1]
 		case 1:
-			runes[3] = padding41
+			runes[3] = padding[2]
 		case 2:
-			runes[3] = padding42
+			runes[3] = padding[3]
 		case 3:
-			runes[3] = padding43
+			runes[3] = padding[4]
 		}
 
 	case 5:
@@ -89,9 +89,7 @@ func readFully(r io.Reader, buffer []byte) (n int, e error) {
 	return num, err
 }
 
-//Maps every 10 bits from the reader to one of 1024 Unicode emojis, writing the emojis.
-func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
-
+func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding []rune) (err error) {
 	buffer := make([]byte, 5)
 	printed := uint(0)
 
@@ -112,7 +110,7 @@ func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
 			return err
 		}
 
-		if err := encode(buffer[0:num], w); err != nil {
+		if err := encode(buffer[0:num], w, emojis, padding); err != nil {
 			return err
 		}
 
@@ -129,4 +127,14 @@ func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
 	}
 
 	return nil
+}
+
+//Encodes data using the Ecoji version 1 standard
+func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
+	return encodeAndWrap(r, w, wrap, emojisV1[:], paddingV1[:])
+}
+
+//Encodes data using the Ecoji version 2 standard
+func EncodeV2(r io.Reader, w RuneWriter, wrap uint) (err error) {
+	return encodeAndWrap(r, w, wrap, emojisV2[:], paddingV2[:])
 }

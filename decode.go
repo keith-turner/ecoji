@@ -14,12 +14,12 @@ const (
 	NONE ecojiver = 4
 )
 
-func isPadding(r rune) bool {
-	return r == padding || r == padding40 || r == padding41 || r == padding42 || r == padding43
+func isPaddingV2(r rune) bool {
+	return r == paddingV2[0] || r == paddingV2[1] || r == paddingV2[2] || r == paddingV2[3] || r == paddingV2[4]
 }
 
 func isPaddingV1(r rune) bool {
-	return r == paddingV1 || r == padding40V1 || r == padding41V1 || r == padding42V1 || r == padding43V1
+	return r == paddingV1[0] || r == paddingV1[1] || r == paddingV1[2] || r == paddingV1[3] || r == paddingV1[4]
 }
 
 func checkRuneV1(r rune) bool {
@@ -30,7 +30,7 @@ func checkRuneV1(r rune) bool {
 }
 
 func checkRuneV2(r rune) bool {
-	if _, exists := revEmojis[r]; !exists && !isPadding(r) {
+	if _, exists := revEmojisV2[r]; !exists && !isPaddingV2(r) {
 		return false
 	}
 	return true
@@ -99,7 +99,7 @@ func readRune(r io.RuneReader, currver *ecojiver) (c rune, size int, err error) 
 	return c, s, e
 }
 
-//Reads unicode emojis, map each emoji to a 10 bit integer, writes 10 bit intergers
+//Decodes data encoded using the Ecoji version 1 or 2 standard back to the original data.
 func Decode(r io.RuneReader, w io.Writer) (err error) {
 	ver := BOTH
 
@@ -132,33 +132,33 @@ func Decode(r io.RuneReader, w io.Writer) (err error) {
 			bits3 = revEmojisV1[runes[2]]
 
 			switch runes[3] {
-			case padding40V1:
+			case paddingV1[1]:
 				bits4 = 0
-			case padding41V1:
+			case paddingV1[2]:
 				bits4 = 1 << 8
-			case padding42V1:
+			case paddingV1[3]:
 				bits4 = 2 << 8
-			case padding43V1:
+			case paddingV1[4]:
 				bits4 = 3 << 8
 			default:
 				bits4 = revEmojisV1[runes[3]]
 			}
 		} else {
-			bits1 = revEmojis[runes[0]]
-			bits2 = revEmojis[runes[1]]
-			bits3 = revEmojis[runes[2]]
+			bits1 = revEmojisV2[runes[0]]
+			bits2 = revEmojisV2[runes[1]]
+			bits3 = revEmojisV2[runes[2]]
 
 			switch runes[3] {
-			case padding40:
+			case paddingV2[1]:
 				bits4 = 0
-			case padding41:
+			case paddingV2[2]:
 				bits4 = 1 << 8
-			case padding42:
+			case paddingV2[3]:
 				bits4 = 2 << 8
-			case padding43:
+			case paddingV2[4]:
 				bits4 = 3 << 8
 			default:
-				bits4 = revEmojis[runes[3]]
+				bits4 = revEmojisV2[runes[3]]
 			}
 		}
 
@@ -172,24 +172,24 @@ func Decode(r io.RuneReader, w io.Writer) (err error) {
 
 		if ver == V1 {
 			switch {
-			case runes[1] == paddingV1:
+			case runes[1] == paddingV1[0]:
 				out = out[:1]
-			case runes[2] == paddingV1:
+			case runes[2] == paddingV1[0]:
 				out = out[:2]
-			case runes[3] == paddingV1:
+			case runes[3] == paddingV1[0]:
 				out = out[:3]
-			case runes[3] == padding40V1 || runes[3] == padding41V1 || runes[3] == padding42V1 || runes[3] == padding43V1:
+			case runes[3] == paddingV1[1] || runes[3] == paddingV1[2] || runes[3] == paddingV1[3] || runes[3] == paddingV1[4]:
 				out = out[:4]
 			}
 		} else {
 			switch {
-			case runes[1] == padding:
+			case runes[1] == paddingV2[0]:
 				out = out[:1]
-			case runes[2] == padding:
+			case runes[2] == paddingV2[0]:
 				out = out[:2]
-			case runes[3] == padding:
+			case runes[3] == paddingV2[0]:
 				out = out[:3]
-			case runes[3] == padding40 || runes[3] == padding41 || runes[3] == padding42 || runes[3] == padding43:
+			case runes[3] == paddingV2[1] || runes[3] == paddingV2[2] || runes[3] == paddingV2[3] || runes[3] == paddingV2[4]:
 				out = out[:4]
 			}
 		}

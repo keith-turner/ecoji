@@ -17,13 +17,13 @@ func main() {
 	if user == "" {
 		user = "robots"
 	}
-	v1Lines := getLines("emojisv1.txt")
-	v2Lines := getLines("emojis.txt")
+	v1Lines := getLines("emojisV1.txt")
+	v2Lines := getLines("emojisV2.txt")
 	doc := document{
 		User:      user,
 		Timestamp: time.Now().Format(time.RFC3339),
 		EmojisV1:  v1Lines,
-		Emojis:    v2Lines,
+		EmojisV2:  v2Lines,
 	}
 	ef, err := os.Create("mapping.go")
 	handle(err)
@@ -48,7 +48,7 @@ type document struct {
 	User      string
 	Timestamp string
 	EmojisV1  []string
-	Emojis    []string
+	EmojisV2  []string
 }
 
 var mappingTemplate = template.Must(template.New("").Parse(`// Code generated; DO NOT EDIT.
@@ -56,37 +56,22 @@ var mappingTemplate = template.Must(template.New("").Parse(`// Code generated; D
 // {{ .Timestamp }}
 package ecoji
 
-//This should sort before everything.  This is output when 3 or less input bytes are present.
-const padding rune = 0x2615 
-const paddingV1 rune = padding
 
-//The following paddings are used when only 4 of 5 input bytes are present.
+// padding at position 0 is output when 3 or less input bytes are present
+// padding at possitions 1 to 4 are sued when only 4 of 5 input bytes are presetn
 
-//This should sort between padding and emojis[0]
-const padding40 rune = 0x1FAB4
-const padding40V1 rune = 0x269C
+var paddingV1 = [5]rune{0x2615,0x269C,0x1F3CD,0x1F4D1,0x1F64B}
+var paddingV2 = [5]rune{0x2615,0x1FAB4,0x1F6FC,0x1F4D1,0x1F64B}
 
-//This should sort between emojis[255] and emojis[256]
-const padding41 rune = 0x1F6FC
-const padding41V1 rune = 0x1F3CD
-
-//This should sort between emojis[511] and emojis[512]
-const padding42 rune = 0x1F4D1
-const padding42V1 rune = padding42
-
-//This should sort between emojis[767] and emojis[768]
-const padding43 rune = 0x1F64B
-const padding43V1 rune = padding43
-
-var emojis = [1024]rune{
-{{- range $i, $emoji := .Emojis }}
+var emojisV1 = [1024]rune{
+{{- range $i, $emoji := .EmojisV1 }}
 	0x{{$emoji}},
 {{- end }}
 }
 
-var revEmojis = map[rune]int{
-{{- range $i, $emoji := .Emojis }}
-	0x{{$emoji}}: {{$i}},
+var emojisV2 = [1024]rune{
+{{- range $i, $emoji := .EmojisV2 }}
+	0x{{$emoji}},
 {{- end }}
 }
 
@@ -95,4 +80,11 @@ var revEmojisV1 = map[rune]int{
 	0x{{$emoji}}: {{$i}},
 {{- end }}
 }
+
+var revEmojisV2 = map[rune]int{
+{{- range $i, $emoji := .EmojisV2 }}
+	0x{{$emoji}}: {{$i}},
+{{- end }}
+}
+
 `))
