@@ -146,7 +146,7 @@ var revEmojis = map[rune]emojiInfo{
     paddingLastV1[2]: { ordinal: 2<<8, version: EVALL, padding: PAD_LAST }, 
     paddingLastV1[3]: { ordinal: 3<<8, version: EVALL, padding: PAD_LAST },
     paddingLastV2[0]: { ordinal: 0, version: EV2, padding: PAD_LAST },
-    paddingLastV2[0]: { ordinal: 1<<8, version: EV2, padding: PAD_LAST },
+    paddingLastV2[1]: { ordinal: 1<<8, version: EV2, padding: PAD_LAST },
 }
 
 `))
