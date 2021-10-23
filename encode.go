@@ -10,59 +10,45 @@ type RuneWriter interface {
 	WriteRune(rune) (int, error)
 }
 
-func encode(s []byte, w RuneWriter, emojis []rune, padding []rune) (err error) {
+func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune) error {
 
 	if len(s) == 0 {
 		panic("expected data")
 	}
 
-	var b0, b1, b2, b3, b4 int = int(s[0]), 0, 0, 0, 0
+	var bits uint64
 
-	if len(s) > 1 {
-		b1 = int(s[1])
+	switch len(s) {
+	case 1:
+		bits = uint64(s[0]) << 32
+	case 2:
+		bits = uint64(s[0])<<32 | uint64(s[1])<<24
+	case 3:
+		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16
+	case 4:
+		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16 | uint64(s[3])<<8
+	case 5:
+		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16 | uint64(s[3])<<8 | uint64(s[4])
 	}
 
-	if len(s) > 2 {
-		b2 = int(s[2])
-	}
-
-	if len(s) > 3 {
-		b3 = int(s[3])
-	}
-
-	if len(s) > 4 {
-		b4 = int(s[4])
-	}
-
-	runes := []rune{emojis[b0<<2|b1>>6], padding[0], padding[0], padding[0]}
+	runes := []rune{emojis[bits>>30], PADDING, PADDING, PADDING}
 
 	switch len(s) {
 	case 1:
 	//nothing to do, all padding
 	case 2:
-		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
+		runes[1] = emojis[0x3ff&(bits>>20)]
 	case 3:
-		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
-		runes[2] = emojis[(b2&0x0f)<<6|b3>>2]
+		runes[1] = emojis[0x3ff&(bits>>20)]
+		runes[2] = emojis[0x3ff&(bits>>10)]
 	case 4:
-		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
-		runes[2] = emojis[(b2&0x0f)<<6|b3>>2]
-
-		switch b3 & 0x03 {
-		case 0:
-			runes[3] = padding[1]
-		case 1:
-			runes[3] = padding[2]
-		case 2:
-			runes[3] = padding[3]
-		case 3:
-			runes[3] = padding[4]
-		}
-
+		runes[1] = emojis[0x3ff&(bits>>20)]
+		runes[2] = emojis[0x3ff&(bits>>10)]
+		runes[3] = paddingLast[(0x03 & (bits >> 8))]
 	case 5:
-		runes[1] = emojis[(b1&0x3f)<<4|b2>>4]
-		runes[2] = emojis[(b2&0x0f)<<6|b3>>2]
-		runes[3] = emojis[(b3&0x03)<<8|b4]
+		runes[1] = emojis[0x3ff&(bits>>20)]
+		runes[2] = emojis[0x3ff&(bits>>10)]
+		runes[3] = emojis[0x3ff&bits]
 	default:
 		panic(fmt.Sprintf("unexpected length %d", len(s)))
 
@@ -131,10 +117,10 @@ func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding 
 
 //Encodes data using the Ecoji version 1 standard
 func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
-	return encodeAndWrap(r, w, wrap, emojisV1[:], paddingV1[:])
+	return encodeAndWrap(r, w, wrap, emojisV1[:], paddingLastV1[:])
 }
 
 //Encodes data using the Ecoji version 2 standard
 func EncodeV2(r io.Reader, w RuneWriter, wrap uint) (err error) {
-	return encodeAndWrap(r, w, wrap, emojisV2[:], paddingV2[:])
+	return encodeAndWrap(r, w, wrap, emojisV2[:], paddingLastV2[:])
 }

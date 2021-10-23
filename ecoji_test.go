@@ -33,22 +33,22 @@ func check(t *testing.T, expected []rune, input []byte) {
 }
 
 func TestOneByteEncode(t *testing.T) {
-	check(t, []rune{emojisV2[int('k')<<2], paddingV2[0], paddingV2[0], paddingV2[0]}, []byte{'k'})
+	check(t, []rune{emojisV2[int('k')<<2], PADDING, PADDING, PADDING}, []byte{'k'})
 }
 
 func TestTwoByteEncode(t *testing.T) {
-	check(t, []rune{emojisV2[0], emojisV2[16], paddingV2[0], paddingV2[0]}, []byte{0x00, 0x01})
+	check(t, []rune{emojisV2[0], emojisV2[16], PADDING, PADDING}, []byte{0x00, 0x01})
 }
 
 func TestThreeByteEncode(t *testing.T) {
-	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingV2[0]}, []byte{0x00, 0x01, 0x02})
+	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], PADDING}, []byte{0x00, 0x01, 0x02})
 }
 
 func TestFourByteEncode(t *testing.T) {
-	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingV2[1]}, []byte{0x00, 0x01, 0x02, 0x00})
-	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingV2[2]}, []byte{0x00, 0x01, 0x02, 0x01})
-	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingV2[3]}, []byte{0x00, 0x01, 0x02, 0x02})
-	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingV2[4]}, []byte{0x00, 0x01, 0x02, 0x03})
+	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[0]}, []byte{0x00, 0x01, 0x02, 0x00})
+	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[1]}, []byte{0x00, 0x01, 0x02, 0x01})
+	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[2]}, []byte{0x00, 0x01, 0x02, 0x02})
+	check(t, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[3]}, []byte{0x00, 0x01, 0x02, 0x03})
 }
 
 func TestFiveByteEncode(t *testing.T) {

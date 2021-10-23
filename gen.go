@@ -6,9 +6,9 @@ package main
 
 import (
 	"fmt"
-	"html/template"
 	"os"
 	"strings"
+	"text/template"
 	"time"
 )
 
@@ -19,11 +19,41 @@ func main() {
 	}
 	v1Lines := getLines("emojisV1.txt")
 	v2Lines := getLines("emojisV2.txt")
+
+	revMap := make(map[string]RuneInfo)
+
+	for i, r := range v1Lines {
+		revMap[r] = RuneInfo{
+			Ordinal: i,
+			Version: 1,
+		}
+	}
+
+	for i, r := range v2Lines {
+		rInfo, exists := revMap[r]
+
+		if exists {
+			if rInfo.Ordinal != i {
+				panic("Ordinal mismatch")
+			}
+
+			rInfo.Version = 3
+			revMap[r] = rInfo
+		} else {
+			revMap[r] = RuneInfo{
+				Ordinal: i,
+				Version: 2,
+			}
+		}
+
+	}
+
 	doc := document{
 		User:      user,
 		Timestamp: time.Now().Format(time.RFC3339),
 		EmojisV1:  v1Lines,
 		EmojisV2:  v2Lines,
+		RevMap:    revMap,
 	}
 	ef, err := os.Create("mapping.go")
 	handle(err)
@@ -34,7 +64,7 @@ func main() {
 func getLines(fileName string) []string {
 	buf, err := os.ReadFile(fileName)
 	handle(err)
-	return strings.Split(string(buf), "\n")
+	return strings.Split(strings.ToLower(strings.TrimSpace(string(buf))), "\n")
 }
 
 func handle(err error) {
@@ -49,6 +79,12 @@ type document struct {
 	Timestamp string
 	EmojisV1  []string
 	EmojisV2  []string
+	RevMap    map[string]RuneInfo
+}
+
+type RuneInfo struct {
+	Ordinal int
+	Version int
 }
 
 var mappingTemplate = template.Must(template.New("").Parse(`// Code generated; DO NOT EDIT.
@@ -57,11 +93,12 @@ var mappingTemplate = template.Must(template.New("").Parse(`// Code generated; D
 package ecoji
 
 
-// padding at position 0 is output when 3 or less input bytes are present
-// padding at possitions 1 to 4 are sued when only 4 of 5 input bytes are presetn
+// padding to use when less than 5 bytes are present to encode
+const PADDING rune = 0x2615
 
-var paddingV1 = [5]rune{0x2615,0x269C,0x1F3CD,0x1F4D1,0x1F64B}
-var paddingV2 = [5]rune{0x2615,0x1FAB4,0x1F6FC,0x1F4D1,0x1F64B}
+// padding to use for the last emoji when onyl 4 input bytes are preset
+var paddingLastV1 = [4]rune{0x269C,0x1F3CD,0x1F4D1,0x1F64B}
+var paddingLastV2 = [4]rune{0x1FAB4,0x1F6FC,0x1F4D1,0x1F64B}
 
 var emojisV1 = [1024]rune{
 {{- range $i, $emoji := .EmojisV1 }}
@@ -75,16 +112,41 @@ var emojisV2 = [1024]rune{
 {{- end }}
 }
 
-var revEmojisV1 = map[rune]int{
-{{- range $i, $emoji := .EmojisV1 }}
-	0x{{$emoji}}: {{$i}},
-{{- end }}
+type ecojiver int
+
+const (
+	EV1    ecojiver = 1
+	EV2    ecojiver = 2
+	EVALL  ecojiver = 3
+)
+
+const NO_ORDINAL int = -1
+
+type paddingType int
+
+const (
+	PAD_NONE = -1
+    PAD_FILL = 1
+    PAD_LAST = 2
+)
+
+type emojiInfo struct {
+	ordinal int
+	version ecojiver
+    padding paddingType
 }
 
-var revEmojisV2 = map[rune]int{
-{{- range $i, $emoji := .EmojisV2 }}
-	0x{{$emoji}}: {{$i}},
+var revEmojis = map[rune]emojiInfo{
+{{- range $r, $ri := .RevMap }}
+	0x{{$r}}: { ordinal: {{$ri.Ordinal}}, version: {{$ri.Version}}, padding: PAD_NONE },
 {{- end }}
+    PADDING: { ordinal: 0, version: EVALL, padding: PAD_FILL }, 
+    paddingLastV1[0]: { ordinal: 0, version: EV1, padding: PAD_LAST }, 
+    paddingLastV1[1]: { ordinal: 1<<8, version: EV1, padding: PAD_LAST }, 
+    paddingLastV1[2]: { ordinal: 2<<8, version: EVALL, padding: PAD_LAST }, 
+    paddingLastV1[3]: { ordinal: 3<<8, version: EVALL, padding: PAD_LAST },
+    paddingLastV2[0]: { ordinal: 0, version: EV2, padding: PAD_LAST },
+    paddingLastV2[0]: { ordinal: 1<<8, version: EV2, padding: PAD_LAST },
 }
 
 `))
