@@ -72,4 +72,19 @@ func TestDecodeMixed(t *testing.T) {
 	} else if !strings.Contains(err2.Error(), "Emojis from different ecoji versions seen") {
 		t.Errorf("Did not see expected error message")
 	}
+
+	// test where mixed are more than 4 apart
+	runes3 := []rune{0x1f004, 0x1f170, 0x1f170, 0x1f93e, 0x1f004, 0x1f170, 0x1f170, 0x1f93e, 0x1f004, 0x1f170, 0x1f93f, 0x1f93e}
+
+	reader3 := strings.NewReader(string(runes3))
+	buffer3 := &bytes.Buffer{}
+
+	err3 := Decode(reader3, buffer3)
+
+	if err3 == nil {
+		t.Errorf("Did not see error with mixed data")
+	} else if !strings.Contains(err3.Error(), "Emojis from different ecoji versions seen") {
+		t.Errorf("Did not see expected error message")
+	}
+
 }

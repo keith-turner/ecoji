@@ -17,41 +17,25 @@ func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune) error {
 	}
 
 	var bits uint64
+	var runes []rune
 
 	switch len(s) {
 	case 1:
-		bits = uint64(s[0]) << 32
+		runes = []rune{emojis[uint64(s[0])<<2], PADDING, PADDING, PADDING}
 	case 2:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24
+		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], PADDING, PADDING}
 	case 3:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16
+		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], PADDING}
 	case 4:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16 | uint64(s[3])<<8
+		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], paddingLast[(0x03 & (bits >> 8))]}
 	case 5:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16 | uint64(s[3])<<8 | uint64(s[4])
-	}
-
-	runes := []rune{emojis[bits>>30], PADDING, PADDING, PADDING}
-
-	switch len(s) {
-	case 1:
-	//nothing to do, all padding
-	case 2:
-		runes[1] = emojis[0x3ff&(bits>>20)]
-	case 3:
-		runes[1] = emojis[0x3ff&(bits>>20)]
-		runes[2] = emojis[0x3ff&(bits>>10)]
-	case 4:
-		runes[1] = emojis[0x3ff&(bits>>20)]
-		runes[2] = emojis[0x3ff&(bits>>10)]
-		runes[3] = paddingLast[(0x03 & (bits >> 8))]
-	case 5:
-		runes[1] = emojis[0x3ff&(bits>>20)]
-		runes[2] = emojis[0x3ff&(bits>>10)]
-		runes[3] = emojis[0x3ff&bits]
+		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], emojis[0x3ff&bits]}
 	default:
 		panic(fmt.Sprintf("unexpected length %d", len(s)))
-
 	}
 
 	for _, r := range runes {
