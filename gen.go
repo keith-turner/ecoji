@@ -146,6 +146,8 @@ type emojiInfo struct {
     padding paddingType
 }
 
+// This map is used for ecoji decoding. It maps emojis to the information needed to decode them into 10-bit integers. 
+// It also has information needed to decoding padding emojis and validate ecoji version 1 and version 2.
 var revEmojis = map[rune]emojiInfo{
 {{- range $r, $ri := .RevMap }}
 	0x{{$r}}: { ordinal: {{$ri.Ordinal}}, version: {{$ri.Version}}, padding: padNone },
