@@ -94,7 +94,7 @@ package ecoji
 
 
 // padding to use when less than 5 bytes are present to encode
-const PADDING rune = 0x2615
+const padding rune = 0x2615
 
 // padding to use for the last emoji when onyl 4 input bytes are preset
 var paddingLastV1 = [4]rune{0x269C,0x1F3CD,0x1F4D1,0x1F64B}
@@ -115,19 +115,19 @@ var emojisV2 = [1024]rune{
 type ecojiver int
 
 const (
-	EV1    ecojiver = 1
-	EV2    ecojiver = 2
-	EVALL  ecojiver = 3
+	ev1    ecojiver = 1
+	ev2    ecojiver = 2
+	evAll  ecojiver = 3
 )
 
-const NO_ORDINAL int = -1
+const noOrdinal int = -1
 
 type paddingType int
 
 const (
-	PAD_NONE = -1
-    PAD_FILL = 1
-    PAD_LAST = 2
+	padNone = -1
+    padFill = 1
+    padLast = 2
 )
 
 type emojiInfo struct {
@@ -138,15 +138,15 @@ type emojiInfo struct {
 
 var revEmojis = map[rune]emojiInfo{
 {{- range $r, $ri := .RevMap }}
-	0x{{$r}}: { ordinal: {{$ri.Ordinal}}, version: {{$ri.Version}}, padding: PAD_NONE },
+	0x{{$r}}: { ordinal: {{$ri.Ordinal}}, version: {{$ri.Version}}, padding: padNone },
 {{- end }}
-    PADDING: { ordinal: 0, version: EVALL, padding: PAD_FILL }, 
-    paddingLastV1[0]: { ordinal: 0, version: EV1, padding: PAD_LAST }, 
-    paddingLastV1[1]: { ordinal: 1<<8, version: EV1, padding: PAD_LAST }, 
-    paddingLastV1[2]: { ordinal: 2<<8, version: EVALL, padding: PAD_LAST }, 
-    paddingLastV1[3]: { ordinal: 3<<8, version: EVALL, padding: PAD_LAST },
-    paddingLastV2[0]: { ordinal: 0, version: EV2, padding: PAD_LAST },
-    paddingLastV2[1]: { ordinal: 1<<8, version: EV2, padding: PAD_LAST },
+    padding: { ordinal: 0, version: evAll, padding: padFill }, 
+    paddingLastV1[0]: { ordinal: 0, version: ev1, padding: padLast }, 
+    paddingLastV1[1]: { ordinal: 1<<8, version: ev1, padding: padLast }, 
+    paddingLastV1[2]: { ordinal: 2<<8, version: evAll, padding: padLast }, 
+    paddingLastV1[3]: { ordinal: 3<<8, version: evAll, padding: padLast },
+    paddingLastV2[0]: { ordinal: 0, version: ev2, padding: padLast },
+    paddingLastV2[1]: { ordinal: 1<<8, version: ev2, padding: padLast },
 }
 
 `))

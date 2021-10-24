@@ -26,8 +26,8 @@ func nextRune(r io.RuneReader, expectedVer ecojiver) (emojiInfo, ecojiver, error
 		return emojiInfo{}, -1, errors.New("Invalid rune " + string(c))
 	}
 
-	if einfo.version != EVALL {
-		if expectedVer == EVALL {
+	if einfo.version != evAll {
+		if expectedVer == evAll {
 			expectedVer = einfo.version
 		} else if expectedVer != einfo.version {
 			return emojiInfo{}, -1, errors.New("Emojis from different ecoji versions seen " + string(c))
@@ -39,7 +39,7 @@ func nextRune(r io.RuneReader, expectedVer ecojiver) (emojiInfo, ecojiver, error
 
 //Decodes data encoded using the Ecoji version 1 or 2 standard back to the original data.
 func Decode(r io.RuneReader, w io.Writer) error {
-	expectedVer := EVALL
+	expectedVer := evAll
 
 	for {
 		var emojis [4]emojiInfo
@@ -60,10 +60,10 @@ func Decode(r io.RuneReader, w io.Writer) error {
 			emojis[i] = ei
 		}
 
-		paddingIsValid := emojis[0].padding == PAD_NONE && ((emojis[1].padding == PAD_NONE && emojis[2].padding == PAD_NONE && emojis[3].padding == PAD_NONE) ||
-			(emojis[1].padding == PAD_NONE && emojis[2].padding == PAD_NONE && (emojis[3].padding == PAD_FILL || emojis[3].padding == PAD_LAST)) ||
-			(emojis[1].padding == PAD_NONE && emojis[2].padding == PAD_FILL && emojis[3].padding == PAD_FILL) ||
-			(emojis[1].padding == PAD_FILL && emojis[2].padding == PAD_FILL && emojis[3].padding == PAD_FILL))
+		paddingIsValid := emojis[0].padding == padNone && ((emojis[1].padding == padNone && emojis[2].padding == padNone && emojis[3].padding == padNone) ||
+			(emojis[1].padding == padNone && emojis[2].padding == padNone && (emojis[3].padding == padFill || emojis[3].padding == padLast)) ||
+			(emojis[1].padding == padNone && emojis[2].padding == padFill && emojis[3].padding == padFill) ||
+			(emojis[1].padding == padFill && emojis[2].padding == padFill && emojis[3].padding == padFill))
 
 		if !paddingIsValid {
 			return fmt.Errorf("Unexpected padding seen %v", emojis)
@@ -83,13 +83,13 @@ func Decode(r io.RuneReader, w io.Writer) error {
 		out[4] = byte(bits)
 
 		switch {
-		case emojis[1].padding == PAD_FILL:
+		case emojis[1].padding == padFill:
 			out = out[:1]
-		case emojis[2].padding == PAD_FILL:
+		case emojis[2].padding == padFill:
 			out = out[:2]
-		case emojis[3].padding == PAD_FILL:
+		case emojis[3].padding == padFill:
 			out = out[:3]
-		case emojis[3].padding == PAD_LAST:
+		case emojis[3].padding == padLast:
 			out = out[:4]
 		}
 

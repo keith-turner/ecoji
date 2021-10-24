@@ -21,13 +21,13 @@ func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune) error {
 
 	switch len(s) {
 	case 1:
-		runes = []rune{emojis[uint64(s[0])<<2], PADDING, PADDING, PADDING}
+		runes = []rune{emojis[uint64(s[0])<<2], padding, padding, padding}
 	case 2:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24
-		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], PADDING, PADDING}
+		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], padding, padding}
 	case 3:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16
-		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], PADDING}
+		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], padding}
 	case 4:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16 | uint64(s[3])<<8
 		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], paddingLast[(0x03 & (bits >> 8))]}
