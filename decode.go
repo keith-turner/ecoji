@@ -44,18 +44,16 @@ func Decode(r io.RuneReader, w io.Writer) error {
 	for {
 		var emojis [4]emojiInfo
 
-		ei, expectedVer, err := nextRune(r, expectedVer)
-		if err == io.EOF {
-			break
-		} else if err != nil {
-			return err
-		}
-		emojis[0] = ei
-
-		for i := 1; i < 4; i++ {
+		for i := 0; i < 4; i++ {
+			var err error
+			var ei emojiInfo
 			ei, expectedVer, err = nextRune(r, expectedVer)
 			if err == io.EOF {
-				return errors.New("Unexpected end of data, input data size not multiple of 4")
+				if i == 0 {
+					return nil
+				} else {
+					return errors.New("Unexpected end of data, input data size not multiple of 4")
+				}
 			} else if err != nil {
 				return err
 			}
@@ -65,7 +63,7 @@ func Decode(r io.RuneReader, w io.Writer) error {
 		paddingIsValid := emojis[0].padding == PAD_NONE &&
 			(emojis[1].padding == PAD_NONE || emojis[1].padding == PAD_FILL) &&
 			(emojis[2].padding == PAD_NONE || emojis[2].padding == PAD_FILL) &&
-			(emojis[3].padding == PAD_NONE || emojis[3].padding == PAD_LAST || emojis[3].padding == PAD_FILL)
+			(emojis[3].padding == PAD_NONE || emojis[3].padding == PAD_FILL || emojis[3].padding == PAD_LAST)
 
 		if !paddingIsValid {
 			return fmt.Errorf("Unexpected padding seen %v", emojis)
@@ -109,6 +107,4 @@ func Decode(r io.RuneReader, w io.Writer) error {
 			out = out[num:]
 		}
 	}
-
-	return nil
 }
