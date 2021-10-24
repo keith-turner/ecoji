@@ -96,16 +96,18 @@ package ecoji
 // padding to use when less than 5 bytes are present to encode
 const padding rune = 0x2615
 
-// padding to use for the last emoji when onyl 4 input bytes are preset
+// padding to use for the last emoji when only 4 input bytes are preset
 var paddingLastV1 = [4]rune{0x269C,0x1F3CD,0x1F4D1,0x1F64B}
 var paddingLastV2 = [4]rune{0x1FAB4,0x1F6FC,0x1F4D1,0x1F64B}
 
+// The emojis used for ecoji version 1
 var emojisV1 = [1024]rune{
 {{- range $i, $emoji := .EmojisV1 }}
 	0x{{$emoji}},
 {{- end }}
 }
 
+// The emojis used for ecoji version 2
 var emojisV2 = [1024]rune{
 {{- range $i, $emoji := .EmojisV2 }}
 	0x{{$emoji}},
@@ -115,24 +117,32 @@ var emojisV2 = [1024]rune{
 type ecojiver int
 
 const (
+    // signifies that an emoji is only used by ecoji version 1
 	ev1    ecojiver = 1
+    // signifies that an emoji is only used by ecoji version 2
 	ev2    ecojiver = 2
+    // signifies that an emoji is used by ecoji version 1 and 2
 	evAll  ecojiver = 3
 )
-
-const noOrdinal int = -1
 
 type paddingType int
 
 const (
+    // This indicates an emoji is not used for padding
 	padNone = -1
+    // This indicates the primary emoji padding chararacter
     padFill = 1
+    // This indicates one of the special padding characters used for encoding 4 byte data
     padLast = 2
 )
 
+// This struct contains information about an emoji that ecoji uses for decoding
 type emojiInfo struct {
+    // This is the 10-bit code that an emoji maps to for decoding
 	ordinal int
+    // This indicates what version of ecoji use the emoji
 	version ecojiver
+    // This indicates if an emojis used for padding
     padding paddingType
 }
 
