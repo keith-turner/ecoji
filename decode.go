@@ -62,8 +62,8 @@ func Decode(r io.RuneReader, w io.Writer) error {
 
 		paddingIsValid := emojis[0].padding == PAD_NONE && ((emojis[1].padding == PAD_NONE && emojis[2].padding == PAD_NONE && emojis[3].padding == PAD_NONE) ||
 			(emojis[1].padding == PAD_NONE && emojis[2].padding == PAD_NONE && (emojis[3].padding == PAD_FILL || emojis[3].padding == PAD_LAST)) ||
-			(emojis[1].padding == PAD_NONE && emojis[2].padding == PAD_FILL && (emojis[3].padding == PAD_FILL || emojis[3].padding == PAD_LAST)) ||
-			(emojis[1].padding == PAD_FILL && emojis[2].padding == PAD_FILL && (emojis[3].padding == PAD_FILL || emojis[3].padding == PAD_LAST)))
+			(emojis[1].padding == PAD_NONE && emojis[2].padding == PAD_FILL && emojis[3].padding == PAD_FILL) ||
+			(emojis[1].padding == PAD_FILL && emojis[2].padding == PAD_FILL && emojis[3].padding == PAD_FILL))
 
 		if !paddingIsValid {
 			return fmt.Errorf("Unexpected padding seen %v", emojis)
