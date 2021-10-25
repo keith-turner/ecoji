@@ -20,9 +20,8 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 			} else if sawPadding && (*expectedVer == evAll || *expectedVer == ev2) {
 				// Ecoji V2 trims padding and does not pad out to all 4 chars.  Therefore the last bit of data may
 				// not be four runes.  Lets go ahead and fill the remaining slots w/ padding to make decoding easier.
-				for index < 4 {
+				for ; index < 4; index++ {
 					emojis[index] = revEmojis[padding]
-					index++
 				}
 				return index, nil
 			} else {
@@ -64,9 +63,8 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 							return -1, errors.New("Unable to handle concatenated data because could not cast to RuneScanner")
 						}
 						rs.UnreadRune()
-						for index < 4 {
+						for ; index < 4; index++ {
 							emojis[index] = revEmojis[padding]
-							index++
 						}
 						return index, nil
 					} else {
