@@ -10,7 +10,7 @@ type RuneWriter interface {
 	WriteRune(rune) (int, error)
 }
 
-func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune) error {
+func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune, trim bool) error {
 
 	if len(s) == 0 {
 		panic("expected data")
@@ -21,10 +21,18 @@ func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune) error {
 
 	switch len(s) {
 	case 1:
-		runes = []rune{emojis[uint64(s[0])<<2], padding, padding, padding}
+		if trim {
+			runes = []rune{emojis[uint64(s[0])<<2], padding}
+		} else {
+			runes = []rune{emojis[uint64(s[0])<<2], padding, padding, padding}
+		}
 	case 2:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24
-		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], padding, padding}
+		if trim {
+			runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], padding}
+		} else {
+			runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], padding, padding}
+		}
 	case 3:
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16
 		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], padding}
@@ -59,7 +67,7 @@ func readFully(r io.Reader, buffer []byte) (n int, e error) {
 	return num, err
 }
 
-func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding []rune) (err error) {
+func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding []rune, trim bool) (err error) {
 	buffer := make([]byte, 5)
 	printed := uint(0)
 
@@ -80,7 +88,7 @@ func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding 
 			return err
 		}
 
-		if err := encode(buffer[0:num], w, emojis, padding); err != nil {
+		if err := encode(buffer[0:num], w, emojis, padding, trim); err != nil {
 			return err
 		}
 
@@ -101,10 +109,10 @@ func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding 
 
 //Encodes data using the Ecoji version 1 standard
 func Encode(r io.Reader, w RuneWriter, wrap uint) (err error) {
-	return encodeAndWrap(r, w, wrap, emojisV1[:], paddingLastV1[:])
+	return encodeAndWrap(r, w, wrap, emojisV1[:], paddingLastV1[:], false)
 }
 
 //Encodes data using the Ecoji version 2 standard
 func EncodeV2(r io.Reader, w RuneWriter, wrap uint) (err error) {
-	return encodeAndWrap(r, w, wrap, emojisV2[:], paddingLastV2[:])
+	return encodeAndWrap(r, w, wrap, emojisV2[:], paddingLastV2[:], true)
 }

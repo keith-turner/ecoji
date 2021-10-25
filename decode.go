@@ -6,35 +6,96 @@ import (
 	"io"
 )
 
-func nextRune(r io.RuneReader, expectedVer ecojiver) (emojiInfo, ecojiver, error) {
-	c, _, e := r.ReadRune()
+func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, error) {
 
-	if e != nil {
-		return emojiInfo{}, -1, e
-	}
+	index := 0
+	sawPadding := false
 
-	for c == '\n' {
-		c, _, e = r.ReadRune()
-		if e != nil {
-			return emojiInfo{}, -1, e
+	for index < 4 {
+		c, _, e := r.ReadRune()
+
+		if e == io.EOF {
+			if index == 0 {
+				return 0, nil
+			} else if sawPadding && (*expectedVer == evAll || *expectedVer == ev2) {
+				// Ecoji V2 trims padding and does not pad out to all 4 chars.  Therefore the last bit of data may
+				// not be four runes.  Lets go ahead and fill the remaining slots w/ padding to make decoding easier.
+				for index < 4 {
+					emojis[index] = revEmojis[padding]
+					index++
+				}
+				return index, nil
+			} else {
+				// Expect Ecoji V1 to always pad out to 4 runes.
+				return -1, errors.New("Unexpected end of data, input data size not multiple of 4")
+			}
+		} else if e != nil {
+			return -1, e
 		}
-	}
 
-	einfo, exists := revEmojis[c]
-
-	if !exists {
-		return emojiInfo{}, -1, errors.New("Invalid rune " + string(c))
-	}
-
-	if einfo.version != evAll {
-		if expectedVer == evAll {
-			expectedVer = einfo.version
-		} else if expectedVer != einfo.version {
-			return emojiInfo{}, -1, errors.New("Emojis from different ecoji versions seen " + string(c))
+		if c == '\n' {
+			continue
 		}
+
+		einfo, exists := revEmojis[c]
+
+		if !exists {
+			return -1, errors.New("Non Ecoji character seen : " + string(c))
+		}
+
+		if einfo.version != evAll {
+			if *expectedVer == evAll {
+				*expectedVer = einfo.version
+			} else if *expectedVer != einfo.version {
+				return -1, errors.New("Emojis from different ecoji versions seen " + string(c))
+			}
+		}
+
+		switch einfo.padding {
+		case padNone:
+			{
+				if sawPadding {
+					if *expectedVer == evAll || *expectedVer == ev2 {
+						// For ecoji V2 it may trim padding and not pad out all 4 chars.  So this could be concatenated
+						// ecoji data, therefore lets put the rune back and return so the data up to the padding can
+						// be decoded
+						rs, ok := r.(io.RuneScanner)
+						if !ok {
+							return -1, errors.New("Unable to handle concatenated data because could not cast to RuneScanner")
+						}
+						rs.UnreadRune()
+						for index < 4 {
+							emojis[index] = revEmojis[padding]
+							index++
+						}
+						return index, nil
+					} else {
+						// Ecoji V1 would always pad out to 4 runes.  So if concatenating Ecoji v1 data we would expect
+						// to see non-padding here
+						return -1, errors.New("Unexpectedly saw non-padding after padding")
+					}
+				}
+			}
+		case padFill:
+			{
+				if index == 0 {
+					return -1, fmt.Errorf("Padding unexpectedly seen in first position %s", string(c))
+				}
+				sawPadding = true
+			}
+		case padLast:
+			{
+				if index != 3 {
+					return -1, fmt.Errorf("Last padding seen in unexpected position %s", string(c))
+				}
+			}
+		}
+
+		emojis[index] = einfo
+		index = index + 1
 	}
 
-	return einfo, expectedVer, nil
+	return index, nil
 }
 
 //Decodes data encoded using the Ecoji version 1 or 2 standard back to the original data.
@@ -44,29 +105,13 @@ func Decode(r io.RuneReader, w io.Writer) error {
 	for {
 		var emojis [4]emojiInfo
 
-		for i := 0; i < 4; i++ {
-			var err error
-			var ei emojiInfo
-			ei, expectedVer, err = nextRune(r, expectedVer)
-			if err == io.EOF {
-				if i == 0 {
-					return nil
-				} else {
-					return errors.New("Unexpected end of data, input data size not multiple of 4")
-				}
-			} else if err != nil {
-				return err
-			}
-			emojis[i] = ei
+		numRead, err := readFour(r, &expectedVer, emojis[:])
+
+		if err != nil {
+			return err
 		}
-
-		paddingIsValid := emojis[0].padding == padNone && ((emojis[1].padding == padNone && emojis[2].padding == padNone && emojis[3].padding == padNone) ||
-			(emojis[1].padding == padNone && emojis[2].padding == padNone && (emojis[3].padding == padFill || emojis[3].padding == padLast)) ||
-			(emojis[1].padding == padNone && emojis[2].padding == padFill && emojis[3].padding == padFill) ||
-			(emojis[1].padding == padFill && emojis[2].padding == padFill && emojis[3].padding == padFill))
-
-		if !paddingIsValid {
-			return fmt.Errorf("Unexpected padding seen %v", emojis)
+		if numRead == 0 {
+			return nil
 		}
 
 		bits := int64(emojis[0].ordinal)<<30 |

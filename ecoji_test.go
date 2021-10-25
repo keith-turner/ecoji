@@ -61,12 +61,12 @@ func check(t *testing.T, expected []rune, input []byte) {
 }
 
 func TestOneByteEncode(t *testing.T) {
-	check(t, []rune{emojisV2[int('k')<<2], padding, padding, padding}, []byte{'k'})
+	check(t, []rune{emojisV2[int('k')<<2], padding}, []byte{'k'})
 	checkV1(t, []rune{emojisV1[int('k')<<2], padding, padding, padding}, []byte{'k'})
 }
 
 func TestTwoByteEncode(t *testing.T) {
-	check(t, []rune{emojisV2[0], emojisV2[16], padding, padding}, []byte{0x00, 0x01})
+	check(t, []rune{emojisV2[0], emojisV2[16], padding}, []byte{0x00, 0x01})
 	checkV1(t, []rune{emojisV1[0], emojisV1[16], padding, padding}, []byte{0x00, 0x01})
 }
 
@@ -100,7 +100,7 @@ func TestGarbage(t *testing.T) {
 		t.Error("Expected error")
 	}
 
-	if !strings.Contains(err.Error(), "Invalid rune") {
+	if !strings.Contains(err.Error(), "Non Ecoji character seen") {
 		t.Errorf("Unexpected error message: %s", err.Error())
 	}
 }

@@ -7,39 +7,52 @@ import (
 	"testing"
 )
 
-func TestDecode(t *testing.T) {
-	reader := strings.NewReader("🪐📩🎦🐇🛻📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🪳💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑")
+func decode(s string) (string, error) {
+	reader := strings.NewReader(s)
 	buffer1 := &bytes.Buffer{}
 	err := Decode(reader, buffer1)
 	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+		return "", err
 	}
 	buf, err := io.ReadAll(buffer1)
+	if err != nil {
+		return "", err
+	}
+
+	return string(buf), nil
+}
+
+func TestDecode(t *testing.T) {
+	dstr, err := decode("🪐📩🎦🐇🛻📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🪳💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑")
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
 	}
 	expected := "Base64 is so 1999, isn't there something better?\n"
-	if string(buf) != expected {
-		t.Fatalf("should decode to '%s', was: '%s'", expected, string(buf))
+	if dstr != expected {
+		t.Fatalf("should decode to '%s', was: '%s'", expected, dstr)
 	}
 
 }
 
 func TestDecodeV1(t *testing.T) {
-	reader := strings.NewReader("🏗📩🎦🐇🎛📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🇵💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑")
-	buffer1 := &bytes.Buffer{}
-
-	err := Decode(reader, buffer1)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
-	}
-	buf, err := io.ReadAll(buffer1)
+	dstr, err := decode("🏗📩🎦🐇🎛📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🇵💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑")
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
 	}
 	expected := "Base64 is so 1999, isn't there something better?\n"
-	if string(buf) != expected {
-		t.Fatalf("should decode to '%s', was: '%s'", expected, string(buf))
+	if dstr != expected {
+		t.Fatalf("should decode to '%s', was: '%s'", expected, dstr)
+	}
+}
+
+func TestDecodeConcatenated(t *testing.T) {
+	dstr, err := decode("👖📸🎦🌭👩☕💲🥇🕟☕")
+	if err != nil {
+		t.Errorf("unexpected error: %v", err)
+	}
+	expected := "abcdefxyz"
+	if dstr != expected {
+		t.Fatalf("should decode to '%s', was: '%s'", expected, dstr)
 	}
 }
 
