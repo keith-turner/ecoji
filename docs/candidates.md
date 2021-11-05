@@ -1,6 +1,6 @@
 # Ecoji candidates
 
-This file [candidates.txt] contains all of the emojis that were candidates for
+This file [candidates.txt](candidates.txt) contains all of the emojis that were candidates for
 Ecoji 2.  This was created by downloading [emoji-test.txt][1] and running the
 following command on it.
 
