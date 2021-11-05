@@ -1036,7 +1036,7 @@ Ordinal | codepoint | emoji
 1022 | U+1F9D4 | 🧔 
 1023 | U+1F9D5 | 🧕 
 
-## Emojis use for padding
+## Emojis used for padding
 
 Type | codepoint V1 | emoji V1 | codepoint V1 | emoji V2 
 -|-|-|-|-
@@ -1045,3 +1045,94 @@ PAD_0 | U+269C | ⚜ | U+1F977 | 🥷
 PAD_1 | U+1F3CD | 🏍 | U+1F6FC | 🛼
 PAD_2 | U+1F4D1 | 📑 | U+1F4D1 | 📑
 PAD_3 | U+1F64B | 🙋 | U+1F64B | 🙋
+
+## Candidate emojis that were not used by Ecoji
+
+The following are [candidates](candidates.md) that were not used.
+
+codepoint | emoji 
+-|-
+U+1F9E1 | 🧡 
+U+1F90E | 🤎 
+U+1F90D | 🤍 
+U+270B | ✋ 
+U+1F90C | 🤌 
+U+1F90F | 🤏 
+U+270A | ✊ 
+U+1F9CF | 🧏 
+U+1F9DA | 🧚 
+U+1F9DB | 🧛 
+U+1F9DC | 🧜 
+U+1F9DD | 🧝 
+U+1F9CD | 🧍 
+U+1F9CE | 🧎 
+U+1F9D6 | 🧖 
+U+1F9D7 | 🧗 
+U+1F9D8 | 🧘 
+U+1FAC2 | 🫂 
+U+1FAB4 | 🪴 
+U+231B | ⌛ 
+U+23F3 | ⏳ 
+U+231A | ⌚ 
+U+23F0 | ⏰ 
+U+1F9FF | 🧿 
+U+1FA78 | 🩸 
+U+1F6D7 | 🛗 
+U+1F9F4 | 🧴 
+U+1FAA3 | 🪣 
+U+1F9FC | 🧼 
+U+1FAA5 | 🪥 
+U+1F9FD | 🧽 
+U+1F9EF | 🧯 
+U+1FAA6 | 🪦 
+U+1FAA7 | 🪧 
+U+267F | ♿ 
+U+26D4 | ⛔ 
+U+2648 | ♈ 
+U+2649 | ♉ 
+U+264A | ♊ 
+U+264B | ♋ 
+U+264C | ♌ 
+U+264D | ♍ 
+U+264E | ♎ 
+U+264F | ♏ 
+U+2650 | ♐ 
+U+2651 | ♑ 
+U+2652 | ♒ 
+U+2653 | ♓ 
+U+26CE | ⛎ 
+U+23E9 | ⏩ 
+U+23EA | ⏪ 
+U+23EB | ⏫ 
+U+23EC | ⏬ 
+U+2795 | ➕ 
+U+2796 | ➖ 
+U+2797 | ➗ 
+U+2753 | ❓ 
+U+2754 | ❔ 
+U+2755 | ❕ 
+U+2757 | ❗ 
+U+2B55 | ⭕ 
+U+2705 | ✅ 
+U+274C | ❌ 
+U+274E | ❎ 
+U+27B0 | ➰ 
+U+27BF | ➿ 
+U+1F7E0 | 🟠 
+U+1F7E1 | 🟡 
+U+1F7E2 | 🟢 
+U+1F7E3 | 🟣 
+U+1F7E4 | 🟤 
+U+26AB | ⚫ 
+U+26AA | ⚪ 
+U+1F7E5 | 🟥 
+U+1F7E7 | 🟧 
+U+1F7E8 | 🟨 
+U+1F7E9 | 🟩 
+U+1F7E6 | 🟦 
+U+1F7EA | 🟪 
+U+1F7EB | 🟫 
+U+2B1B | ⬛ 
+U+2B1C | ⬜ 
+U+25FE | ◾ 
+U+25FD | ◽ 

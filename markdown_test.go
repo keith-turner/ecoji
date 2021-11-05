@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"testing"
 )
 
@@ -47,7 +48,7 @@ func TestMakrdown(t *testing.T) {
 	}
 
 	fmt.Fprintln(writer)
-	fmt.Fprintln(writer, "## Emojis use for padding")
+	fmt.Fprintln(writer, "## Emojis used for padding")
 	fmt.Fprintln(writer)
 	fmt.Fprintln(writer, "Type | codepoint V1 | emoji V1 | codepoint V1 | emoji V2 ")
 	fmt.Fprintln(writer, "-|-|-|-|-")
@@ -57,4 +58,48 @@ func TestMakrdown(t *testing.T) {
 		fmt.Fprintf(writer, "PAD_%d | %U | %s | %U | %s\n", i, r, string(r), paddingLastV2[i], string(paddingLastV2[i]))
 	}
 
+	candidateRunes := getRunes("docs/candidates.txt")
+
+	fmt.Fprintln(writer)
+	fmt.Fprintln(writer, "## Candidate emojis that were not used by Ecoji")
+	fmt.Fprintln(writer)
+	fmt.Fprintln(writer, "The following are [candidates](candidates.md) that were not used.")
+	fmt.Fprintln(writer)
+	fmt.Fprintln(writer, "codepoint | emoji ")
+	fmt.Fprintln(writer, "-|-")
+	for _, r := range candidateRunes {
+		if _, present := revEmojis[r]; !present {
+			fmt.Fprintf(writer, "%U | %s \n", r, string(r))
+		}
+	}
+
+}
+
+func getRunes(fileName string) []rune {
+
+	var runes []rune
+
+	file, err := os.Open(fileName)
+	handle(err)
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	// optionally, resize scanner's capacity for lines over 64K, see next example
+	for scanner.Scan() {
+		//fmt.Println(scanner.Text())
+		i, err := strconv.ParseInt(scanner.Text(), 16, 32)
+		handle(err)
+		runes = append(runes, rune(i))
+	}
+
+	handle(scanner.Err())
+
+	return runes
+}
+
+func handle(err error) {
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
