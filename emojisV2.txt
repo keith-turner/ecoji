@@ -300,7 +300,7 @@
 1fa80
 1fa81
 1fa84
-1f9ff
+1f9de
 1f400
 1f401
 1f402
@@ -842,7 +842,7 @@
 1f6c5
 1f9ec
 1f6cc
-1fa78
+1f9df
 1fa79
 1fa7a
 1f6d0
@@ -854,7 +854,7 @@
 1faa0
 1faa4
 1fa92
-1f9f4
+1f9d9
 1f6eb
 1f6ec
 1f972

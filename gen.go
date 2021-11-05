@@ -98,7 +98,7 @@ const padding rune = 0x2615
 
 // padding to use for the last emoji when only 4 input bytes are preset
 var paddingLastV1 = [4]rune{0x269C,0x1F3CD,0x1F4D1,0x1F64B}
-var paddingLastV2 = [4]rune{0x1FAB4,0x1F6FC,0x1F4D1,0x1F64B}
+var paddingLastV2 = [4]rune{0x1F977,0x1F6FC,0x1F4D1,0x1F64B}
 
 // The emojis used for ecoji version 1
 var emojisV1 = [1024]rune{
