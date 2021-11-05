@@ -67,8 +67,23 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer)
 	fmt.Fprintln(writer, "codepoint | emoji ")
 	fmt.Fprintln(writer, "-|-")
+	candidatesMap := make(map[rune]bool)
 	for _, r := range candidateRunes {
+		candidatesMap[r] = true
 		if _, present := revEmojis[r]; !present {
+			fmt.Fprintf(writer, "%U | %s \n", r, string(r))
+		}
+	}
+
+	fmt.Fprintln(writer)
+	fmt.Fprintln(writer, "## Emojis in Ecoji V1 not in candidates")
+	fmt.Fprintln(writer)
+	fmt.Fprintln(writer, "The following are emojis used in Ecoji V1 that were not in the set of [candidates](candidates.md) and were therefore not used in Ecoji V2.")
+	fmt.Fprintln(writer)
+	fmt.Fprintln(writer, "codepoint | emoji ")
+	fmt.Fprintln(writer, "-|-")
+	for _, r := range emojisV1 {
+		if _, present := candidatesMap[r]; !present {
 			fmt.Fprintf(writer, "%U | %s \n", r, string(r))
 		}
 	}
