@@ -36,11 +36,26 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer, "## Emojis that differ between Ecoji V1 and V2")
 	fmt.Fprintln(writer)
 
-	fmt.Fprintln(writer, "Ordinal | V1 codepoint | V1 emoji | V2 codepoint | V2 emoji")
+	fmt.Fprintln(writer)
+	fmt.Fprintln(writer, "The candidate column indicates if a V1 emoji was a [candidate](candidates.md) for V2.  If a V1 emojis was a candidate and was not used in V2 then someone decided against using it in V2.  If a V1 emoji was not a candidate, then it could not be used in V2 because it did not meet the selection criteria.")
+	fmt.Fprintln(writer)
+
+	candidateRunes := getRunes("docs/candidates.txt")
+
+	candidatesMap := make(map[rune]bool)
+	for _, r := range candidateRunes {
+		candidatesMap[r] = true
+	}
+
+	fmt.Fprintln(writer, "Ordinal | V1 codepoint | V1 emoji | candidate | V2 codepoint | V2 emoji")
 	fmt.Fprintln(writer, "-|-|-|-|-")
 	for i, r := range emojisV1 {
 		if emojisV2[i] != r {
-			fmt.Fprintf(writer, "%d | %U | %s | %U | %s\n", i, r, string(r), emojisV2[i], string(emojisV2[i]))
+			candidate := "Y"
+			if _, present := candidatesMap[r]; !present {
+				candidate = "N"
+			}
+			fmt.Fprintf(writer, "%d | %U | %s | %s | %U | %s\n", i, r, string(r), candidate, emojisV2[i], string(emojisV2[i]))
 		}
 	}
 
@@ -66,8 +81,6 @@ func TestMakrdown(t *testing.T) {
 		fmt.Fprintf(writer, "PAD_%d | %U | %s | %U | %s\n", i, r, string(r), paddingLastV2[i], string(paddingLastV2[i]))
 	}
 
-	candidateRunes := getRunes("docs/candidates.txt")
-
 	fmt.Fprintln(writer)
 	fmt.Fprintln(writer, "## Candidate not used in Ecoji V2")
 	fmt.Fprintln(writer)
@@ -75,27 +88,11 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer)
 	fmt.Fprintln(writer, "codepoint | emoji ")
 	fmt.Fprintln(writer, "-|-")
-	candidatesMap := make(map[rune]bool)
 	for _, r := range candidateRunes {
-		candidatesMap[r] = true
 		if _, present := revEmojis[r]; !present {
 			fmt.Fprintf(writer, "%U | %s \n", r, string(r))
 		}
 	}
-
-	fmt.Fprintln(writer)
-	fmt.Fprintln(writer, "## Emojis in Ecoji V1 not in candidates")
-	fmt.Fprintln(writer)
-	fmt.Fprintln(writer, "The following are emojis used in Ecoji V1 that were not in the set of [candidates](candidates.md) and were therefore not used in Ecoji V2. This information is provided for reference and is not needed to implement Ecoji")
-	fmt.Fprintln(writer)
-	fmt.Fprintln(writer, "codepoint | emoji ")
-	fmt.Fprintln(writer, "-|-")
-	for _, r := range emojisV1 {
-		if _, present := candidatesMap[r]; !present {
-			fmt.Fprintf(writer, "%U | %s \n", r, string(r))
-		}
-	}
-
 }
 
 func getRunes(fileName string) []rune {
