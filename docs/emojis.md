@@ -12,10 +12,10 @@
 ## Emojis that differ between Ecoji V1 and V2
 
 
-The candidate column indicates if V1 emoji was a [candidate](candidates.md) for V2.  If a V1 emojis was a candidate and was not used in V2 then someone decided against using it in V2.  If a V1 emoji was not a candidate, then it could not be used in V2 because it did not meet the criteria.
+The candidate column indicates if a V1 emoji was a [candidate](candidates.md) for V2.  If a V1 emojis was a candidate and was not used in V2 then someone decided against using it in V2.  If a V1 emoji was not a candidate, then it could not be used in V2 because it did not meet the selection criteria.
 
 Ordinal | V1 codepoint | V1 emoji | candidate | V2 codepoint | V2 emoji
--|-|-|-|-
+-|-|-|-|-|-
 2 | U+1F170 | 🅰 | N | U+1F9BE | 🦾
 3 | U+1F171 | 🅱 | N | U+1F9BF | 🦿
 4 | U+1F17E | 🅾 | N | U+1F9BB | 🦻

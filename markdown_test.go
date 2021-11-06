@@ -48,7 +48,7 @@ func TestMakrdown(t *testing.T) {
 	}
 
 	fmt.Fprintln(writer, "Ordinal | V1 codepoint | V1 emoji | candidate | V2 codepoint | V2 emoji")
-	fmt.Fprintln(writer, "-|-|-|-|-")
+	fmt.Fprintln(writer, "-|-|-|-|-|-")
 	for i, r := range emojisV1 {
 		if emojisV2[i] != r {
 			candidate := "Y"
