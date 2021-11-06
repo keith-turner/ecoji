@@ -26,7 +26,6 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer, " * [Emojis that are same in Ecoji V1 and V2](#emojis-that-are-same-in-ecoji-v1-and-v2)")
 	fmt.Fprintln(writer, " * [Emojis used for padding](#emojis-used-for-padding)")
 	fmt.Fprintln(writer, " * [Candidate not used in Ecoji V2](#candidate-not-used-in-ecoji-v2)")
-	fmt.Fprintln(writer, " * [Emojis in Ecoji V1 not in candidates](#emojis-in-ecoji-v1-not-in-candidates)")
 	fmt.Fprintln(writer, "")
 
 	fmt.Fprintln(writer)
