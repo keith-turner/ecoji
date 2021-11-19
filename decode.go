@@ -18,8 +18,9 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 			if index == 0 {
 				return 0, nil
 			} else if sawPadding && (*expectedVer == evAll || *expectedVer == ev2) {
-				// Ecoji V2 trims padding and does not pad out to all 4 chars.  Therefore the last bit of data may
-				// not be four runes.  Lets go ahead and fill the remaining slots w/ padding to make decoding easier.
+				// Ecoji V2 trims padding and does not pad out to all 4 chars. Therefore, the
+				// last bit of data may not be four runes. Let's go ahead and fill the remaining
+				// slots w/ padding to make decoding easier.
 				for ; index < 4; index++ {
 					emojis[index] = revEmojis[padding]
 				}
@@ -42,6 +43,11 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 			return -1, errors.New("Non Ecoji character seen : " + string(c))
 		}
 
+		// If we ever see an emoji that is only used by Ecoji V1 then after that point we
+		// should never expect to see an emoji that is only used by Ecoji V2. The inverse
+		// is also true, if we ever see an emoji only used by Ecoji V2 then we would not
+		// expect to see an emoji only used by Ecoji V1 after that. The following looks
+		// for these types of malformed input.
 		if einfo.version != evAll {
 			if *expectedVer == evAll {
 				*expectedVer = einfo.version
@@ -55,9 +61,9 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 			{
 				if sawPadding {
 					if *expectedVer == evAll || *expectedVer == ev2 {
-						// For ecoji V2 it may trim padding and not pad out all 4 chars.  So this could be concatenated
-						// ecoji data, therefore lets put the rune back and return so the data up to the padding can
-						// be decoded
+						// For Ecoji V2 it may trim padding and not pad out all 4 chars. So this could be
+						// concatenated Ecoji data, therefore let's put the rune back and return so the
+						// data up to the padding can be decoded
 						rs, ok := r.(io.RuneScanner)
 						if !ok {
 							return -1, errors.New("Unable to handle concatenated data because could not cast to RuneScanner")
@@ -112,6 +118,7 @@ func Decode(r io.RuneReader, w io.Writer) error {
 			return nil
 		}
 
+		// Take the 4 10 bit ordinals associated with each emojis and shift them all into a 64 bit integer.
 		bits := int64(emojis[0].ordinal)<<30 |
 			int64(emojis[1].ordinal)<<20 |
 			int64(emojis[2].ordinal)<<10 |
@@ -119,12 +126,14 @@ func Decode(r io.RuneReader, w io.Writer) error {
 
 		out := []byte{0, 0, 0, 0, 0}
 
+		// Shift 5 8-bit integers out of the 40 bit integer created above to recover the encoded data.
 		out[0] = byte(bits >> 32)
 		out[1] = byte(bits >> 24)
 		out[2] = byte(bits >> 16)
 		out[3] = byte(bits >> 8)
 		out[4] = byte(bits)
 
+		// Inspect the input data for padding emojis to determine the length of the encoded data.
 		switch {
 		case emojis[1].padding == padFill:
 			out = out[:1]

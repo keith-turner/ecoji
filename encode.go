@@ -16,31 +16,55 @@ func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune, trim bool
 		panic("expected data")
 	}
 
+	// This variable is used as temp space for conversion. The code will shift input
+	// bytes into this variable and then shift 10 bits out at time to map to an
+	// emoji. The code below uses 0x3ff a lot which is hex, in binary this is
+	// 1111111111 which is 10 1 bits. A mask like (0x3ff & bits) gets the last 10
+	// bits from the 64-bit integer.
 	var bits uint64
 	var runes []rune
 
 	switch len(s) {
 	case 1:
+		// There is only a single byte of input so convert it to a 10 bit integer and
+		// lookup the emoji for encoding. The padding emoji at postion 2 indicates the
+		// input was 1 byte or 8 bits. Optionally pad positions 3 and 4.
 		if trim {
 			runes = []rune{emojis[uint64(s[0])<<2], padding}
 		} else {
 			runes = []rune{emojis[uint64(s[0])<<2], padding, padding, padding}
 		}
 	case 2:
+		// Shift 2 bytes for a total of 16 bits into the temp var.
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24
+		// Extract 2 10 bit integers and use them to lookup 2 emojis for encoding. Using
+		// padding for the 3rd emoji (and optionally the 4th). Only 6 bits are set in the
+		// last 10 bit integer and that is ok because padding in the 3rd position
+		// indicates the input was 2 bytes or 16 bits.
 		if trim {
 			runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], padding}
 		} else {
 			runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], padding, padding}
 		}
 	case 3:
+		// Shift 3 bytes for a total of 24 bits into the temp var.
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16
+		// Extract 3 10 bit integers and use them to lookup 3 emojis for encoding. Use
+		// padding for the last emoji. Only 4 bits are set in the last 10 bit integers
+		// and that is ok because padding emoji in the 4th position indicates the input
+		// was 3 bytes or 24 bits.
 		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], padding}
 	case 4:
+		// Shift 4 bytes for a total of 32 bits into the temp var
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16 | uint64(s[3])<<8
+		// Since there are 32 bits, extract 3 10 bit integers leaving 2 bits. The 3 10
+		// bit integers are used to lookup 3 emojis for encoding. Then use the last 2
+		// bits to lookup special padding emojis that encode the 2 bits.
 		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], paddingLast[(0x03 & (bits >> 8))]}
 	case 5:
+		// Shift 5 bytes for a total of 40 bits into the temp var.
 		bits = uint64(s[0])<<32 | uint64(s[1])<<24 | uint64(s[2])<<16 | uint64(s[3])<<8 | uint64(s[4])
+		// Extract 4 10 bit integers and use them to lookup 4 emojis for encoding.
 		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], emojis[0x3ff&bits]}
 	default:
 		panic(fmt.Sprintf("unexpected length %d", len(s)))
