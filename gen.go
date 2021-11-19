@@ -34,7 +34,7 @@ func main() {
 
 		if exists {
 			if rInfo.Ordinal != i {
-				panic("Ordinal mismatch")
+				panic("Ordinal mismatch " + string(i) + " " + string(r))
 			}
 
 			rInfo.Version = 3
