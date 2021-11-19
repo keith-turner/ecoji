@@ -31,12 +31,16 @@ Ecoji V2 was designed to be backwards compatible with Ecoji V1.  When decoding
 data, it is always possible to distinguish between V1 and V2 and correctly
 decode the data.  This was achieved by following the principle that if an emoji
 is used in Ecoji V1 and V2, then it must have the same 10-bit ordinal in both.
-It's possible to write a program that can decode Ecoji V1 and V2 data.  If a
-program was properly written against only the Ecoji V1 standard and it is given
-Ecoji V2 data, then it should either decode it successfully or throw an error.
-If data encoded with Ecoji V2 happens to only used emojis used by Ecoji V1 then
-an Ecoji V1 program can decode it because the same 10-bit ordinals were used.
-If emojis only used by Ecoji V2 are seen by an Ecoji V1 program then it should
-throw an error because the emojis are unrecognized. 
+If a program was properly written against only the Ecoji V1 standard and it is
+given Ecoji V2 data, then it should either decode it successfully or throw an
+error.  If data encoded with Ecoji V2 happens to only used emojis used by Ecoji
+V1 then an Ecoji V1 program can decode it because the same 10-bit ordinals were
+used.  If emojis only used by Ecoji V2 are seen by an Ecoji V1 program then it
+should throw an error because the emojis are unrecognized. 
+
+Ecoji V2 was created to use a better set of emojis for encoding.  In addition to
+this Ecoji V2 also relaxes the padding requirements.  Ecoji V1 always padded to 4
+emojis when the end of the input data was less than 5 bytes.  Ecoji V2 can have
+less than 4 padding emojis when the end of the input data is less than 5 bytes.
 
  
