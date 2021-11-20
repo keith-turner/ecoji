@@ -26,6 +26,8 @@ corresponds with its 10-bit ordinal for encoding. For more information see
 In [mapping.go](../mapping.go) the 1024 emojis and the padding emojis
 are defined.  These same emojis should be used in other languages.
 
+## Versions
+
 Ecoji currently has two versions that each have their own sets of emojis.
 Ecoji V2 was designed to be backwards compatible with Ecoji V1.  When decoding
 data, it is always possible to distinguish between V1 and V2 and correctly
@@ -43,4 +45,40 @@ this Ecoji V2 also relaxes the padding requirements.  Ecoji V1 always padded to 
 emojis when the end of the input data was less than 5 bytes.  Ecoji V2 can have
 less than 4 padding emojis when the end of the input data is less than 5 bytes.
 
- 
+## Ecoji encoding efficiency
+
+Many have asked how Ecoji compares to base64.  The short answer is that a string encoded with Ecoji will have more bytes, but fewer visible characters, than the same string encoded with base64. With Ecoji, each visible char represents 10 bits, but each character is multi-byte.  With base64 each char represents 6 bits and is one byte.  The following table shows encoding sha256 in different ways.
+
+Encoding | Bytes | Characters
+---------|-------|-----------
+none     | 32    | N/A
+hex      | 64    | 64
+base64   | 44    | 44
+ecoji    | 112   | 28 
+
+## Sorting Ecoji-Encoded Data
+
+Ecoji V1 supported sorting encoded data.  However V2 does not support this.  It was not possible to support sorting and backwards compatability, so sorting was dropped as feature in V2.
+
+Below is an example showing that data encoded with Ecoji V1 sorts the same as the input data.
+
+```bash
+$ echo -n a | ecoji > /tmp/test.ecoji
+$ echo -n ab | ecoji >> /tmp/test.ecoji
+$ echo -n abc | ecoji >> /tmp/test.ecoji
+$ echo -n abcd | ecoji >> /tmp/test.ecoji
+$ echo -n ac | ecoji >> /tmp/test.ecoji
+$ echo -n b | ecoji >> /tmp/test.ecoji
+$ echo -n ba | ecoji >> /tmp/test.ecoji
+$ export LC_ALL=C
+$ sort /tmp/test.ecoji > /tmp/test-sorted.ecoji
+$ diff /tmp/test.ecoji /tmp/test-sorted.ecoji
+$ cat /tmp/test-sorted.ecoji
+👕☕☕☕
+👖📲☕☕
+👖📸🎈☕
+👖📸🎦⚜
+👖🔃☕☕
+👙☕☕☕
+👚📢☕☕
+```
