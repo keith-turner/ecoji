@@ -26,6 +26,9 @@ Options:
                           ignored when decoding.
     -h, --help            Print this message
     -v, --version         Print version information.
+
+🏣🔉🦐🔼🍈🥒⛪🧮🍉🔩🫑🤗👵📘🐬🔶💎🧳🔮🩱🍉🚳🏦🧮👢📩🍡🥻
+
 `
 
 var versionMessage = `Ecoji version 2.0.0

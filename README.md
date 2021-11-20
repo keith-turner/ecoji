@@ -32,6 +32,10 @@ Options:
                           ignored when decoding.
     -h, --help            Print this message
     -v, --version         Print version information.
+
+🏣🔉🦐🔼🍈🥒⛪🧮🍉🔩🫑🤗👵📘🐬🔶💎🧳🔮🩱🍉🚳🏦🧮👢📩🍡🥻
+
+
 ```
 
 ## Examples
