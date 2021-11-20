@@ -23,9 +23,6 @@ used by Ecoji V1 and V2.  The line number of an emoji in those files
 corresponds with its 10-bit ordinal for encoding. For more information see
 [emojis.md](emojis.md).
 
-In [mapping.go](../mapping.go) the 1024 emojis and the padding emojis
-are defined.  These same emojis should be used in other languages.
-
 ## Versions
 
 Ecoji currently has two versions that each have their own sets of emojis.

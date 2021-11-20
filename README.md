@@ -3,22 +3,6 @@
 **WARNING :** This branch contains a work in progress version of Ecoji V2. Any data encoded using this branch may not be compatible with the final version of Ecoji V2.
 
 Ecoji encodes data using 1024 [emojis][emoji]. This repository contains the canonical implementation of the [Ecoji standard](docs/encoding.md) using Go. Version 2 of the Ecoji standard was release in 2021 with an improved set of emojis.  Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
-
-## Other Implementations
-
-Libraries implementing the Ecoji encoding standard. Submit PR to add a library to the table.
-
-| Language | Version | Comments |
-|----------| ------- | -------- |
-| [D](https://github.com/ohdatboi/ecoji-d) | V1 | Implementation of Ecoji written in the D programming language. |
-| Go | V2 | This repository offers a Go library package with three functions [ecoji.Encode()](encode.go) [ecoji.Encode2()](encode.go) and [ecoji.Decode()](decode.go). |
-| [Java](https://github.com/netvl/ecoji-java) | V1 | Implementation of Ecoji written in Java, usable in any JVM language. |
-| [.NET](https://github.com/abock/dotnet-ecoji) | V1 | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji). |
-| [PHP](https://github.com/Rayne/ecoji-php) | V1 | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji). |
-| [Python](https://github.com/mecforlove/ecoji-py) | V1 | Implementation of Ecoji written in the Python3 programming language. |
-| [Rust](https://github.com/netvl/ecoji.rs) | V1 | Implementation of Ecoji written in the Rust programming language. |
-| [Swift](https://github.com/Robindiddams/ecoji-swift) | V1 | Implementation of Ecoji written in the Swift programming language. |
-
 ## Installing
 
 | Platform | Install |
@@ -100,6 +84,22 @@ Four base1024 emojis can represent 1 trillion unique IDs.  In the example below 
 $ printf "https://ecoji.io/%s\n" $(echo af82dd48f7 | xxd -r -p | ecoji -e)
 https://ecoji.io/😉🥸🪴🏄
 ```
+
+## Other Implementations
+
+Libraries implementing the Ecoji encoding standard. Submit PR to add a library to the table.
+
+| Language | Version | Comments |
+|----------| ------- | -------- |
+| [D](https://github.com/ohdatboi/ecoji-d) | V1 | Implementation of Ecoji written in the D programming language. |
+| Go | V2 | This repository offers a Go library package with three functions [ecoji.Encode()](encode.go) [ecoji.Encode2()](encode.go) and [ecoji.Decode()](decode.go). |
+| [Java](https://github.com/netvl/ecoji-java) | V1 | Implementation of Ecoji written in Java, usable in any JVM language. |
+| [.NET](https://github.com/abock/dotnet-ecoji) | V1 | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji). |
+| [PHP](https://github.com/Rayne/ecoji-php) | V1 | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji). |
+| [Python](https://github.com/mecforlove/ecoji-py) | V1 | Implementation of Ecoji written in the Python3 programming language. |
+| [Rust](https://github.com/netvl/ecoji.rs) | V1 | Implementation of Ecoji written in the Rust programming language. |
+| [Swift](https://github.com/Robindiddams/ecoji-swift) | V1 | Implementation of Ecoji written in the Swift programming language. |
+
 
 ## Building
 
