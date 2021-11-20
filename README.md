@@ -66,7 +66,7 @@ abc6789XY
 ### Making Hashes More Interesting
 
 ```bash
-$ cat encode.go  | openssl dgst -binary -sha1 | ecoji
+$ cat encode.go  | openssl dgst -binary -sha1 | ecoji -e
 🧜🎺🥧🗽🍻🏺💨🥿🍚📇🌱👞👻🌁🥉🗾
 $ echo 🧜🎺🥧🗽🍻🏺💨🥿🍚📇🌱👞👻🌁🥉🗾 | ecoji -d | openssl base64
 Qo7e3rIs0pdfySSfYaWNaoO+ZrM=
