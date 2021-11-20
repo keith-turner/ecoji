@@ -2,7 +2,7 @@
 
 **WARNING :** This branch contains a work in progress version of Ecoji V2. Any data encoded using this branch may not be compatible with the final version of Ecoji V2.
 
-Ecoji encodes data using 1024 [emojis][emoji]. This repository contains the canonical implementation of the [Ecoji standard](docs/encoding.md) using Go.  Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
+Ecoji encodes data using 1024 [emojis][emoji]. This repository contains the canonical implementation of the [Ecoji standard](docs/encoding.md) using Go. Version 2 of the Ecoji standard was release in 2021 with an improved set of emojis.  Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
 
 ## Other Implementations
 
