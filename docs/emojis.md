@@ -1059,47 +1059,84 @@ PAD_3 | U+1F64B | 🙋 | U+1F64B | 🙋
 
 The following are [candidates](candidates.md) that were not used. This information is provided for reference and is not needed to implement Ecoji
 
-codepoint | emoji 
+codepoint | emoji and description 
 -|-
-U+1F9E1 | 🧡 
-U+1F90E | 🤎 
-U+1F90D | 🤍 
-U+231B | ⌛ 
-U+23F3 | ⏳ 
-U+231A | ⌚ 
-U+23F0 | ⏰ 
-U+23E9 | ⏩ 
-U+23EA | ⏪ 
-U+23EB | ⏫ 
-U+23EC | ⏬ 
-U+2795 | ➕ 
-U+2796 | ➖ 
-U+2797 | ➗ 
-U+2753 | ❓ 
-U+2754 | ❔ 
-U+2755 | ❕ 
-U+2757 | ❗ 
-U+2B55 | ⭕ 
-U+2705 | ✅ 
-U+274C | ❌ 
-U+274E | ❎ 
-U+27B0 | ➰ 
-U+27BF | ➿ 
-U+1F7E0 | 🟠 
-U+1F7E1 | 🟡 
-U+1F7E2 | 🟢 
-U+1F7E3 | 🟣 
-U+1F7E4 | 🟤 
-U+26AB | ⚫ 
-U+26AA | ⚪ 
-U+1F7E5 | 🟥 
-U+1F7E7 | 🟧 
-U+1F7E8 | 🟨 
-U+1F7E9 | 🟩 
-U+1F7E6 | 🟦 
-U+1F7EA | 🟪 
-U+1F7EB | 🟫 
-U+2B1B | ⬛ 
-U+2B1C | ⬜ 
-U+25FE | ◾ 
-U+25FD | ◽ 
+U+231A | ⌚ E0.6 watch
+U+231B | ⌛ E0.6 hourglass done
+U+23E9 | ⏩ E0.6 fast-forward button
+U+23EA | ⏪ E0.6 fast reverse button
+U+23EB | ⏫ E0.6 fast up button
+U+23EC | ⏬ E0.6 fast down button
+U+23F0 | ⏰ E0.6 alarm clock
+U+23F3 | ⏳ E0.6 hourglass not done
+U+25FD | ◽ E0.6 white medium-small square
+U+25FE | ◾ E0.6 black medium-small square
+U+26AA | ⚪ E0.6 white circle
+U+26AB | ⚫ E0.6 black circle
+U+2705 | ✅ E0.6 check mark button
+U+274C | ❌ E0.6 cross mark
+U+274E | ❎ E0.6 cross mark button
+U+2753 | ❓ E0.6 red question mark
+U+2754 | ❔ E0.6 white question mark
+U+2755 | ❕ E0.6 white exclamation mark
+U+2757 | ❗ E0.6 red exclamation mark
+U+2795 | ➕ E0.6 plus
+U+2796 | ➖ E0.6 minus
+U+2797 | ➗ E0.6 divide
+U+27B0 | ➰ E0.6 curly loop
+U+27BF | ➿ E1.0 double curly loop
+U+2B1B | ⬛ E0.6 black large square
+U+2B1C | ⬜ E0.6 white large square
+U+2B55 | ⭕ E0.6 hollow red circle
+U+1F6DD | 🛝 E14.0 playground slide
+U+1F6DE | 🛞 E14.0 wheel
+U+1F6DF | 🛟 E14.0 ring buoy
+U+1F7E0 | 🟠 E12.0 orange circle
+U+1F7E1 | 🟡 E12.0 yellow circle
+U+1F7E2 | 🟢 E12.0 green circle
+U+1F7E3 | 🟣 E12.0 purple circle
+U+1F7E4 | 🟤 E12.0 brown circle
+U+1F7E5 | 🟥 E12.0 red square
+U+1F7E6 | 🟦 E12.0 blue square
+U+1F7E7 | 🟧 E12.0 orange square
+U+1F7E8 | 🟨 E12.0 yellow square
+U+1F7E9 | 🟩 E12.0 green square
+U+1F7EA | 🟪 E12.0 purple square
+U+1F7EB | 🟫 E12.0 brown square
+U+1F7F0 | 🟰 E14.0 heavy equals sign
+U+1F90D | 🤍 E12.0 white heart
+U+1F90E | 🤎 E12.0 brown heart
+U+1F979 | 🥹 E14.0 face holding back tears
+U+1F9CC | 🧌 E14.0 troll
+U+1F9E1 | 🧡 E5.0 orange heart
+U+1FA7B | 🩻 E14.0 x-ray
+U+1FA7C | 🩼 E14.0 crutch
+U+1FAA9 | 🪩 E14.0 mirror ball
+U+1FAAA | 🪪 E14.0 identification card
+U+1FAAB | 🪫 E14.0 low battery
+U+1FAAC | 🪬 E14.0 hamsa
+U+1FAB7 | 🪷 E14.0 lotus
+U+1FAB8 | 🪸 E14.0 coral
+U+1FAB9 | 🪹 E14.0 empty nest
+U+1FABA | 🪺 E14.0 nest with eggs
+U+1FAC3 | 🫃 E14.0 pregnant man
+U+1FAC4 | 🫄 E14.0 pregnant person
+U+1FAC5 | 🫅 E14.0 person with crown
+U+1FAD7 | 🫗 E14.0 pouring liquid
+U+1FAD8 | 🫘 E14.0 beans
+U+1FAD9 | 🫙 E14.0 jar
+U+1FAE0 | 🫠 E14.0 melting face
+U+1FAE1 | 🫡 E14.0 saluting face
+U+1FAE2 | 🫢 E14.0 face with open eyes and hand over mouth
+U+1FAE3 | 🫣 E14.0 face with peeking eye
+U+1FAE4 | 🫤 E14.0 face with diagonal mouth
+U+1FAE5 | 🫥 E14.0 dotted line face
+U+1FAE6 | 🫦 E14.0 biting lip
+U+1FAE7 | 🫧 E14.0 bubbles
+U+1FAF0 | 🫰 E14.0 hand with index finger and thumb crossed
+U+1FAF1 | 🫱 E14.0 rightwards hand
+U+1FAF2 | 🫲 E14.0 leftwards hand
+U+1FAF3 | 🫳 E14.0 palm down hand
+U+1FAF4 | 🫴 E14.0 palm up hand
+U+1FAF5 | 🫵 E14.0 index pointing at the viewer
+U+1FAF6 | 🫶 E14.0 heart hands

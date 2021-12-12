@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -39,12 +41,7 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer, "The candidate column indicates if a V1 emoji was a [candidate](candidates.md) for V2.  If a V1 emojis was a candidate and was not used in V2 then someone decided against using it in V2.  If a V1 emoji was not a candidate, then it could not be used in V2 because it did not meet the selection criteria.")
 	fmt.Fprintln(writer)
 
-	candidateRunes := getRunes("docs/candidates.txt")
-
-	candidatesMap := make(map[rune]bool)
-	for _, r := range candidateRunes {
-		candidatesMap[r] = true
-	}
+	candidatesMap := getCandidates("docs/candidates.txt")
 
 	fmt.Fprintln(writer, "Ordinal | V1 codepoint | V1 emoji | candidate | V2 codepoint | V2 emoji")
 	fmt.Fprintln(writer, "-|-|-|-|-|-")
@@ -85,18 +82,25 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer)
 	fmt.Fprintln(writer, "The following are [candidates](candidates.md) that were not used. This information is provided for reference and is not needed to implement Ecoji")
 	fmt.Fprintln(writer)
-	fmt.Fprintln(writer, "codepoint | emoji ")
+	fmt.Fprintln(writer, "codepoint | emoji and description ")
 	fmt.Fprintln(writer, "-|-")
-	for _, r := range candidateRunes {
+
+	sortedCandidates := make([]rune, 0, len(candidatesMap))
+	for r, _ := range candidatesMap {
+		sortedCandidates = append(sortedCandidates, r)
+	}
+	sort.Slice(sortedCandidates, func(i, j int) bool { return sortedCandidates[i] < sortedCandidates[j] })
+
+	for _, r := range sortedCandidates {
 		if _, present := revEmojis[r]; !present {
-			fmt.Fprintf(writer, "%U | %s \n", r, string(r))
+			fmt.Fprintf(writer, "%U | %s\n", r, candidatesMap[r])
 		}
 	}
 }
 
-func getRunes(fileName string) []rune {
+func getCandidates(fileName string) map[rune]string {
 
-	var runes []rune
+	candidatesMap := make(map[rune]string)
 
 	file, err := os.Open(fileName)
 	handle(err)
@@ -106,14 +110,16 @@ func getRunes(fileName string) []rune {
 	// optionally, resize scanner's capacity for lines over 64K, see next example
 	for scanner.Scan() {
 		//fmt.Println(scanner.Text())
-		i, err := strconv.ParseInt(scanner.Text(), 16, 32)
+
+		cols := strings.Split(scanner.Text(), "#")
+		i, err := strconv.ParseInt(strings.TrimSpace(cols[0]), 16, 32)
 		handle(err)
-		runes = append(runes, rune(i))
+		candidatesMap[rune(i)] = strings.TrimSpace(cols[1])
 	}
 
 	handle(scanner.Err())
 
-	return runes
+	return candidatesMap
 }
 
 func handle(err error) {
