@@ -23,7 +23,7 @@ func decode(s string) (string, error) {
 }
 
 func TestDecode(t *testing.T) {
-	dstr, err := decode("🧛📩🎦🐇🧋📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🕥🐭🧿🍉🚲🦑🐶💢🕥🔮🩱🍉📸🐮🌼👦🚟🥴📑")
+	dstr, err := decode("🧗📩🧊🐇🧇📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑")
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
 	}
@@ -46,7 +46,7 @@ func TestDecodeV1(t *testing.T) {
 }
 
 func TestDecodeConcatenated(t *testing.T) {
-	dstr, err := decode("👖📸🎦🌭👩☕💲🥇🕟☕")
+	dstr, err := decode("👖📸🧊🌭👩☕💲🥇🪚☕")
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
 	}
