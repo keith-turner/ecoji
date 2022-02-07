@@ -1,4 +1,4 @@
-# Ecoji 🏣🔉🦐🔼
+# Ecoji 🏣🔉🦐🩻
 
 **WARNING :** This branch contains a work in progress version of Ecoji V2. Any data encoded using this branch may not be compatible with the final version of Ecoji V2.
 
@@ -33,8 +33,7 @@ Options:
     -h, --help            Print this message
     -v, --version         Print version information.
 
-🏣🔉🦐🔼🍈🚞🤹🥷
-
+🏣🔉🦐🩻🍈🚞🤹🥷
 ```
 
 ## Examples
@@ -43,13 +42,13 @@ Options:
 
 ```bash
 $ echo "Base64 is so 1999, isn't there something better?" | ecoji -e
-🧛📩🎦🐇🧋📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🕥🐭🧿🍉🚲🦑🐶💢🕥🔮🩱🍉📸🐮🌼👦🚟🥴📑
+🧗📩🧊🐇🧇📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑
 ```
 
 ### Decoding:
 
 ```bash
-$ echo 🧛📩🎦🐇🧋📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🕥🐭🧿🍉🚲🦑🐶💢🕥🔮🩱🍉📸🐮🌼👦🚟🥴📑 | ecoji -d
+$ echo 🧗📩🧊🐇🧇📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑 | ecoji -d
 Base64 is so 1999, isn't there something better?
 ```
 
@@ -61,8 +60,8 @@ $ echo -n abc | ecoji -e
 $ echo -n 6789 | ecoji -e
 🎥🤠📠🛼
 $ echo XY | ecoji -e
-🐲👡🕟☕
-$ echo 👖📸🎈☕🎥🤠📠🛼🐲👡🕟☕ | ecoji -d
+🐲👡🪚☕
+$ echo 👖📸🎈☕🎥🤠📠🛼🐲👡🪚☕ | ecoji -d
 abc6789XY
 ```
 
@@ -70,8 +69,8 @@ abc6789XY
 
 ```bash
 $ cat encode.go  | openssl dgst -binary -sha1 | ecoji -e
-🧜🎺🥧🗽🍻🏺💨🥿🍚📇🌱👞👻🌁🥉🗾
-$ echo 🧜🎺🥧🗽🍻🏺💨🥿🍚📇🌱👞👻🌁🥉🗾 | ecoji -d | openssl base64
+🧘🎺🥧🗽🍻🏺💨🥿🍚📇🌱👞👻🌁🥉🗾
+$ echo 🧘🎺🥧🗽🍻🏺💨🥿🍚📇🌱👞👻🌁🥉🗾 | ecoji -d | openssl base64
 Qo7e3rIs0pdfySSfYaWNaoO+ZrM=
 $ cat encode.go  | openssl dgst -binary -sha1 | openssl base64
 Qo7e3rIs0pdfySSfYaWNaoO+ZrM=
@@ -85,7 +84,7 @@ Four base1024 emojis can represent 1 trillion unique IDs.  In the example below 
 
 ```
 $ printf "https://ecoji.io/%s\n" $(echo af82dd48f7 | xxd -r -p | ecoji -e)
-https://ecoji.io/😉🥸🪴🏄
+https://ecoji.io/😉🤿🫢🏄
 ```
 
 ## Other Implementations
