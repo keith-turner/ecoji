@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
+	"io"
 	"math/big"
 	"math/rand"
 	"os"
@@ -168,20 +169,6 @@ func TestNineByteEncode(t *testing.T) {
 	}
 }
 
-func TestGarbage(t *testing.T) {
-	reader := strings.NewReader("not emojisV2")
-	buffer1 := bytes.NewBuffer(nil)
-
-	err := Decode(reader, buffer1)
-	if err == nil {
-		t.Error("Expected error")
-	}
-
-	if !strings.Contains(err.Error(), "Non Ecoji character seen") {
-		t.Errorf("Unexpected error message: %s", err.Error())
-	}
-}
-
 func TestExhaustive(t *testing.T) {
 	// use this to hold 10 bit ordinals
 	biggy := big.NewInt(1)
@@ -215,4 +202,116 @@ func TestPhrase(t *testing.T) {
 	expectedV2 := []rune("🧏📩🧈🐇🧅📘🔯🚜💞😽♏🐊🎱🥁🚄🌱💞😭💮✊💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑")
 	plain := []byte("Base64 is so 1999, isn't there something better?\n")
 	check(t, expectedV1, expectedV2, plain, "phrase")
+}
+
+func decode(s string) ([]byte, error) {
+	reader := strings.NewReader(s)
+	buffer1 := &bytes.Buffer{}
+	err := Decode(reader, buffer1)
+	if err != nil {
+		return nil, err
+	}
+	buf, err := io.ReadAll(buffer1)
+	if err != nil {
+		return nil, err
+	}
+
+	return buf, nil
+}
+
+func testDecode(t *testing.T, encoded string, expected []byte, name string) {
+	dstr, err := decode(encoded)
+	if err != nil {
+		t.Errorf("unexpected error: %v", err)
+	}
+	if cmp := bytes.Compare(expected, dstr); cmp != 0 {
+		t.Fatalf("should decode to '%s', was: '%s'", expected, dstr)
+	}
+
+	if name != "" {
+		writeBytes(t, expected, "test_scripts/data/"+name+".plaind")
+		writeRunes(t, []rune(encoded), "test_scripts/data/"+name+".enc")
+	}
+}
+
+func TestDecodeConcatenated(t *testing.T) {
+	// V2 Encoded and concat
+	testDecode(t, "👖📸🧈🌭👩☕💲🥇🪚☕", []byte("abcdefxyz"), "concat_v2_1")
+	// V1 Encoded and concat
+	testDecode(t, "👖📸🎈☕🎥🤠📠🏍🐲👡🕟☕", []byte("abc6789XY\n"), "concat_v1_1")
+
+	// Test V1 concat of encoded messages of lengths 1 to 10.  So did enc("A")+enc("BC")+enc("DEF")+...+enc("jklmnopqrs")
+	testDecode(t, "🏒☕☕☕🏗🈳☕☕🏟🌚👑☕🏫🍌🔥📑🏾🎌🛡🔢🐒🏣🍜🛢🐥☕☕☕🐪👆📨🐫🎈🚌☕☕🎐🚯🏛🐇🎩🤰🔓☕👖📸🎦🌭👪🕕📬🏍👺😁🚗🐿💎🚃🌤🕒",
+		[]byte("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrs"), "concat_v1_2")
+
+	// Test V2 concat of encoded messages of lengths 1 to 10.
+	testDecode(t, "🏒☕🧏🥱☕🧝🌚👑☕🏫🍌🔥📑🧦🎌🫣🧽🐒🏣🍜🫤🐥☕🐪👆📨🐫🎈🚌☕🎐🚯🧙🐇🎩🤰🔓☕👖📸🧈🌭👪🪐📬🛼👺😁🚗🧨💎🚃🦩🪄",
+		[]byte("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrs"), "concat_v2_2")
+
+}
+
+func TestGarbage(t *testing.T) {
+	testData := "not emojisV2"
+	reader := strings.NewReader(testData)
+	buffer1 := bytes.NewBuffer(nil)
+
+	err := Decode(reader, buffer1)
+	if err == nil {
+		t.Error("Expected error")
+	}
+
+	if !strings.Contains(err.Error(), "Non Ecoji character seen") {
+		t.Errorf("Unexpected error message: %s", err.Error())
+	}
+
+	writeRunes(t, []rune(testData), "test_scripts/data/ascii.garbage")
+}
+
+func TestDecodeMixed(t *testing.T) {
+
+	// the 2nd rune is ecoji v1 only and the 3rd rune is ecoji v2 only
+	runes := [4]rune{0x1f004, 0x1f170, 0x1f93f, 0x1f93e}
+
+	reader := strings.NewReader(string(runes[:]))
+	buffer1 := &bytes.Buffer{}
+
+	err := Decode(reader, buffer1)
+
+	if err == nil {
+		t.Errorf("Did not see error with mixed data")
+	} else if !strings.Contains(err.Error(), "Emojis from different ecoji versions seen") {
+		t.Errorf("Did not see expected error message")
+	}
+
+	// the 2nd rune is ecoji v2 only and the 3rd rune is ecoji v1 only
+	runes2 := [4]rune{0x1f004, 0x1f93f, 0x1f170, 0x1f93e}
+
+	reader2 := strings.NewReader(string(runes2[:]))
+	buffer2 := &bytes.Buffer{}
+
+	err2 := Decode(reader2, buffer2)
+
+	if err2 == nil {
+		t.Errorf("Did not see error with mixed data")
+	} else if !strings.Contains(err2.Error(), "Emojis from different ecoji versions seen") {
+		t.Errorf("Did not see expected error message")
+	}
+
+	// test where mixed are more than 4 apart
+	runes3 := []rune{0x1f004, 0x1f170, 0x1f170, 0x1f93e, 0x1f004, 0x1f170, 0x1f170, 0x1f93e, 0x1f004, 0x1f170, 0x1f93f, 0x1f93e}
+
+	reader3 := strings.NewReader(string(runes3))
+	buffer3 := &bytes.Buffer{}
+
+	err3 := Decode(reader3, buffer3)
+
+	if err3 == nil {
+		t.Errorf("Did not see error with mixed data")
+	} else if !strings.Contains(err3.Error(), "Emojis from different ecoji versions seen") {
+		t.Errorf("Did not see expected error message")
+	}
+
+	writeRunes(t, runes[:], "test_scripts/data/mixed_1.garbage")
+	writeRunes(t, runes2[:], "test_scripts/data/mixed_2.garbage")
+	writeRunes(t, runes3[:], "test_scripts/data/mixed_3.garbage")
 }

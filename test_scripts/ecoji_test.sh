@@ -26,13 +26,26 @@ for plain_file in data/*.plain; do
 	fi
 done
 
-echo "INFO checking Ecoji V2 concatenated data"
-if ! diff <(echo -n "👖📸🧈🌭👩☕💲🥇🪚☕" | $decode_cmd) <(echo -n "abcdefxyz") &> /dev/null; then
-	echo "ERROR failed to decode Ecoji V2 concatenated data"
-fi
+#Run test that only decode data
+for plain_file in data/*.plaind; do
+	bare_name=$(basename $plain_file .plaind)
 
-echo "INFO checking Ecoji V1 concatenated data"
-if ! diff <(echo -n "👖📸🎈☕🎥🤠📠🏍🐲👡🕟☕" | $decode_cmd) <(echo "abc6789XY") &> /dev/null; then
-	echo "ERROR failed to decode Ecoji V1 concatenated data"
-fi
+	echo "INFO checking $bare_name"
+
+	if !  diff <(cat $plain_file) <(cat data/$bare_name.enc | $decode_cmd) &> /dev/null; then
+		echo "ERROR : Decoding data/$bare_name.enc did not produce $plain_file"
+	fi
+done
+
+
+#Run test that only decode data
+for plain_file in data/*.garbage; do
+	bare_name=$(basename $plain_file .garbage)
+
+	echo "INFO checking $bare_name"
+
+	if  cat data/$bare_name.garbage | $decode_cmd &> /dev/null; then
+		echo "ERROR : Decoding data/$bare_name.garbage did not produce an error code"
+	fi
+done
 
