@@ -1,6 +1,6 @@
 # Ecoji tests
 
-This directory contains a test script that can be used to test other
+This directory contains a [test script](ecoji_test.sh) that can be used to test other
 implementations of Ecoji. To test another implemention you need to override what
 commands are used to decode and encode. For example assume that `/home/ubuntu/bin/myEcoji`
 is a new implementation executable.  To test this executable run the following
