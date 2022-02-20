@@ -27,7 +27,7 @@ for plain_file in data/*.plain; do
 done
 
 echo "INFO checking Ecoji V2 concatenated data"
-if ! diff <(echo -n "👖📸🧊🌭👩☕💲🥇🪚☕" | $decode_cmd) <(echo -n "abcdefxyz") &> /dev/null; then
+if ! diff <(echo -n "👖📸🧈🌭👩☕💲🥇🪚☕" | $decode_cmd) <(echo -n "abcdefxyz") &> /dev/null; then
 	echo "ERROR failed to decode Ecoji V2 concatenated data"
 fi
 

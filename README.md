@@ -42,13 +42,13 @@ Options:
 
 ```bash
 $ echo "Base64 is so 1999, isn't there something better?" | ecoji -e
-🧗📩🧊🐇🧇📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑
+🧏📩🧈🐇🧅📘🔯🚜💞😽♏🐊🎱🥁🚄🌱💞😭💮✊💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑
 ```
 
 ### Decoding:
 
 ```bash
-$ echo 🧗📩🧊🐇🧇📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑 | ecoji -d
+$ echo 🧏📩🧈🐇🧅📘🔯🚜💞😽♏🐊🎱🥁🚄🌱💞😭💮✊💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑 | ecoji -d
 Base64 is so 1999, isn't there something better?
 ```
 
@@ -84,7 +84,7 @@ Four base1024 emojis can represent 1 trillion unique IDs.  In the example below 
 
 ```
 $ printf "https://ecoji.io/%s\n" $(echo af82dd48f7 | xxd -r -p | ecoji -e)
-https://ecoji.io/😉🤿🫢🏄
+https://ecoji.io/😉🤌🫢🏄
 ```
 
 ## Other Implementations

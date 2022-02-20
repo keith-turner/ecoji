@@ -212,7 +212,7 @@ func TestExhaustive(t *testing.T) {
 
 func TestPhrase(t *testing.T) {
 	expectedV1 := []rune("🏗📩🎦🐇🎛📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🇵💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑")
-	expectedV2 := []rune("🧗📩🧊🐇🧇📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑")
+	expectedV2 := []rune("🧏📩🧈🐇🧅📘🔯🚜💞😽♏🐊🎱🥁🚄🌱💞😭💮✊💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑")
 	plain := []byte("Base64 is so 1999, isn't there something better?\n")
 	check(t, expectedV1, expectedV2, plain, "phrase")
 }
