@@ -44,6 +44,12 @@ this Ecoji V2 also relaxes the padding requirements.  Ecoji V1 always padded to 
 emojis when the end of the input data was less than 5 bytes.  Ecoji V2 can have
 less than 4 padding emojis when the end of the input data is less than 5 bytes.
 
+Ecoji V2 used emojis from the [Unicode 14 emoji
+standard](https://unicode.org/Public/emoji/14.0/emoji-test.txt).  Ecoji V1 used
+emojis from the [Unicode 11 emoji
+standard](https://unicode.org/Public/emoji/11.0/emoji-test.txt). Ecoji V1 used
+some non fully qualified emojis.  Ecoji V2 only uses fully qualified emojis.
+
 ## Ecoji encoding efficiency
 
 Many have asked how Ecoji compares to base64.  The short answer is that a string encoded with Ecoji will have more bytes, but fewer visible characters, than the same string encoded with base64. With Ecoji, each visible char represents 10 bits, but each character is multi-byte.  With base64 each char represents 6 bits and is one byte.  The following table shows encoding sha256 in different ways.

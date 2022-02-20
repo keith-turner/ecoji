@@ -1,4 +1,4 @@
-# Ecoji 🏣🔉🦐🩻
+# Ecoji 2.0 🏣🔉🦐🩻🍈🚞🤹🥷
 
 **WARNING :** This branch contains a work in progress version of Ecoji V2. Any
 data encoded using this branch may not be compatible with the final version of
@@ -116,7 +116,7 @@ Libraries implementing the Ecoji encoding standard. Submit PR to add a library t
 If you are new to Go I would recommend this [video] and the [tour].
 
 ```bash
-# The following are general Go setup instructions.  Ignore if you know Go, I am new to it.
+# The following are general Go setup instructions.
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
