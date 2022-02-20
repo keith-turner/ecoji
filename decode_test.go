@@ -22,29 +22,6 @@ func decode(s string) (string, error) {
 	return string(buf), nil
 }
 
-func TestDecode(t *testing.T) {
-	dstr, err := decode("🧗📩🧊🐇🧇📘🔯🚜💞😽♑🐊🎱🥁🚄🌱💞😭💮✨💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑")
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
-	}
-	expected := "Base64 is so 1999, isn't there something better?\n"
-	if dstr != expected {
-		t.Fatalf("should decode to '%s', was: '%s'", expected, dstr)
-	}
-
-}
-
-func TestDecodeV1(t *testing.T) {
-	dstr, err := decode("🏗📩🎦🐇🎛📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🇵💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑")
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
-	}
-	expected := "Base64 is so 1999, isn't there something better?\n"
-	if dstr != expected {
-		t.Fatalf("should decode to '%s', was: '%s'", expected, dstr)
-	}
-}
-
 func TestDecodeConcatenated(t *testing.T) {
 	dstr, err := decode("👖📸🧊🌭👩☕💲🥇🪚☕")
 	if err != nil {

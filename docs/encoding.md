@@ -23,6 +23,8 @@ used by Ecoji V1 and V2.  The line number of an emoji in those files
 corresponds with its 10-bit ordinal for encoding. For more information see
 [emojis.md](emojis.md).
 
+To test new implementations of Ecoji, look at the [test script](../test_scripts/README.md).
+
 ## Versions
 
 Ecoji currently has two versions that each have their own sets of emojis.
