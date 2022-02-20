@@ -22,6 +22,7 @@ func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune, trim bool
 	// 1111111111 which is 10 1 bits. A mask like (0x3ff & bits) gets the last 10
 	// bits from the 64-bit integer.
 	var bits uint64
+
 	var runes []rune
 
 	switch len(s) {
@@ -91,20 +92,59 @@ func readFully(r io.Reader, buffer []byte) (n int, e error) {
 	return num, err
 }
 
+type wrappingWriter struct {
+	writer  RuneWriter
+	printed uint
+	wrap    uint
+}
+
+func (ww *wrappingWriter) WriteByte(b byte) error {
+	return ww.writer.WriteByte(b)
+}
+func (ww *wrappingWriter) WriteRune(r rune) (int, error) {
+	num, err := ww.writer.WriteRune(r)
+	if err == nil {
+		ww.printed++
+		if ww.printed%ww.wrap == 0 {
+			err := ww.writer.WriteByte('\n')
+			if err != nil {
+				return 0, err
+			}
+		}
+	}
+
+	return num, err
+}
+
+func (ww *wrappingWriter) wrapEnd() error {
+	if ww.printed%ww.wrap != 0 {
+		err := ww.writer.WriteByte('\n')
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
 func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding []rune, trim bool) (err error) {
 	buffer := make([]byte, 5)
-	printed := uint(0)
+
+	var writer RuneWriter
+	var ww *wrappingWriter
+
+	if wrap > 0 {
+		ww = &wrappingWriter{w, 0, wrap}
+		writer = ww
+	} else {
+		ww = nil
+		writer = w
+	}
 
 	for {
-
 		num, err := readFully(r, buffer)
 
 		if num == 0 && err == io.EOF {
-			if printed > 0 {
-				if err := w.WriteByte('\n'); err != nil {
-					return err
-				}
-			}
 			break
 		}
 
@@ -112,20 +152,15 @@ func encodeAndWrap(r io.Reader, w RuneWriter, wrap uint, emojis []rune, padding 
 			return err
 		}
 
-		if err := encode(buffer[0:num], w, emojis, padding, trim); err != nil {
+		if err := encode(buffer[0:num], writer, emojis, padding, trim); err != nil {
 			return err
 		}
+	}
 
-		if wrap > 0 {
-			printed += 4
-			if printed >= wrap {
-				if err := w.WriteByte('\n'); err != nil {
-					return err
-				}
-				printed = 0
-			}
+	if ww != nil {
+		if err2 := ww.wrapEnd(); err2 != nil {
+			return err2
 		}
-
 	}
 
 	return nil

@@ -49,3 +49,5 @@ for plain_file in data/*.garbage; do
 	fi
 done
 
+# TODO this script does not test wrapping in any way
+

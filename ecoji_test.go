@@ -43,16 +43,16 @@ func writeRunes(t *testing.T, data []rune, fname string) {
 	}
 }
 
-func check(t *testing.T, expectedV1 []rune, expectedV2 []rune, input []byte, name string) {
+func check(t *testing.T, expectedV1 []rune, expectedV2 []rune, input []byte, name string, wrap uint) {
 	reader := bytes.NewBuffer(input)
 	buffer1 := bytes.NewBuffer(nil)
 
-	err := EncodeV2(reader, buffer1, 0)
+	err := EncodeV2(reader, buffer1, wrap)
 	if err != nil {
 		t.Error(err)
 	}
 
-	actual, _ := buffer1.ReadString('\n')
+	actual := buffer1.String()
 
 	if cmp := strings.Compare(actual, string(expectedV2)); cmp != 0 {
 		t.Errorf("'%s' != '%s' %d", string(expectedV2), actual, cmp)
@@ -72,12 +72,12 @@ func check(t *testing.T, expectedV1 []rune, expectedV2 []rune, input []byte, nam
 	reader2 := bytes.NewBuffer(input)
 	buffer3 := bytes.NewBuffer(nil)
 
-	err = Encode(reader2, buffer3, 0)
+	err = Encode(reader2, buffer3, wrap)
 	if err != nil {
 		t.Error(err)
 	}
 
-	actual, _ = buffer3.ReadString('\n')
+	actual = buffer3.String()
 
 	if cmp := strings.Compare(actual, string(expectedV1)); cmp != 0 {
 		t.Errorf("'%s' != '%s' %d", string(expectedV1), actual, cmp)
@@ -100,27 +100,31 @@ func check(t *testing.T, expectedV1 []rune, expectedV2 []rune, input []byte, nam
 	}
 }
 
+func TestZeroByteEncode(t *testing.T) {
+	check(t, []rune{}, []rune{}, []byte{}, "zero_byte", 0)
+}
+
 func TestOneByteEncode(t *testing.T) {
-	check(t, []rune{emojisV1[int('k')<<2], padding, padding, padding}, []rune{emojisV2[int('k')<<2], padding}, []byte{'k'}, "one_byte")
+	check(t, []rune{emojisV1[int('k')<<2], padding, padding, padding}, []rune{emojisV2[int('k')<<2], padding}, []byte{'k'}, "one_byte", 0)
 }
 
 func TestTwoByteEncode(t *testing.T) {
-	check(t, []rune{emojisV1[0], emojisV1[16], padding, padding}, []rune{emojisV2[0], emojisV2[16], padding}, []byte{0x00, 0x01}, "two_byte")
+	check(t, []rune{emojisV1[0], emojisV1[16], padding, padding}, []rune{emojisV2[0], emojisV2[16], padding}, []byte{0x00, 0x01}, "two_byte", 0)
 }
 
 func TestThreeByteEncode(t *testing.T) {
-	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], padding}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], padding}, []byte{0x00, 0x01, 0x02}, "three_byte")
+	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], padding}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], padding}, []byte{0x00, 0x01, 0x02}, "three_byte", 0)
 }
 
 func TestFourByteEncode(t *testing.T) {
-	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[0]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[0]}, []byte{0x00, 0x01, 0x02, 0x00}, "four_byte_1")
-	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[1]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[1]}, []byte{0x00, 0x01, 0x02, 0x01}, "four_byte_2")
-	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[2]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[2]}, []byte{0x00, 0x01, 0x02, 0x02}, "four_byte_3")
-	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[3]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[3]}, []byte{0x00, 0x01, 0x02, 0x03}, "four_byte_4")
+	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[0]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[0]}, []byte{0x00, 0x01, 0x02, 0x00}, "four_byte_1", 0)
+	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[1]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[1]}, []byte{0x00, 0x01, 0x02, 0x01}, "four_byte_2", 0)
+	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[2]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[2]}, []byte{0x00, 0x01, 0x02, 0x02}, "four_byte_3", 0)
+	check(t, []rune{emojisV1[0], emojisV1[16], emojisV1[128], paddingLastV1[3]}, []rune{emojisV2[0], emojisV2[16], emojisV2[128], paddingLastV2[3]}, []byte{0x00, 0x01, 0x02, 0x03}, "four_byte_4", 0)
 }
 
 func TestFiveByteEncode(t *testing.T) {
-	check(t, []rune{emojisV1[687], emojisV1[222], emojisV1[960], emojisV1[291]}, []rune{emojisV2[687], emojisV2[222], emojisV2[960], emojisV2[291]}, []byte{0xab, 0xcd, 0xef, 0x01, 0x23}, "five_byte")
+	check(t, []rune{emojisV1[687], emojisV1[222], emojisV1[960], emojisV1[291]}, []rune{emojisV2[687], emojisV2[222], emojisV2[960], emojisV2[291]}, []byte{0xab, 0xcd, 0xef, 0x01, 0x23}, "five_byte", 0)
 }
 
 func TestSixByteEncode(t *testing.T) {
@@ -130,7 +134,7 @@ func TestSixByteEncode(t *testing.T) {
 	binary.BigEndian.PutUint64(data[:], scratch)
 
 	check(t, []rune{emojisV1[123], emojisV1[456], emojisV1[789], emojisV1[909], emojisV1[55<<2], padding, padding, padding},
-		[]rune{emojisV2[123], emojisV2[456], emojisV2[789], emojisV2[909], emojisV2[55<<2], padding}, data[2:8], "six_byte")
+		[]rune{emojisV2[123], emojisV2[456], emojisV2[789], emojisV2[909], emojisV2[55<<2], padding}, data[2:8], "six_byte", 0)
 }
 
 func TestSevenByteEncode(t *testing.T) {
@@ -140,7 +144,7 @@ func TestSevenByteEncode(t *testing.T) {
 	binary.BigEndian.PutUint64(data[:], scratch)
 
 	check(t, []rune{emojisV1[237], emojisV1[77], emojisV1[257], emojisV1[513], emojisV1[809], emojisV1[7<<4], padding, padding},
-		[]rune{emojisV2[237], emojisV2[77], emojisV2[257], emojisV2[513], emojisV2[809], emojisV2[7<<4], padding}, data[1:8], "seven_byte")
+		[]rune{emojisV2[237], emojisV2[77], emojisV2[257], emojisV2[513], emojisV2[809], emojisV2[7<<4], padding}, data[1:8], "seven_byte", 0)
 }
 
 func TestEightByteEncode(t *testing.T) {
@@ -150,7 +154,7 @@ func TestEightByteEncode(t *testing.T) {
 	binary.BigEndian.PutUint64(data[:], scratch)
 
 	check(t, []rune{emojisV1[3], emojisV1[206], emojisV1[368], emojisV1[617], emojisV1[650], emojisV1[1005], emojisV1[3<<6], padding},
-		[]rune{emojisV2[3], emojisV2[206], emojisV2[368], emojisV2[617], emojisV2[650], emojisV2[1005], emojisV1[3<<6], padding}, data[0:8], "eight_byte")
+		[]rune{emojisV2[3], emojisV2[206], emojisV2[368], emojisV2[617], emojisV2[650], emojisV2[1005], emojisV1[3<<6], padding}, data[0:8], "eight_byte", 0)
 }
 
 func TestNineByteEncode(t *testing.T) {
@@ -165,7 +169,7 @@ func TestNineByteEncode(t *testing.T) {
 		binary.BigEndian.PutUint64(data[5:13], scratch)
 
 		check(t, []rune{emojisV1[855], emojisV1[298], emojisV1[1007], emojisV1[97], emojisV1[611], emojisV1[291], emojisV1[856], paddingLastV1[i]},
-			[]rune{emojisV2[855], emojisV2[298], emojisV2[1007], emojisV2[97], emojisV2[611], emojisV2[291], emojisV2[856], paddingLastV2[i]}, data[0:9], "nine_byte_"+fmt.Sprint(i))
+			[]rune{emojisV2[855], emojisV2[298], emojisV2[1007], emojisV2[97], emojisV2[611], emojisV2[291], emojisV2[856], paddingLastV2[i]}, data[0:9], "nine_byte_"+fmt.Sprint(i), 0)
 	}
 }
 
@@ -194,14 +198,37 @@ func TestExhaustive(t *testing.T) {
 	// biggy
 	bytes := biggy.Bytes()[1:]
 
-	check(t, expectedRunesV1[:], expectedRunesV2[:], bytes, "exhaustive")
+	check(t, expectedRunesV1[:], expectedRunesV2[:], bytes, "exhaustive", 0)
 }
 
 func TestPhrase(t *testing.T) {
 	expectedV1 := []rune("🏗📩🎦🐇🎛📘🔯🚜💞😽🆖🐊🎱🥁🚄🌱💞😭💮🇵💢🕥🐭🔸🍉🚲🦑🐶💢🕥🔮🔺🍉📸🐮🌼👦🚟🥴📑")
 	expectedV2 := []rune("🧏📩🧈🐇🧅📘🔯🚜💞😽♏🐊🎱🥁🚄🌱💞😭💮✊💢🪠🐭🩴🍉🚲🦑🐶💢🪠🔮🩹🍉📸🐮🌼👦🚟🥴📑")
 	plain := []byte("Base64 is so 1999, isn't there something better?\n")
-	check(t, expectedV1, expectedV2, plain, "phrase")
+	check(t, expectedV1, expectedV2, plain, "phrase", 0)
+}
+
+func TestWrap(t *testing.T) {
+	check(t, []rune("🎌🚟🎗🈸🎥🤠📠🐁👖📸🎈☕"), []rune("🎌🚟🦿🦣🎥🤠📠🐁👖📸🎈☕"), []byte("1234567890abc"), "", 0)
+	check(t, []rune("🎌\n🚟\n🎗\n🈸\n🎥\n🤠\n📠\n🐁\n👖\n📸\n🎈\n☕\n"),
+		[]rune("🎌\n🚟\n🦿\n🦣\n🎥\n🤠\n📠\n🐁\n👖\n📸\n🎈\n☕\n"),
+		[]byte("1234567890abc"), "", 1)
+	check(t, []rune("🎌🚟\n🎗🈸\n🎥🤠\n📠🐁\n👖📸\n🎈☕\n"),
+		[]rune("🎌🚟\n🦿🦣\n🎥🤠\n📠🐁\n👖📸\n🎈☕\n"),
+		[]byte("1234567890abc"), "", 2)
+	check(t, []rune("🎌🚟🎗\n🈸🎥🤠\n📠🐁👖\n📸🎈☕\n"),
+		[]rune("🎌🚟🦿\n🦣🎥🤠\n📠🐁👖\n📸🎈☕\n"),
+		[]byte("1234567890abc"), "", 3)
+	check(t, []rune("🎌🚟🎗🈸\n🎥🤠📠🐁\n👖📸🎈☕\n"),
+		[]rune("🎌🚟🦿🦣\n🎥🤠📠🐁\n👖📸🎈☕\n"),
+		[]byte("1234567890abc"), "", 4)
+	check(t, []rune("🎌🚟🎗🈸🎥\n🤠📠🐁👖📸\n🎈☕\n"),
+		[]rune("🎌🚟🦿🦣🎥\n🤠📠🐁👖📸\n🎈☕\n"),
+		[]byte("1234567890abc"), "", 5)
+	check(t, []rune("🎌🚟🎗🈸🎥🤠📠🐁👖📸🎈☕\n"),
+		[]rune("🎌🚟🦿🦣🎥🤠📠🐁👖📸🎈☕\n"),
+		[]byte("1234567890abc"), "", 20)
+
 }
 
 func decode(s string) ([]byte, error) {
