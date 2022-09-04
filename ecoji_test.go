@@ -277,68 +277,87 @@ func TestDecodeConcatenated(t *testing.T) {
 
 }
 
-func TestGarbage(t *testing.T) {
-	testData := "not emojisV2"
+func testGarbageInput(t *testing.T, testData string, expectedErrMsg string, outputFileName string) {
 	reader := strings.NewReader(testData)
 	buffer1 := bytes.NewBuffer(nil)
 
 	err := Decode(reader, buffer1)
 	if err == nil {
-		t.Error("Expected error")
+		t.Error("Expected error for : " + outputFileName)
+		return
 	}
 
-	if !strings.Contains(err.Error(), "Non Ecoji character seen") {
-		t.Errorf("Unexpected error message: %s", err.Error())
+	if !strings.Contains(err.Error(), expectedErrMsg) {
+		t.Errorf("Unexpected error message: '%s'  expected '%s'", err.Error(), expectedErrMsg)
+		return
 	}
 
-	writeRunes(t, []rune(testData), "test_scripts/data/ascii.garbage")
+	writeRunes(t, []rune(testData), "test_scripts/data/"+outputFileName+".garbage")
+
+}
+
+func TestGarbage(t *testing.T) {
+	testGarbageInput(t, "not emojisV2", "Non Ecoji character seen", "ascii")
+	// test emojis not used by ecoji
+	testGarbageInput(t, "🟠🟡🤍🟩", "Non Ecoji character seen", "non_ecoji_emoji")
+	// test ecoji v1 data that does not have expected padding.  The emojis below are only used in ecoji v1
+	testGarbageInput(t, "🌶🌶🌶🌶🌶", "Unexpected end of data, input data size not multiple of 4", "incorrect_v1_padding")
+	// test misplaced padding
+	runes1 := [4]rune{paddingLastV1[0], emojisV1[1], emojisV1[2], emojisV1[3]}
+	testGarbageInput(t, string(runes1[:]), "Last padding seen in unexpected position", "misplaced_padding_1")
+	runes2 := [4]rune{paddingLastV2[0], emojisV2[1], emojisV2[2], emojisV2[3]}
+	testGarbageInput(t, string(runes2[:]), "Last padding seen in unexpected position", "misplaced_padding_2")
+	runes3 := [4]rune{emojisV1[1], paddingLastV1[1], emojisV1[2], emojisV1[3]}
+	testGarbageInput(t, string(runes3[:]), "Last padding seen in unexpected position", "misplaced_padding_3")
+	runes4 := [4]rune{emojisV2[1], emojisV2[2], paddingLastV2[3], emojisV2[3]}
+	testGarbageInput(t, string(runes4[:]), "Last padding seen in unexpected position", "misplaced_padding_4")
+
+	//test an ecoji v1 data that must padd out to len 4 and does not
+	runes5 := [4]rune{0x1f004, 0x1f170, padding, 0x1f93e}
+	testGarbageInput(t, string(runes5[:]), "Unexpectedly saw non-padding after padding", "misplaced_padding_5")
+
+	//fill padding cannot be first char in 4 char block
+	runes6 := [4]rune{padding, emojisV2[1], emojisV2[2], emojisV2[3]}
+	testGarbageInput(t, string(runes6[:]), "Padding unexpectedly seen in first position", "misplaced_padding_6")
+	runes7 := [8]rune{emojisV2[1], emojisV2[2], emojisV2[3], emojisV2[4], padding, padding, padding, padding}
+	testGarbageInput(t, string(runes7[:]), "Padding unexpectedly seen in first position", "misplaced_padding_7")
+
+	//test input data that is not a multiple of 4 and does not end with padding
+	runes8 := [3]rune{emojisV2[1], emojisV2[2], emojisV2[3]}
+	testGarbageInput(t, string(runes8[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_1")
+	runes9 := [5]rune{emojisV2[1], emojisV2[2], emojisV2[3], emojisV2[4], emojisV2[5]}
+	testGarbageInput(t, string(runes9[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_2")
+
 }
 
 func TestDecodeMixed(t *testing.T) {
 
 	// the 2nd rune is ecoji v1 only and the 3rd rune is ecoji v2 only
 	runes := [4]rune{0x1f004, 0x1f170, 0x1f93f, 0x1f93e}
-
-	reader := strings.NewReader(string(runes[:]))
-	buffer1 := &bytes.Buffer{}
-
-	err := Decode(reader, buffer1)
-
-	if err == nil {
-		t.Errorf("Did not see error with mixed data")
-	} else if !strings.Contains(err.Error(), "Emojis from different ecoji versions seen") {
-		t.Errorf("Did not see expected error message")
-	}
+	testGarbageInput(t, string(runes[:]), "Emojis from different ecoji versions seen", "mixed_1")
 
 	// the 2nd rune is ecoji v2 only and the 3rd rune is ecoji v1 only
 	runes2 := [4]rune{0x1f004, 0x1f93f, 0x1f170, 0x1f93e}
-
-	reader2 := strings.NewReader(string(runes2[:]))
-	buffer2 := &bytes.Buffer{}
-
-	err2 := Decode(reader2, buffer2)
-
-	if err2 == nil {
-		t.Errorf("Did not see error with mixed data")
-	} else if !strings.Contains(err2.Error(), "Emojis from different ecoji versions seen") {
-		t.Errorf("Did not see expected error message")
-	}
+	testGarbageInput(t, string(runes2[:]), "Emojis from different ecoji versions seen", "mixed_2")
 
 	// test where mixed are more than 4 apart
 	runes3 := []rune{0x1f004, 0x1f170, 0x1f170, 0x1f93e, 0x1f004, 0x1f170, 0x1f170, 0x1f93e, 0x1f004, 0x1f170, 0x1f93f, 0x1f93e}
+	testGarbageInput(t, string(runes3[:]), "Emojis from different ecoji versions seen", "mixed_3")
 
-	reader3 := strings.NewReader(string(runes3))
-	buffer3 := &bytes.Buffer{}
-
-	err3 := Decode(reader3, buffer3)
-
-	if err3 == nil {
-		t.Errorf("Did not see error with mixed data")
-	} else if !strings.Contains(err3.Error(), "Emojis from different ecoji versions seen") {
-		t.Errorf("Did not see expected error message")
+	// validate the assumptions of the test
+	if paddingLastV1[0] == paddingLastV2[0] || paddingLastV1[1] == paddingLastV2[1] || paddingLastV1[2] != paddingLastV2[2] || paddingLastV1[3] != paddingLastV2[3] {
+		t.Error("Test assumption not valid")
 	}
 
-	writeRunes(t, runes[:], "test_scripts/data/mixed_1.garbage")
-	writeRunes(t, runes2[:], "test_scripts/data/mixed_2.garbage")
-	writeRunes(t, runes3[:], "test_scripts/data/mixed_3.garbage")
+	// the 2nd rune is ecoji v1 only and the 4th runes are ecoji v2 padding
+	runes41 := [4]rune{0x1f004, 0x1f170, 0x1f004, paddingLastV2[0]}
+	testGarbageInput(t, string(runes41[:]), "Emojis from different ecoji versions seen", "mixed_4")
+	runes42 := [4]rune{0x1f004, 0x1f170, 0x1f004, paddingLastV2[1]}
+	testGarbageInput(t, string(runes42[:]), "Emojis from different ecoji versions seen", "mixed_5")
+
+	// the 3rd rune is ecoji v2 only and the 4th runes are ecoji v1 padding
+	runes51 := [4]rune{0x1f004, 0x1f004, 0x1f93f, paddingLastV1[0]}
+	testGarbageInput(t, string(runes51[:]), "Emojis from different ecoji versions seen", "mixed_6")
+	runes52 := [4]rune{0x1f004, 0x1f004, 0x1f93f, paddingLastV1[1]}
+	testGarbageInput(t, string(runes52[:]), "Emojis from different ecoji versions seen", "mixed_7")
 }
