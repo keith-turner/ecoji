@@ -1047,7 +1047,7 @@ Ordinal | codepoint | emoji
 
 ## Emojis used for padding
 
-Type | codepoint V1 | emoji V1 | codepoint V1 | emoji V2 
+Type | codepoint V1 | emoji V1 | codepoint V2 | emoji V2 
 -|-|-|-|-
 FILL | U+2615 | ☕ | U+2615 | ☕
 PAD_0 | U+269C | ⚜ | U+1F977 | 🥷
