@@ -69,7 +69,7 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer)
 	fmt.Fprintln(writer, "## Emojis used for padding")
 	fmt.Fprintln(writer)
-	fmt.Fprintln(writer, "Type | codepoint V1 | emoji V1 | codepoint V1 | emoji V2 ")
+	fmt.Fprintln(writer, "Type | codepoint V1 | emoji V1 | codepoint V2 | emoji V2 ")
 	fmt.Fprintln(writer, "-|-|-|-|-")
 
 	fmt.Fprintf(writer, "FILL | %U | %s | %U | %s\n", padding, string(padding), padding, string(padding))
