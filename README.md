@@ -1,6 +1,6 @@
 # Ecoji 🏣🔉🦐🔼
 
-** Ecoji Version 2 is [coming soon](https://github.com/keith-turner/ecoji/pull/30) **
+**Ecoji Version 2 is [coming soon](https://github.com/keith-turner/ecoji/pull/30)**
 
 Ecoji encodes data as 1024 [emojis][emoji].  It's base1024 with an emoji character set and it preserves sort order.  This repository implements Ecoji using Go.  There are links to other implementations below.  Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
 
