@@ -1,0 +1,1150 @@
+1F600 # 😀 E1.0 grinning face
+1F603 # 😃 E0.6 grinning face with big eyes
+1F604 # 😄 E0.6 grinning face with smiling eyes
+1F601 # 😁 E0.6 beaming face with smiling eyes
+1F606 # 😆 E0.6 grinning squinting face
+1F605 # 😅 E0.6 grinning face with sweat
+1F923 # 🤣 E3.0 rolling on the floor laughing
+1F602 # 😂 E0.6 face with tears of joy
+1F642 # 🙂 E1.0 slightly smiling face
+1F643 # 🙃 E1.0 upside-down face
+1FAE0 # 🫠 E14.0 melting face
+1F609 # 😉 E0.6 winking face
+1F60A # 😊 E0.6 smiling face with smiling eyes
+1F607 # 😇 E1.0 smiling face with halo
+1F970 # 🥰 E11.0 smiling face with hearts
+1F60D # 😍 E0.6 smiling face with heart-eyes
+1F929 # 🤩 E5.0 star-struck
+1F618 # 😘 E0.6 face blowing a kiss
+1F617 # 😗 E1.0 kissing face
+1F61A # 😚 E0.6 kissing face with closed eyes
+1F619 # 😙 E1.0 kissing face with smiling eyes
+1F972 # 🥲 E13.0 smiling face with tear
+1F60B # 😋 E0.6 face savoring food
+1F61B # 😛 E1.0 face with tongue
+1F61C # 😜 E0.6 winking face with tongue
+1F92A # 🤪 E5.0 zany face
+1F61D # 😝 E0.6 squinting face with tongue
+1F911 # 🤑 E1.0 money-mouth face
+1F917 # 🤗 E1.0 smiling face with open hands
+1F92D # 🤭 E5.0 face with hand over mouth
+1FAE2 # 🫢 E14.0 face with open eyes and hand over mouth
+1FAE3 # 🫣 E14.0 face with peeking eye
+1F92B # 🤫 E5.0 shushing face
+1F914 # 🤔 E1.0 thinking face
+1FAE1 # 🫡 E14.0 saluting face
+1F910 # 🤐 E1.0 zipper-mouth face
+1F928 # 🤨 E5.0 face with raised eyebrow
+1F610 # 😐 E0.7 neutral face
+1F611 # 😑 E1.0 expressionless face
+1F636 # 😶 E1.0 face without mouth
+1FAE5 # 🫥 E14.0 dotted line face
+1F60F # 😏 E0.6 smirking face
+1F612 # 😒 E0.6 unamused face
+1F644 # 🙄 E1.0 face with rolling eyes
+1F62C # 😬 E1.0 grimacing face
+1F925 # 🤥 E3.0 lying face
+1F60C # 😌 E0.6 relieved face
+1F614 # 😔 E0.6 pensive face
+1F62A # 😪 E0.6 sleepy face
+1F924 # 🤤 E3.0 drooling face
+1F634 # 😴 E1.0 sleeping face
+1F637 # 😷 E0.6 face with medical mask
+1F912 # 🤒 E1.0 face with thermometer
+1F915 # 🤕 E1.0 face with head-bandage
+1F922 # 🤢 E3.0 nauseated face
+1F92E # 🤮 E5.0 face vomiting
+1F927 # 🤧 E3.0 sneezing face
+1F975 # 🥵 E11.0 hot face
+1F976 # 🥶 E11.0 cold face
+1F974 # 🥴 E11.0 woozy face
+1F635 # 😵 E0.6 face with crossed-out eyes
+1F92F # 🤯 E5.0 exploding head
+1F920 # 🤠 E3.0 cowboy hat face
+1F973 # 🥳 E11.0 partying face
+1F978 # 🥸 E13.0 disguised face
+1F60E # 😎 E1.0 smiling face with sunglasses
+1F913 # 🤓 E1.0 nerd face
+1F9D0 # 🧐 E5.0 face with monocle
+1F615 # 😕 E1.0 confused face
+1FAE4 # 🫤 E14.0 face with diagonal mouth
+1F61F # 😟 E1.0 worried face
+1F641 # 🙁 E1.0 slightly frowning face
+1F62E # 😮 E1.0 face with open mouth
+1F62F # 😯 E1.0 hushed face
+1F632 # 😲 E0.6 astonished face
+1F633 # 😳 E0.6 flushed face
+1F97A # 🥺 E11.0 pleading face
+1F979 # 🥹 E14.0 face holding back tears
+1F626 # 😦 E1.0 frowning face with open mouth
+1F627 # 😧 E1.0 anguished face
+1F628 # 😨 E0.6 fearful face
+1F630 # 😰 E0.6 anxious face with sweat
+1F625 # 😥 E0.6 sad but relieved face
+1F622 # 😢 E0.6 crying face
+1F62D # 😭 E0.6 loudly crying face
+1F631 # 😱 E0.6 face screaming in fear
+1F616 # 😖 E0.6 confounded face
+1F623 # 😣 E0.6 persevering face
+1F61E # 😞 E0.6 disappointed face
+1F613 # 😓 E0.6 downcast face with sweat
+1F629 # 😩 E0.6 weary face
+1F62B # 😫 E0.6 tired face
+1F971 # 🥱 E12.0 yawning face
+1F624 # 😤 E0.6 face with steam from nose
+1F621 # 😡 E0.6 pouting face
+1F620 # 😠 E0.6 angry face
+1F92C # 🤬 E5.0 face with symbols on mouth
+1F608 # 😈 E1.0 smiling face with horns
+1F47F # 👿 E0.6 angry face with horns
+1F480 # 💀 E0.6 skull
+1F4A9 # 💩 E0.6 pile of poo
+1F921 # 🤡 E3.0 clown face
+1F479 # 👹 E0.6 ogre
+1F47A # 👺 E0.6 goblin
+1F47B # 👻 E0.6 ghost
+1F47D # 👽 E0.6 alien
+1F47E # 👾 E0.6 alien monster
+1F916 # 🤖 E1.0 robot
+1F63A # 😺 E0.6 grinning cat
+1F638 # 😸 E0.6 grinning cat with smiling eyes
+1F639 # 😹 E0.6 cat with tears of joy
+1F63B # 😻 E0.6 smiling cat with heart-eyes
+1F63C # 😼 E0.6 cat with wry smile
+1F63D # 😽 E0.6 kissing cat
+1F640 # 🙀 E0.6 weary cat
+1F63F # 😿 E0.6 crying cat
+1F63E # 😾 E0.6 pouting cat
+1F648 # 🙈 E0.6 see-no-evil monkey
+1F649 # 🙉 E0.6 hear-no-evil monkey
+1F64A # 🙊 E0.6 speak-no-evil monkey
+1F48B # 💋 E0.6 kiss mark
+1F48C # 💌 E0.6 love letter
+1F498 # 💘 E0.6 heart with arrow
+1F49D # 💝 E0.6 heart with ribbon
+1F496 # 💖 E0.6 sparkling heart
+1F497 # 💗 E0.6 growing heart
+1F493 # 💓 E0.6 beating heart
+1F49E # 💞 E0.6 revolving hearts
+1F495 # 💕 E0.6 two hearts
+1F49F # 💟 E0.6 heart decoration
+1F494 # 💔 E0.6 broken heart
+1F9E1 # 🧡 E5.0 orange heart
+1F49B # 💛 E0.6 yellow heart
+1F49A # 💚 E0.6 green heart
+1F499 # 💙 E0.6 blue heart
+1F49C # 💜 E0.6 purple heart
+1F90E # 🤎 E12.0 brown heart
+1F5A4 # 🖤 E3.0 black heart
+1F90D # 🤍 E12.0 white heart
+1F4AF # 💯 E0.6 hundred points
+1F4A2 # 💢 E0.6 anger symbol
+1F4A5 # 💥 E0.6 collision
+1F4AB # 💫 E0.6 dizzy
+1F4A6 # 💦 E0.6 sweat droplets
+1F4A8 # 💨 E0.6 dashing away
+1F4A3 # 💣 E0.6 bomb
+1F4AC # 💬 E0.6 speech balloon
+1F4AD # 💭 E1.0 thought balloon
+1F4A4 # 💤 E0.6 zzz
+1F44B # 👋 E0.6 waving hand
+1F91A # 🤚 E3.0 raised back of hand
+270B # ✋ E0.6 raised hand
+1F596 # 🖖 E1.0 vulcan salute
+1FAF1 # 🫱 E14.0 rightwards hand
+1FAF2 # 🫲 E14.0 leftwards hand
+1FAF3 # 🫳 E14.0 palm down hand
+1FAF4 # 🫴 E14.0 palm up hand
+1F44C # 👌 E0.6 OK hand
+1F90C # 🤌 E13.0 pinched fingers
+1F90F # 🤏 E12.0 pinching hand
+1F91E # 🤞 E3.0 crossed fingers
+1FAF0 # 🫰 E14.0 hand with index finger and thumb crossed
+1F91F # 🤟 E5.0 love-you gesture
+1F918 # 🤘 E1.0 sign of the horns
+1F919 # 🤙 E3.0 call me hand
+1F448 # 👈 E0.6 backhand index pointing left
+1F449 # 👉 E0.6 backhand index pointing right
+1F446 # 👆 E0.6 backhand index pointing up
+1F595 # 🖕 E1.0 middle finger
+1F447 # 👇 E0.6 backhand index pointing down
+1FAF5 # 🫵 E14.0 index pointing at the viewer
+1F44D # 👍 E0.6 thumbs up
+1F44E # 👎 E0.6 thumbs down
+270A # ✊ E0.6 raised fist
+1F44A # 👊 E0.6 oncoming fist
+1F91B # 🤛 E3.0 left-facing fist
+1F91C # 🤜 E3.0 right-facing fist
+1F44F # 👏 E0.6 clapping hands
+1F64C # 🙌 E0.6 raising hands
+1FAF6 # 🫶 E14.0 heart hands
+1F450 # 👐 E0.6 open hands
+1F932 # 🤲 E5.0 palms up together
+1F91D # 🤝 E3.0 handshake
+1F64F # 🙏 E0.6 folded hands
+1F485 # 💅 E0.6 nail polish
+1F933 # 🤳 E3.0 selfie
+1F4AA # 💪 E0.6 flexed biceps
+1F9BE # 🦾 E12.0 mechanical arm
+1F9BF # 🦿 E12.0 mechanical leg
+1F9B5 # 🦵 E11.0 leg
+1F9B6 # 🦶 E11.0 foot
+1F442 # 👂 E0.6 ear
+1F9BB # 🦻 E12.0 ear with hearing aid
+1F443 # 👃 E0.6 nose
+1F9E0 # 🧠 E5.0 brain
+1FAC0 # 🫀 E13.0 anatomical heart
+1FAC1 # 🫁 E13.0 lungs
+1F9B7 # 🦷 E11.0 tooth
+1F9B4 # 🦴 E11.0 bone
+1F440 # 👀 E0.6 eyes
+1F445 # 👅 E0.6 tongue
+1F444 # 👄 E0.6 mouth
+1FAE6 # 🫦 E14.0 biting lip
+1F476 # 👶 E0.6 baby
+1F9D2 # 🧒 E5.0 child
+1F466 # 👦 E0.6 boy
+1F467 # 👧 E0.6 girl
+1F9D1 # 🧑 E5.0 person
+1F471 # 👱 E0.6 person: blond hair
+1F468 # 👨 E0.6 man
+1F9D4 # 🧔 E5.0 person: beard
+1F469 # 👩 E0.6 woman
+1F9D3 # 🧓 E5.0 older person
+1F474 # 👴 E0.6 old man
+1F475 # 👵 E0.6 old woman
+1F64D # 🙍 E0.6 person frowning
+1F64E # 🙎 E0.6 person pouting
+1F645 # 🙅 E0.6 person gesturing NO
+1F646 # 🙆 E0.6 person gesturing OK
+1F481 # 💁 E0.6 person tipping hand
+1F64B # 🙋 E0.6 person raising hand
+1F9CF # 🧏 E12.0 deaf person
+1F647 # 🙇 E0.6 person bowing
+1F926 # 🤦 E3.0 person facepalming
+1F937 # 🤷 E3.0 person shrugging
+1F46E # 👮 E0.6 police officer
+1F482 # 💂 E0.6 guard
+1F977 # 🥷 E13.0 ninja
+1F477 # 👷 E0.6 construction worker
+1FAC5 # 🫅 E14.0 person with crown
+1F934 # 🤴 E3.0 prince
+1F478 # 👸 E0.6 princess
+1F473 # 👳 E0.6 person wearing turban
+1F472 # 👲 E0.6 person with skullcap
+1F9D5 # 🧕 E5.0 woman with headscarf
+1F935 # 🤵 E3.0 person in tuxedo
+1F470 # 👰 E0.6 person with veil
+1F930 # 🤰 E3.0 pregnant woman
+1FAC3 # 🫃 E14.0 pregnant man
+1FAC4 # 🫄 E14.0 pregnant person
+1F931 # 🤱 E5.0 breast-feeding
+1F47C # 👼 E0.6 baby angel
+1F385 # 🎅 E0.6 Santa Claus
+1F936 # 🤶 E3.0 Mrs. Claus
+1F9B8 # 🦸 E11.0 superhero
+1F9B9 # 🦹 E11.0 supervillain
+1F9D9 # 🧙 E5.0 mage
+1F9DA # 🧚 E5.0 fairy
+1F9DB # 🧛 E5.0 vampire
+1F9DC # 🧜 E5.0 merperson
+1F9DD # 🧝 E5.0 elf
+1F9DE # 🧞 E5.0 genie
+1F9DF # 🧟 E5.0 zombie
+1F9CC # 🧌 E14.0 troll
+1F486 # 💆 E0.6 person getting massage
+1F487 # 💇 E0.6 person getting haircut
+1F6B6 # 🚶 E0.6 person walking
+1F9CD # 🧍 E12.0 person standing
+1F9CE # 🧎 E12.0 person kneeling
+1F3C3 # 🏃 E0.6 person running
+1F483 # 💃 E0.6 woman dancing
+1F57A # 🕺 E3.0 man dancing
+1F46F # 👯 E0.6 people with bunny ears
+1F9D6 # 🧖 E5.0 person in steamy room
+1F9D7 # 🧗 E5.0 person climbing
+1F93A # 🤺 E3.0 person fencing
+1F3C7 # 🏇 E1.0 horse racing
+1F3C2 # 🏂 E0.6 snowboarder
+1F3C4 # 🏄 E0.6 person surfing
+1F6A3 # 🚣 E1.0 person rowing boat
+1F3CA # 🏊 E0.6 person swimming
+1F6B4 # 🚴 E1.0 person biking
+1F6B5 # 🚵 E1.0 person mountain biking
+1F938 # 🤸 E3.0 person cartwheeling
+1F93C # 🤼 E3.0 people wrestling
+1F93D # 🤽 E3.0 person playing water polo
+1F93E # 🤾 E3.0 person playing handball
+1F939 # 🤹 E3.0 person juggling
+1F9D8 # 🧘 E5.0 person in lotus position
+1F6C0 # 🛀 E0.6 person taking bath
+1F6CC # 🛌 E1.0 person in bed
+1F46D # 👭 E1.0 women holding hands
+1F46B # 👫 E0.6 woman and man holding hands
+1F46C # 👬 E1.0 men holding hands
+1F48F # 💏 E0.6 kiss
+1F491 # 💑 E0.6 couple with heart
+1F46A # 👪 E0.6 family
+1F464 # 👤 E0.6 bust in silhouette
+1F465 # 👥 E1.0 busts in silhouette
+1FAC2 # 🫂 E13.0 people hugging
+1F463 # 👣 E0.6 footprints
+1F435 # 🐵 E0.6 monkey face
+1F412 # 🐒 E0.6 monkey
+1F98D # 🦍 E3.0 gorilla
+1F9A7 # 🦧 E12.0 orangutan
+1F436 # 🐶 E0.6 dog face
+1F415 # 🐕 E0.7 dog
+1F9AE # 🦮 E12.0 guide dog
+1F429 # 🐩 E0.6 poodle
+1F43A # 🐺 E0.6 wolf
+1F98A # 🦊 E3.0 fox
+1F99D # 🦝 E11.0 raccoon
+1F431 # 🐱 E0.6 cat face
+1F408 # 🐈 E0.7 cat
+1F981 # 🦁 E1.0 lion
+1F42F # 🐯 E0.6 tiger face
+1F405 # 🐅 E1.0 tiger
+1F406 # 🐆 E1.0 leopard
+1F434 # 🐴 E0.6 horse face
+1F40E # 🐎 E0.6 horse
+1F984 # 🦄 E1.0 unicorn
+1F993 # 🦓 E5.0 zebra
+1F98C # 🦌 E3.0 deer
+1F9AC # 🦬 E13.0 bison
+1F42E # 🐮 E0.6 cow face
+1F402 # 🐂 E1.0 ox
+1F403 # 🐃 E1.0 water buffalo
+1F404 # 🐄 E1.0 cow
+1F437 # 🐷 E0.6 pig face
+1F416 # 🐖 E1.0 pig
+1F417 # 🐗 E0.6 boar
+1F43D # 🐽 E0.6 pig nose
+1F40F # 🐏 E1.0 ram
+1F411 # 🐑 E0.6 ewe
+1F410 # 🐐 E1.0 goat
+1F42A # 🐪 E1.0 camel
+1F42B # 🐫 E0.6 two-hump camel
+1F999 # 🦙 E11.0 llama
+1F992 # 🦒 E5.0 giraffe
+1F418 # 🐘 E0.6 elephant
+1F9A3 # 🦣 E13.0 mammoth
+1F98F # 🦏 E3.0 rhinoceros
+1F99B # 🦛 E11.0 hippopotamus
+1F42D # 🐭 E0.6 mouse face
+1F401 # 🐁 E1.0 mouse
+1F400 # 🐀 E1.0 rat
+1F439 # 🐹 E0.6 hamster
+1F430 # 🐰 E0.6 rabbit face
+1F407 # 🐇 E1.0 rabbit
+1F9AB # 🦫 E13.0 beaver
+1F994 # 🦔 E5.0 hedgehog
+1F987 # 🦇 E3.0 bat
+1F43B # 🐻 E0.6 bear
+1F428 # 🐨 E0.6 koala
+1F43C # 🐼 E0.6 panda
+1F9A5 # 🦥 E12.0 sloth
+1F9A6 # 🦦 E12.0 otter
+1F9A8 # 🦨 E12.0 skunk
+1F998 # 🦘 E11.0 kangaroo
+1F9A1 # 🦡 E11.0 badger
+1F43E # 🐾 E0.6 paw prints
+1F983 # 🦃 E1.0 turkey
+1F414 # 🐔 E0.6 chicken
+1F413 # 🐓 E1.0 rooster
+1F423 # 🐣 E0.6 hatching chick
+1F424 # 🐤 E0.6 baby chick
+1F425 # 🐥 E0.6 front-facing baby chick
+1F426 # 🐦 E0.6 bird
+1F427 # 🐧 E0.6 penguin
+1F985 # 🦅 E3.0 eagle
+1F986 # 🦆 E3.0 duck
+1F9A2 # 🦢 E11.0 swan
+1F989 # 🦉 E3.0 owl
+1F9A4 # 🦤 E13.0 dodo
+1FAB6 # 🪶 E13.0 feather
+1F9A9 # 🦩 E12.0 flamingo
+1F99A # 🦚 E11.0 peacock
+1F99C # 🦜 E11.0 parrot
+1F438 # 🐸 E0.6 frog
+1F40A # 🐊 E1.0 crocodile
+1F422 # 🐢 E0.6 turtle
+1F98E # 🦎 E3.0 lizard
+1F40D # 🐍 E0.6 snake
+1F432 # 🐲 E0.6 dragon face
+1F409 # 🐉 E1.0 dragon
+1F995 # 🦕 E5.0 sauropod
+1F996 # 🦖 E5.0 T-Rex
+1F433 # 🐳 E0.6 spouting whale
+1F40B # 🐋 E1.0 whale
+1F42C # 🐬 E0.6 dolphin
+1F9AD # 🦭 E13.0 seal
+1F41F # 🐟 E0.6 fish
+1F420 # 🐠 E0.6 tropical fish
+1F421 # 🐡 E0.6 blowfish
+1F988 # 🦈 E3.0 shark
+1F419 # 🐙 E0.6 octopus
+1F41A # 🐚 E0.6 spiral shell
+1FAB8 # 🪸 E14.0 coral
+1F40C # 🐌 E0.6 snail
+1F98B # 🦋 E3.0 butterfly
+1F41B # 🐛 E0.6 bug
+1F41C # 🐜 E0.6 ant
+1F41D # 🐝 E0.6 honeybee
+1FAB2 # 🪲 E13.0 beetle
+1F41E # 🐞 E0.6 lady beetle
+1F997 # 🦗 E5.0 cricket
+1FAB3 # 🪳 E13.0 cockroach
+1F982 # 🦂 E1.0 scorpion
+1F99F # 🦟 E11.0 mosquito
+1FAB0 # 🪰 E13.0 fly
+1FAB1 # 🪱 E13.0 worm
+1F9A0 # 🦠 E11.0 microbe
+1F490 # 💐 E0.6 bouquet
+1F338 # 🌸 E0.6 cherry blossom
+1F4AE # 💮 E0.6 white flower
+1FAB7 # 🪷 E14.0 lotus
+1F339 # 🌹 E0.6 rose
+1F940 # 🥀 E3.0 wilted flower
+1F33A # 🌺 E0.6 hibiscus
+1F33B # 🌻 E0.6 sunflower
+1F33C # 🌼 E0.6 blossom
+1F337 # 🌷 E0.6 tulip
+1F331 # 🌱 E0.6 seedling
+1FAB4 # 🪴 E13.0 potted plant
+1F332 # 🌲 E1.0 evergreen tree
+1F333 # 🌳 E1.0 deciduous tree
+1F334 # 🌴 E0.6 palm tree
+1F335 # 🌵 E0.6 cactus
+1F33E # 🌾 E0.6 sheaf of rice
+1F33F # 🌿 E0.6 herb
+1F340 # 🍀 E0.6 four leaf clover
+1F341 # 🍁 E0.6 maple leaf
+1F342 # 🍂 E0.6 fallen leaf
+1F343 # 🍃 E0.6 leaf fluttering in wind
+1FAB9 # 🪹 E14.0 empty nest
+1FABA # 🪺 E14.0 nest with eggs
+1F347 # 🍇 E0.6 grapes
+1F348 # 🍈 E0.6 melon
+1F349 # 🍉 E0.6 watermelon
+1F34A # 🍊 E0.6 tangerine
+1F34B # 🍋 E1.0 lemon
+1F34C # 🍌 E0.6 banana
+1F34D # 🍍 E0.6 pineapple
+1F96D # 🥭 E11.0 mango
+1F34E # 🍎 E0.6 red apple
+1F34F # 🍏 E0.6 green apple
+1F350 # 🍐 E1.0 pear
+1F351 # 🍑 E0.6 peach
+1F352 # 🍒 E0.6 cherries
+1F353 # 🍓 E0.6 strawberry
+1FAD0 # 🫐 E13.0 blueberries
+1F95D # 🥝 E3.0 kiwi fruit
+1F345 # 🍅 E0.6 tomato
+1FAD2 # 🫒 E13.0 olive
+1F965 # 🥥 E5.0 coconut
+1F951 # 🥑 E3.0 avocado
+1F346 # 🍆 E0.6 eggplant
+1F954 # 🥔 E3.0 potato
+1F955 # 🥕 E3.0 carrot
+1F33D # 🌽 E0.6 ear of corn
+1FAD1 # 🫑 E13.0 bell pepper
+1F952 # 🥒 E3.0 cucumber
+1F96C # 🥬 E11.0 leafy green
+1F966 # 🥦 E5.0 broccoli
+1F9C4 # 🧄 E12.0 garlic
+1F9C5 # 🧅 E12.0 onion
+1F344 # 🍄 E0.6 mushroom
+1F95C # 🥜 E3.0 peanuts
+1FAD8 # 🫘 E14.0 beans
+1F330 # 🌰 E0.6 chestnut
+1F35E # 🍞 E0.6 bread
+1F950 # 🥐 E3.0 croissant
+1F956 # 🥖 E3.0 baguette bread
+1FAD3 # 🫓 E13.0 flatbread
+1F968 # 🥨 E5.0 pretzel
+1F96F # 🥯 E11.0 bagel
+1F95E # 🥞 E3.0 pancakes
+1F9C7 # 🧇 E12.0 waffle
+1F9C0 # 🧀 E1.0 cheese wedge
+1F356 # 🍖 E0.6 meat on bone
+1F357 # 🍗 E0.6 poultry leg
+1F969 # 🥩 E5.0 cut of meat
+1F953 # 🥓 E3.0 bacon
+1F354 # 🍔 E0.6 hamburger
+1F35F # 🍟 E0.6 french fries
+1F355 # 🍕 E0.6 pizza
+1F32D # 🌭 E1.0 hot dog
+1F96A # 🥪 E5.0 sandwich
+1F32E # 🌮 E1.0 taco
+1F32F # 🌯 E1.0 burrito
+1FAD4 # 🫔 E13.0 tamale
+1F959 # 🥙 E3.0 stuffed flatbread
+1F9C6 # 🧆 E12.0 falafel
+1F95A # 🥚 E3.0 egg
+1F373 # 🍳 E0.6 cooking
+1F958 # 🥘 E3.0 shallow pan of food
+1F372 # 🍲 E0.6 pot of food
+1FAD5 # 🫕 E13.0 fondue
+1F963 # 🥣 E5.0 bowl with spoon
+1F957 # 🥗 E3.0 green salad
+1F37F # 🍿 E1.0 popcorn
+1F9C8 # 🧈 E12.0 butter
+1F9C2 # 🧂 E11.0 salt
+1F96B # 🥫 E5.0 canned food
+1F371 # 🍱 E0.6 bento box
+1F358 # 🍘 E0.6 rice cracker
+1F359 # 🍙 E0.6 rice ball
+1F35A # 🍚 E0.6 cooked rice
+1F35B # 🍛 E0.6 curry rice
+1F35C # 🍜 E0.6 steaming bowl
+1F35D # 🍝 E0.6 spaghetti
+1F360 # 🍠 E0.6 roasted sweet potato
+1F362 # 🍢 E0.6 oden
+1F363 # 🍣 E0.6 sushi
+1F364 # 🍤 E0.6 fried shrimp
+1F365 # 🍥 E0.6 fish cake with swirl
+1F96E # 🥮 E11.0 moon cake
+1F361 # 🍡 E0.6 dango
+1F95F # 🥟 E5.0 dumpling
+1F960 # 🥠 E5.0 fortune cookie
+1F961 # 🥡 E5.0 takeout box
+1F980 # 🦀 E1.0 crab
+1F99E # 🦞 E11.0 lobster
+1F990 # 🦐 E3.0 shrimp
+1F991 # 🦑 E3.0 squid
+1F9AA # 🦪 E12.0 oyster
+1F366 # 🍦 E0.6 soft ice cream
+1F367 # 🍧 E0.6 shaved ice
+1F368 # 🍨 E0.6 ice cream
+1F369 # 🍩 E0.6 doughnut
+1F36A # 🍪 E0.6 cookie
+1F382 # 🎂 E0.6 birthday cake
+1F370 # 🍰 E0.6 shortcake
+1F9C1 # 🧁 E11.0 cupcake
+1F967 # 🥧 E5.0 pie
+1F36B # 🍫 E0.6 chocolate bar
+1F36C # 🍬 E0.6 candy
+1F36D # 🍭 E0.6 lollipop
+1F36E # 🍮 E0.6 custard
+1F36F # 🍯 E0.6 honey pot
+1F37C # 🍼 E1.0 baby bottle
+1F95B # 🥛 E3.0 glass of milk
+2615 # ☕ E0.6 hot beverage
+1FAD6 # 🫖 E13.0 teapot
+1F375 # 🍵 E0.6 teacup without handle
+1F376 # 🍶 E0.6 sake
+1F37E # 🍾 E1.0 bottle with popping cork
+1F377 # 🍷 E0.6 wine glass
+1F378 # 🍸 E0.6 cocktail glass
+1F379 # 🍹 E0.6 tropical drink
+1F37A # 🍺 E0.6 beer mug
+1F37B # 🍻 E0.6 clinking beer mugs
+1F942 # 🥂 E3.0 clinking glasses
+1F943 # 🥃 E3.0 tumbler glass
+1FAD7 # 🫗 E14.0 pouring liquid
+1F964 # 🥤 E5.0 cup with straw
+1F9CB # 🧋 E13.0 bubble tea
+1F9C3 # 🧃 E12.0 beverage box
+1F9C9 # 🧉 E12.0 mate
+1F9CA # 🧊 E12.0 ice
+1F962 # 🥢 E5.0 chopsticks
+1F374 # 🍴 E0.6 fork and knife
+1F944 # 🥄 E3.0 spoon
+1F52A # 🔪 E0.6 kitchen knife
+1FAD9 # 🫙 E14.0 jar
+1F3FA # 🏺 E1.0 amphora
+1F30D # 🌍 E0.7 globe showing Europe-Africa
+1F30E # 🌎 E0.7 globe showing Americas
+1F30F # 🌏 E0.6 globe showing Asia-Australia
+1F310 # 🌐 E1.0 globe with meridians
+1F5FE # 🗾 E0.6 map of Japan
+1F9ED # 🧭 E11.0 compass
+1F30B # 🌋 E0.6 volcano
+1F5FB # 🗻 E0.6 mount fuji
+1F9F1 # 🧱 E11.0 brick
+1FAA8 # 🪨 E13.0 rock
+1FAB5 # 🪵 E13.0 wood
+1F6D6 # 🛖 E13.0 hut
+1F3E0 # 🏠 E0.6 house
+1F3E1 # 🏡 E0.6 house with garden
+1F3E2 # 🏢 E0.6 office building
+1F3E3 # 🏣 E0.6 Japanese post office
+1F3E4 # 🏤 E1.0 post office
+1F3E5 # 🏥 E0.6 hospital
+1F3E6 # 🏦 E0.6 bank
+1F3E8 # 🏨 E0.6 hotel
+1F3E9 # 🏩 E0.6 love hotel
+1F3EA # 🏪 E0.6 convenience store
+1F3EB # 🏫 E0.6 school
+1F3EC # 🏬 E0.6 department store
+1F3ED # 🏭 E0.6 factory
+1F3EF # 🏯 E0.6 Japanese castle
+1F3F0 # 🏰 E0.6 castle
+1F492 # 💒 E0.6 wedding
+1F5FC # 🗼 E0.6 Tokyo tower
+1F5FD # 🗽 E0.6 Statue of Liberty
+26EA # ⛪ E0.6 church
+1F54C # 🕌 E1.0 mosque
+1F6D5 # 🛕 E12.0 hindu temple
+1F54D # 🕍 E1.0 synagogue
+1F54B # 🕋 E1.0 kaaba
+26F2 # ⛲ E0.6 fountain
+26FA # ⛺ E0.6 tent
+1F301 # 🌁 E0.6 foggy
+1F303 # 🌃 E0.6 night with stars
+1F304 # 🌄 E0.6 sunrise over mountains
+1F305 # 🌅 E0.6 sunrise
+1F306 # 🌆 E0.6 cityscape at dusk
+1F307 # 🌇 E0.6 sunset
+1F309 # 🌉 E0.6 bridge at night
+1F3A0 # 🎠 E0.6 carousel horse
+1F6DD # 🛝 E14.0 playground slide
+1F3A1 # 🎡 E0.6 ferris wheel
+1F3A2 # 🎢 E0.6 roller coaster
+1F488 # 💈 E0.6 barber pole
+1F3AA # 🎪 E0.6 circus tent
+1F682 # 🚂 E1.0 locomotive
+1F683 # 🚃 E0.6 railway car
+1F684 # 🚄 E0.6 high-speed train
+1F685 # 🚅 E0.6 bullet train
+1F686 # 🚆 E1.0 train
+1F687 # 🚇 E0.6 metro
+1F688 # 🚈 E1.0 light rail
+1F689 # 🚉 E0.6 station
+1F68A # 🚊 E1.0 tram
+1F69D # 🚝 E1.0 monorail
+1F69E # 🚞 E1.0 mountain railway
+1F68B # 🚋 E1.0 tram car
+1F68C # 🚌 E0.6 bus
+1F68D # 🚍 E0.7 oncoming bus
+1F68E # 🚎 E1.0 trolleybus
+1F690 # 🚐 E1.0 minibus
+1F691 # 🚑 E0.6 ambulance
+1F692 # 🚒 E0.6 fire engine
+1F693 # 🚓 E0.6 police car
+1F694 # 🚔 E0.7 oncoming police car
+1F695 # 🚕 E0.6 taxi
+1F696 # 🚖 E1.0 oncoming taxi
+1F697 # 🚗 E0.6 automobile
+1F698 # 🚘 E0.7 oncoming automobile
+1F699 # 🚙 E0.6 sport utility vehicle
+1F6FB # 🛻 E13.0 pickup truck
+1F69A # 🚚 E0.6 delivery truck
+1F69B # 🚛 E1.0 articulated lorry
+1F69C # 🚜 E1.0 tractor
+1F6F5 # 🛵 E3.0 motor scooter
+1F9BD # 🦽 E12.0 manual wheelchair
+1F9BC # 🦼 E12.0 motorized wheelchair
+1F6FA # 🛺 E12.0 auto rickshaw
+1F6B2 # 🚲 E0.6 bicycle
+1F6F4 # 🛴 E3.0 kick scooter
+1F6F9 # 🛹 E11.0 skateboard
+1F6FC # 🛼 E13.0 roller skate
+1F68F # 🚏 E0.6 bus stop
+26FD # ⛽ E0.6 fuel pump
+1F6DE # 🛞 E14.0 wheel
+1F6A8 # 🚨 E0.6 police car light
+1F6A5 # 🚥 E0.6 horizontal traffic light
+1F6A6 # 🚦 E1.0 vertical traffic light
+1F6D1 # 🛑 E3.0 stop sign
+1F6A7 # 🚧 E0.6 construction
+2693 # ⚓ E0.6 anchor
+1F6DF # 🛟 E14.0 ring buoy
+26F5 # ⛵ E0.6 sailboat
+1F6F6 # 🛶 E3.0 canoe
+1F6A4 # 🚤 E0.6 speedboat
+1F6A2 # 🚢 E0.6 ship
+1F6EB # 🛫 E1.0 airplane departure
+1F6EC # 🛬 E1.0 airplane arrival
+1FA82 # 🪂 E12.0 parachute
+1F4BA # 💺 E0.6 seat
+1F681 # 🚁 E1.0 helicopter
+1F69F # 🚟 E1.0 suspension railway
+1F6A0 # 🚠 E1.0 mountain cableway
+1F6A1 # 🚡 E1.0 aerial tramway
+1F680 # 🚀 E0.6 rocket
+1F6F8 # 🛸 E5.0 flying saucer
+1F9F3 # 🧳 E11.0 luggage
+231B # ⌛ E0.6 hourglass done
+23F3 # ⏳ E0.6 hourglass not done
+231A # ⌚ E0.6 watch
+23F0 # ⏰ E0.6 alarm clock
+1F55B # 🕛 E0.6 twelve o’clock
+1F567 # 🕧 E0.7 twelve-thirty
+1F550 # 🕐 E0.6 one o’clock
+1F55C # 🕜 E0.7 one-thirty
+1F551 # 🕑 E0.6 two o’clock
+1F55D # 🕝 E0.7 two-thirty
+1F552 # 🕒 E0.6 three o’clock
+1F55E # 🕞 E0.7 three-thirty
+1F553 # 🕓 E0.6 four o’clock
+1F55F # 🕟 E0.7 four-thirty
+1F554 # 🕔 E0.6 five o’clock
+1F560 # 🕠 E0.7 five-thirty
+1F555 # 🕕 E0.6 six o’clock
+1F561 # 🕡 E0.7 six-thirty
+1F556 # 🕖 E0.6 seven o’clock
+1F562 # 🕢 E0.7 seven-thirty
+1F557 # 🕗 E0.6 eight o’clock
+1F563 # 🕣 E0.7 eight-thirty
+1F558 # 🕘 E0.6 nine o’clock
+1F564 # 🕤 E0.7 nine-thirty
+1F559 # 🕙 E0.6 ten o’clock
+1F565 # 🕥 E0.7 ten-thirty
+1F55A # 🕚 E0.6 eleven o’clock
+1F566 # 🕦 E0.7 eleven-thirty
+1F311 # 🌑 E0.6 new moon
+1F312 # 🌒 E1.0 waxing crescent moon
+1F313 # 🌓 E0.6 first quarter moon
+1F314 # 🌔 E0.6 waxing gibbous moon
+1F315 # 🌕 E0.6 full moon
+1F316 # 🌖 E1.0 waning gibbous moon
+1F317 # 🌗 E1.0 last quarter moon
+1F318 # 🌘 E1.0 waning crescent moon
+1F319 # 🌙 E0.6 crescent moon
+1F31A # 🌚 E1.0 new moon face
+1F31B # 🌛 E0.6 first quarter moon face
+1F31C # 🌜 E0.7 last quarter moon face
+1F31D # 🌝 E1.0 full moon face
+1F31E # 🌞 E1.0 sun with face
+1FA90 # 🪐 E12.0 ringed planet
+2B50 # ⭐ E0.6 star
+1F31F # 🌟 E0.6 glowing star
+1F320 # 🌠 E0.6 shooting star
+1F30C # 🌌 E0.6 milky way
+26C5 # ⛅ E0.6 sun behind cloud
+1F300 # 🌀 E0.6 cyclone
+1F308 # 🌈 E0.6 rainbow
+1F302 # 🌂 E0.6 closed umbrella
+2614 # ☔ E0.6 umbrella with rain drops
+26A1 # ⚡ E0.6 high voltage
+26C4 # ⛄ E0.6 snowman without snow
+1F525 # 🔥 E0.6 fire
+1F4A7 # 💧 E0.6 droplet
+1F30A # 🌊 E0.6 water wave
+1F383 # 🎃 E0.6 jack-o-lantern
+1F384 # 🎄 E0.6 Christmas tree
+1F386 # 🎆 E0.6 fireworks
+1F387 # 🎇 E0.6 sparkler
+1F9E8 # 🧨 E11.0 firecracker
+2728 # ✨ E0.6 sparkles
+1F388 # 🎈 E0.6 balloon
+1F389 # 🎉 E0.6 party popper
+1F38A # 🎊 E0.6 confetti ball
+1F38B # 🎋 E0.6 tanabata tree
+1F38D # 🎍 E0.6 pine decoration
+1F38E # 🎎 E0.6 Japanese dolls
+1F38F # 🎏 E0.6 carp streamer
+1F390 # 🎐 E0.6 wind chime
+1F391 # 🎑 E0.6 moon viewing ceremony
+1F9E7 # 🧧 E11.0 red envelope
+1F380 # 🎀 E0.6 ribbon
+1F381 # 🎁 E0.6 wrapped gift
+1F3AB # 🎫 E0.6 ticket
+1F3C6 # 🏆 E0.6 trophy
+1F3C5 # 🏅 E1.0 sports medal
+1F947 # 🥇 E3.0 1st place medal
+1F948 # 🥈 E3.0 2nd place medal
+1F949 # 🥉 E3.0 3rd place medal
+26BD # ⚽ E0.6 soccer ball
+26BE # ⚾ E0.6 baseball
+1F94E # 🥎 E11.0 softball
+1F3C0 # 🏀 E0.6 basketball
+1F3D0 # 🏐 E1.0 volleyball
+1F3C8 # 🏈 E0.6 american football
+1F3C9 # 🏉 E1.0 rugby football
+1F3BE # 🎾 E0.6 tennis
+1F94F # 🥏 E11.0 flying disc
+1F3B3 # 🎳 E0.6 bowling
+1F3CF # 🏏 E1.0 cricket game
+1F3D1 # 🏑 E1.0 field hockey
+1F3D2 # 🏒 E1.0 ice hockey
+1F94D # 🥍 E11.0 lacrosse
+1F3D3 # 🏓 E1.0 ping pong
+1F3F8 # 🏸 E1.0 badminton
+1F94A # 🥊 E3.0 boxing glove
+1F94B # 🥋 E3.0 martial arts uniform
+1F945 # 🥅 E3.0 goal net
+26F3 # ⛳ E0.6 flag in hole
+1F3A3 # 🎣 E0.6 fishing pole
+1F93F # 🤿 E12.0 diving mask
+1F3BD # 🎽 E0.6 running shirt
+1F3BF # 🎿 E0.6 skis
+1F6F7 # 🛷 E5.0 sled
+1F94C # 🥌 E5.0 curling stone
+1F3AF # 🎯 E0.6 bullseye
+1FA80 # 🪀 E12.0 yo-yo
+1FA81 # 🪁 E12.0 kite
+1F3B1 # 🎱 E0.6 pool 8 ball
+1F52E # 🔮 E0.6 crystal ball
+1FA84 # 🪄 E13.0 magic wand
+1F9FF # 🧿 E11.0 nazar amulet
+1FAAC # 🪬 E14.0 hamsa
+1F3AE # 🎮 E0.6 video game
+1F3B0 # 🎰 E0.6 slot machine
+1F3B2 # 🎲 E0.6 game die
+1F9E9 # 🧩 E11.0 puzzle piece
+1F9F8 # 🧸 E11.0 teddy bear
+1FA85 # 🪅 E13.0 piñata
+1FAA9 # 🪩 E14.0 mirror ball
+1FA86 # 🪆 E13.0 nesting dolls
+1F0CF # 🃏 E0.6 joker
+1F004 # 🀄 E0.6 mahjong red dragon
+1F3B4 # 🎴 E0.6 flower playing cards
+1F3AD # 🎭 E0.6 performing arts
+1F3A8 # 🎨 E0.6 artist palette
+1F9F5 # 🧵 E11.0 thread
+1FAA1 # 🪡 E13.0 sewing needle
+1F9F6 # 🧶 E11.0 yarn
+1FAA2 # 🪢 E13.0 knot
+1F453 # 👓 E0.6 glasses
+1F97D # 🥽 E11.0 goggles
+1F97C # 🥼 E11.0 lab coat
+1F9BA # 🦺 E12.0 safety vest
+1F454 # 👔 E0.6 necktie
+1F455 # 👕 E0.6 t-shirt
+1F456 # 👖 E0.6 jeans
+1F9E3 # 🧣 E5.0 scarf
+1F9E4 # 🧤 E5.0 gloves
+1F9E5 # 🧥 E5.0 coat
+1F9E6 # 🧦 E5.0 socks
+1F457 # 👗 E0.6 dress
+1F458 # 👘 E0.6 kimono
+1F97B # 🥻 E12.0 sari
+1FA71 # 🩱 E12.0 one-piece swimsuit
+1FA72 # 🩲 E12.0 briefs
+1FA73 # 🩳 E12.0 shorts
+1F459 # 👙 E0.6 bikini
+1F45A # 👚 E0.6 woman’s clothes
+1F45B # 👛 E0.6 purse
+1F45C # 👜 E0.6 handbag
+1F45D # 👝 E0.6 clutch bag
+1F392 # 🎒 E0.6 backpack
+1FA74 # 🩴 E13.0 thong sandal
+1F45E # 👞 E0.6 man’s shoe
+1F45F # 👟 E0.6 running shoe
+1F97E # 🥾 E11.0 hiking boot
+1F97F # 🥿 E11.0 flat shoe
+1F460 # 👠 E0.6 high-heeled shoe
+1F461 # 👡 E0.6 woman’s sandal
+1FA70 # 🩰 E12.0 ballet shoes
+1F462 # 👢 E0.6 woman’s boot
+1F451 # 👑 E0.6 crown
+1F452 # 👒 E0.6 woman’s hat
+1F3A9 # 🎩 E0.6 top hat
+1F393 # 🎓 E0.6 graduation cap
+1F9E2 # 🧢 E5.0 billed cap
+1FA96 # 🪖 E13.0 military helmet
+1F4FF # 📿 E1.0 prayer beads
+1F484 # 💄 E0.6 lipstick
+1F48D # 💍 E0.6 ring
+1F48E # 💎 E0.6 gem stone
+1F507 # 🔇 E1.0 muted speaker
+1F508 # 🔈 E0.7 speaker low volume
+1F509 # 🔉 E1.0 speaker medium volume
+1F50A # 🔊 E0.6 speaker high volume
+1F4E2 # 📢 E0.6 loudspeaker
+1F4E3 # 📣 E0.6 megaphone
+1F4EF # 📯 E1.0 postal horn
+1F514 # 🔔 E0.6 bell
+1F515 # 🔕 E1.0 bell with slash
+1F3BC # 🎼 E0.6 musical score
+1F3B5 # 🎵 E0.6 musical note
+1F3B6 # 🎶 E0.6 musical notes
+1F3A4 # 🎤 E0.6 microphone
+1F3A7 # 🎧 E0.6 headphone
+1F4FB # 📻 E0.6 radio
+1F3B7 # 🎷 E0.6 saxophone
+1FA97 # 🪗 E13.0 accordion
+1F3B8 # 🎸 E0.6 guitar
+1F3B9 # 🎹 E0.6 musical keyboard
+1F3BA # 🎺 E0.6 trumpet
+1F3BB # 🎻 E0.6 violin
+1FA95 # 🪕 E12.0 banjo
+1F941 # 🥁 E3.0 drum
+1FA98 # 🪘 E13.0 long drum
+1F4F1 # 📱 E0.6 mobile phone
+1F4F2 # 📲 E0.6 mobile phone with arrow
+1F4DE # 📞 E0.6 telephone receiver
+1F4DF # 📟 E0.6 pager
+1F4E0 # 📠 E0.6 fax machine
+1F50B # 🔋 E0.6 battery
+1FAAB # 🪫 E14.0 low battery
+1F50C # 🔌 E0.6 electric plug
+1F4BB # 💻 E0.6 laptop
+1F4BD # 💽 E0.6 computer disk
+1F4BE # 💾 E0.6 floppy disk
+1F4BF # 💿 E0.6 optical disk
+1F4C0 # 📀 E0.6 dvd
+1F9EE # 🧮 E11.0 abacus
+1F3A5 # 🎥 E0.6 movie camera
+1F3AC # 🎬 E0.6 clapper board
+1F4FA # 📺 E0.6 television
+1F4F7 # 📷 E0.6 camera
+1F4F8 # 📸 E1.0 camera with flash
+1F4F9 # 📹 E0.6 video camera
+1F4FC # 📼 E0.6 videocassette
+1F50D # 🔍 E0.6 magnifying glass tilted left
+1F50E # 🔎 E0.6 magnifying glass tilted right
+1F4A1 # 💡 E0.6 light bulb
+1F526 # 🔦 E0.6 flashlight
+1F3EE # 🏮 E0.6 red paper lantern
+1FA94 # 🪔 E12.0 diya lamp
+1F4D4 # 📔 E0.6 notebook with decorative cover
+1F4D5 # 📕 E0.6 closed book
+1F4D6 # 📖 E0.6 open book
+1F4D7 # 📗 E0.6 green book
+1F4D8 # 📘 E0.6 blue book
+1F4D9 # 📙 E0.6 orange book
+1F4DA # 📚 E0.6 books
+1F4D3 # 📓 E0.6 notebook
+1F4D2 # 📒 E0.6 ledger
+1F4C3 # 📃 E0.6 page with curl
+1F4DC # 📜 E0.6 scroll
+1F4C4 # 📄 E0.6 page facing up
+1F4F0 # 📰 E0.6 newspaper
+1F4D1 # 📑 E0.6 bookmark tabs
+1F516 # 🔖 E0.6 bookmark
+1F4B0 # 💰 E0.6 money bag
+1FA99 # 🪙 E13.0 coin
+1F4B4 # 💴 E0.6 yen banknote
+1F4B5 # 💵 E0.6 dollar banknote
+1F4B6 # 💶 E1.0 euro banknote
+1F4B7 # 💷 E1.0 pound banknote
+1F4B8 # 💸 E0.6 money with wings
+1F4B3 # 💳 E0.6 credit card
+1F9FE # 🧾 E11.0 receipt
+1F4B9 # 💹 E0.6 chart increasing with yen
+1F4E7 # 📧 E0.6 e-mail
+1F4E8 # 📨 E0.6 incoming envelope
+1F4E9 # 📩 E0.6 envelope with arrow
+1F4E4 # 📤 E0.6 outbox tray
+1F4E5 # 📥 E0.6 inbox tray
+1F4E6 # 📦 E0.6 package
+1F4EB # 📫 E0.6 closed mailbox with raised flag
+1F4EA # 📪 E0.6 closed mailbox with lowered flag
+1F4EC # 📬 E0.7 open mailbox with raised flag
+1F4ED # 📭 E0.7 open mailbox with lowered flag
+1F4EE # 📮 E0.6 postbox
+1F4DD # 📝 E0.6 memo
+1F4BC # 💼 E0.6 briefcase
+1F4C1 # 📁 E0.6 file folder
+1F4C2 # 📂 E0.6 open file folder
+1F4C5 # 📅 E0.6 calendar
+1F4C6 # 📆 E0.6 tear-off calendar
+1F4C7 # 📇 E0.6 card index
+1F4C8 # 📈 E0.6 chart increasing
+1F4C9 # 📉 E0.6 chart decreasing
+1F4CA # 📊 E0.6 bar chart
+1F4CB # 📋 E0.6 clipboard
+1F4CC # 📌 E0.6 pushpin
+1F4CD # 📍 E0.6 round pushpin
+1F4CE # 📎 E0.6 paperclip
+1F4CF # 📏 E0.6 straight ruler
+1F4D0 # 📐 E0.6 triangular ruler
+1F512 # 🔒 E0.6 locked
+1F513 # 🔓 E0.6 unlocked
+1F50F # 🔏 E0.6 locked with pen
+1F510 # 🔐 E0.6 locked with key
+1F511 # 🔑 E0.6 key
+1F528 # 🔨 E0.6 hammer
+1FA93 # 🪓 E12.0 axe
+1F52B # 🔫 E0.6 water pistol
+1FA83 # 🪃 E13.0 boomerang
+1F3F9 # 🏹 E1.0 bow and arrow
+1FA9A # 🪚 E13.0 carpentry saw
+1F527 # 🔧 E0.6 wrench
+1FA9B # 🪛 E13.0 screwdriver
+1F529 # 🔩 E0.6 nut and bolt
+1F9AF # 🦯 E12.0 white cane
+1F517 # 🔗 E0.6 link
+1FA9D # 🪝 E13.0 hook
+1F9F0 # 🧰 E11.0 toolbox
+1F9F2 # 🧲 E11.0 magnet
+1FA9C # 🪜 E13.0 ladder
+1F9EA # 🧪 E11.0 test tube
+1F9EB # 🧫 E11.0 petri dish
+1F9EC # 🧬 E11.0 dna
+1F52C # 🔬 E1.0 microscope
+1F52D # 🔭 E1.0 telescope
+1F4E1 # 📡 E0.6 satellite antenna
+1F489 # 💉 E0.6 syringe
+1FA78 # 🩸 E12.0 drop of blood
+1F48A # 💊 E0.6 pill
+1FA79 # 🩹 E12.0 adhesive bandage
+1FA7C # 🩼 E14.0 crutch
+1FA7A # 🩺 E12.0 stethoscope
+1FA7B # 🩻 E14.0 x-ray
+1F6AA # 🚪 E0.6 door
+1F6D7 # 🛗 E13.0 elevator
+1FA9E # 🪞 E13.0 mirror
+1FA9F # 🪟 E13.0 window
+1FA91 # 🪑 E12.0 chair
+1F6BD # 🚽 E0.6 toilet
+1FAA0 # 🪠 E13.0 plunger
+1F6BF # 🚿 E1.0 shower
+1F6C1 # 🛁 E1.0 bathtub
+1FAA4 # 🪤 E13.0 mouse trap
+1FA92 # 🪒 E12.0 razor
+1F9F4 # 🧴 E11.0 lotion bottle
+1F9F7 # 🧷 E11.0 safety pin
+1F9F9 # 🧹 E11.0 broom
+1F9FA # 🧺 E11.0 basket
+1F9FB # 🧻 E11.0 roll of paper
+1FAA3 # 🪣 E13.0 bucket
+1F9FC # 🧼 E11.0 soap
+1FAE7 # 🫧 E14.0 bubbles
+1FAA5 # 🪥 E13.0 toothbrush
+1F9FD # 🧽 E11.0 sponge
+1F9EF # 🧯 E11.0 fire extinguisher
+1F6D2 # 🛒 E3.0 shopping cart
+1F6AC # 🚬 E0.6 cigarette
+1FAA6 # 🪦 E13.0 headstone
+1F5FF # 🗿 E0.6 moai
+1FAA7 # 🪧 E13.0 placard
+1FAAA # 🪪 E14.0 identification card
+1F3E7 # 🏧 E0.6 ATM sign
+1F6AE # 🚮 E1.0 litter in bin sign
+1F6B0 # 🚰 E1.0 potable water
+267F # ♿ E0.6 wheelchair symbol
+1F6B9 # 🚹 E0.6 men’s room
+1F6BA # 🚺 E0.6 women’s room
+1F6BB # 🚻 E0.6 restroom
+1F6BC # 🚼 E0.6 baby symbol
+1F6BE # 🚾 E0.6 water closet
+1F6C2 # 🛂 E1.0 passport control
+1F6C3 # 🛃 E1.0 customs
+1F6C4 # 🛄 E1.0 baggage claim
+1F6C5 # 🛅 E1.0 left luggage
+1F6B8 # 🚸 E1.0 children crossing
+26D4 # ⛔ E0.6 no entry
+1F6AB # 🚫 E0.6 prohibited
+1F6B3 # 🚳 E1.0 no bicycles
+1F6AD # 🚭 E0.6 no smoking
+1F6AF # 🚯 E1.0 no littering
+1F6B1 # 🚱 E1.0 non-potable water
+1F6B7 # 🚷 E1.0 no pedestrians
+1F4F5 # 📵 E1.0 no mobile phones
+1F51E # 🔞 E0.6 no one under eighteen
+1F503 # 🔃 E0.6 clockwise vertical arrows
+1F504 # 🔄 E1.0 counterclockwise arrows button
+1F519 # 🔙 E0.6 BACK arrow
+1F51A # 🔚 E0.6 END arrow
+1F51B # 🔛 E0.6 ON! arrow
+1F51C # 🔜 E0.6 SOON arrow
+1F51D # 🔝 E0.6 TOP arrow
+1F6D0 # 🛐 E1.0 place of worship
+1F54E # 🕎 E1.0 menorah
+1F52F # 🔯 E0.6 dotted six-pointed star
+2648 # ♈ E0.6 Aries
+2649 # ♉ E0.6 Taurus
+264A # ♊ E0.6 Gemini
+264B # ♋ E0.6 Cancer
+264C # ♌ E0.6 Leo
+264D # ♍ E0.6 Virgo
+264E # ♎ E0.6 Libra
+264F # ♏ E0.6 Scorpio
+2650 # ♐ E0.6 Sagittarius
+2651 # ♑ E0.6 Capricorn
+2652 # ♒ E0.6 Aquarius
+2653 # ♓ E0.6 Pisces
+26CE # ⛎ E0.6 Ophiuchus
+1F500 # 🔀 E1.0 shuffle tracks button
+1F501 # 🔁 E1.0 repeat button
+1F502 # 🔂 E1.0 repeat single button
+23E9 # ⏩ E0.6 fast-forward button
+23EA # ⏪ E0.6 fast reverse button
+1F53C # 🔼 E0.6 upwards button
+23EB # ⏫ E0.6 fast up button
+1F53D # 🔽 E0.6 downwards button
+23EC # ⏬ E0.6 fast down button
+1F3A6 # 🎦 E0.6 cinema
+1F505 # 🔅 E1.0 dim button
+1F506 # 🔆 E1.0 bright button
+1F4F6 # 📶 E0.6 antenna bars
+1F4F3 # 📳 E0.6 vibration mode
+1F4F4 # 📴 E0.6 mobile phone off
+2795 # ➕ E0.6 plus
+2796 # ➖ E0.6 minus
+2797 # ➗ E0.6 divide
+1F7F0 # 🟰 E14.0 heavy equals sign
+2753 # ❓ E0.6 red question mark
+2754 # ❔ E0.6 white question mark
+2755 # ❕ E0.6 white exclamation mark
+2757 # ❗ E0.6 red exclamation mark
+1F4B1 # 💱 E0.6 currency exchange
+1F4B2 # 💲 E0.6 heavy dollar sign
+1F531 # 🔱 E0.6 trident emblem
+1F4DB # 📛 E0.6 name badge
+1F530 # 🔰 E0.6 Japanese symbol for beginner
+2B55 # ⭕ E0.6 hollow red circle
+2705 # ✅ E0.6 check mark button
+274C # ❌ E0.6 cross mark
+274E # ❎ E0.6 cross mark button
+27B0 # ➰ E0.6 curly loop
+27BF # ➿ E1.0 double curly loop
+1F51F # 🔟 E0.6 keycap: 10
+1F520 # 🔠 E0.6 input latin uppercase
+1F521 # 🔡 E0.6 input latin lowercase
+1F522 # 🔢 E0.6 input numbers
+1F523 # 🔣 E0.6 input symbols
+1F524 # 🔤 E0.6 input latin letters
+1F18E # 🆎 E0.6 AB button (blood type)
+1F191 # 🆑 E0.6 CL button
+1F192 # 🆒 E0.6 COOL button
+1F193 # 🆓 E0.6 FREE button
+1F194 # 🆔 E0.6 ID button
+1F195 # 🆕 E0.6 NEW button
+1F196 # 🆖 E0.6 NG button
+1F197 # 🆗 E0.6 OK button
+1F198 # 🆘 E0.6 SOS button
+1F199 # 🆙 E0.6 UP! button
+1F19A # 🆚 E0.6 VS button
+1F201 # 🈁 E0.6 Japanese “here” button
+1F236 # 🈶 E0.6 Japanese “not free of charge” button
+1F22F # 🈯 E0.6 Japanese “reserved” button
+1F250 # 🉐 E0.6 Japanese “bargain” button
+1F239 # 🈹 E0.6 Japanese “discount” button
+1F21A # 🈚 E0.6 Japanese “free of charge” button
+1F232 # 🈲 E0.6 Japanese “prohibited” button
+1F251 # 🉑 E0.6 Japanese “acceptable” button
+1F238 # 🈸 E0.6 Japanese “application” button
+1F234 # 🈴 E0.6 Japanese “passing grade” button
+1F233 # 🈳 E0.6 Japanese “vacancy” button
+1F23A # 🈺 E0.6 Japanese “open for business” button
+1F235 # 🈵 E0.6 Japanese “no vacancy” button
+1F534 # 🔴 E0.6 red circle
+1F7E0 # 🟠 E12.0 orange circle
+1F7E1 # 🟡 E12.0 yellow circle
+1F7E2 # 🟢 E12.0 green circle
+1F535 # 🔵 E0.6 blue circle
+1F7E3 # 🟣 E12.0 purple circle
+1F7E4 # 🟤 E12.0 brown circle
+26AB # ⚫ E0.6 black circle
+26AA # ⚪ E0.6 white circle
+1F7E5 # 🟥 E12.0 red square
+1F7E7 # 🟧 E12.0 orange square
+1F7E8 # 🟨 E12.0 yellow square
+1F7E9 # 🟩 E12.0 green square
+1F7E6 # 🟦 E12.0 blue square
+1F7EA # 🟪 E12.0 purple square
+1F7EB # 🟫 E12.0 brown square
+2B1B # ⬛ E0.6 black large square
+2B1C # ⬜ E0.6 white large square
+25FE # ◾ E0.6 black medium-small square
+25FD # ◽ E0.6 white medium-small square
+1F536 # 🔶 E0.6 large orange diamond
+1F537 # 🔷 E0.6 large blue diamond
+1F538 # 🔸 E0.6 small orange diamond
+1F539 # 🔹 E0.6 small blue diamond
+1F53A # 🔺 E0.6 red triangle pointed up
+1F53B # 🔻 E0.6 red triangle pointed down
+1F4A0 # 💠 E0.6 diamond with a dot
+1F518 # 🔘 E0.6 radio button
+1F533 # 🔳 E0.6 white square button
+1F532 # 🔲 E0.6 black square button
+1F3C1 # 🏁 E0.6 chequered flag
+1F6A9 # 🚩 E0.6 triangular flag
+1F38C # 🎌 E0.6 crossed flags
+1F3F4 # 🏴 E1.0 black flag

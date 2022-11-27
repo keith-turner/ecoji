@@ -2,94 +2,164 @@ package ecoji
 
 import (
 	"errors"
+	"fmt"
 	"io"
 )
 
-type RuneReader interface {
-	ReadRune() (rune, int, error)
+func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, error) {
+
+	index := 0
+	sawPadding := false
+
+	for index < 4 {
+		c, _, e := r.ReadRune()
+
+		if e == io.EOF {
+			if index == 0 {
+				return 0, nil
+			} else if sawPadding && (*expectedVer == evAll || *expectedVer == ev2) {
+				// Ecoji V2 trims padding and does not pad out to all 4 chars. Therefore, the
+				// last bit of data may not be four runes. Let's go ahead and fill the remaining
+				// slots w/ padding to make decoding easier.
+				for ; index < 4; index++ {
+					emojis[index] = revEmojis[padding]
+				}
+				return index, nil
+			} else {
+				// Expect Ecoji V1 to always pad out to 4 runes.
+				return -1, errors.New("Unexpected end of data, input data size not multiple of 4")
+			}
+		} else if e != nil {
+			return -1, e
+		}
+
+		// igore \r\n
+		if c == '\r' {
+			c, _, e := r.ReadRune()
+			if e != nil {
+				if e == io.EOF {
+					return -1, errors.New("Saw \r that was not followed by \n")
+				} else {
+					return -1, e
+				}
+			} else if c == '\n' {
+				//ignore \r\n
+				continue
+			} else {
+				return -1, errors.New("Saw \r that was not followed by \n")
+			}
+		}
+
+		// ignore new lines
+		if c == '\n' {
+			continue
+		}
+
+		einfo, exists := revEmojis[c]
+
+		if !exists {
+			return -1, errors.New("Non Ecoji character seen : " + string(c))
+		}
+
+		// If we ever see an emoji that is only used by Ecoji V1 then after that point we
+		// should never expect to see an emoji that is only used by Ecoji V2. The inverse
+		// is also true, if we ever see an emoji only used by Ecoji V2 then we would not
+		// expect to see an emoji only used by Ecoji V1 after that. The following looks
+		// for these types of malformed input.
+		if einfo.version != evAll {
+			if *expectedVer == evAll {
+				*expectedVer = einfo.version
+			} else if *expectedVer != einfo.version {
+				return -1, errors.New("Emojis from different ecoji versions seen " + string(c))
+			}
+		}
+
+		switch einfo.padding {
+		case padNone:
+			{
+				if sawPadding {
+					if *expectedVer == evAll || *expectedVer == ev2 {
+						// For Ecoji V2 it may trim padding and not pad out all 4 chars. So this could be
+						// concatenated Ecoji data, therefore let's put the rune back and return so the
+						// data up to the padding can be decoded
+						rs, ok := r.(io.RuneScanner)
+						if !ok {
+							return -1, errors.New("Unable to handle concatenated data because could not cast to RuneScanner")
+						}
+						rs.UnreadRune()
+						for ; index < 4; index++ {
+							emojis[index] = revEmojis[padding]
+						}
+						return index, nil
+					} else {
+						// Ecoji V1 would always pad out to 4 runes.  So if concatenating Ecoji v1 data we would expect
+						// to see non-padding here
+						return -1, errors.New("Unexpectedly saw non-padding after padding")
+					}
+				}
+			}
+		case padFill:
+			{
+				if index == 0 {
+					return -1, fmt.Errorf("Padding unexpectedly seen in first position %s", string(c))
+				}
+				sawPadding = true
+			}
+		case padLast:
+			{
+				if index != 3 {
+					return -1, fmt.Errorf("Last padding seen in unexpected position %s", string(c))
+				}
+			}
+		}
+
+		emojis[index] = einfo
+		index = index + 1
+	}
+
+	return index, nil
 }
 
-func readRune(r RuneReader) (c rune, size int, err error) {
-	c, s, e := r.ReadRune()
-	for c == '\n' {
-		c, s, e = r.ReadRune()
-	}
-
-	if e == io.EOF {
-		return c, s, e
-	} else if e != nil {
-		return c, s, e
-	}
-
-	// check to see if this is a valid emoji rune
-	_, exists := revEmojis[c]
-	if !exists && c != padding && c != padding40 && c != padding41 && c != padding42 && c != padding43 {
-		return 0, 0, errors.New("Invalid rune " + string(c))
-	}
-
-	return c, s, e
-}
-
-//Reads unicode emojis, map each emoji to a 10 bit integer, writes 10 bit intergers
-func Decode(r RuneReader, w io.Writer) (err error) {
+//Decodes data encoded using the Ecoji version 1 or 2 standard back to the original data.
+func Decode(r io.RuneReader, w io.Writer) error {
+	expectedVer := evAll
 
 	for {
-		var runes [4]rune
+		var emojis [4]emojiInfo
 
-		//TODO error check reads
-		r1, _, e1 := readRune(r)
-		if e1 == io.EOF {
-			break
-		} else if e1 != nil {
-			return e1
+		numRead, err := readFour(r, &expectedVer, emojis[:])
+
+		if err != nil {
+			return err
 		}
-		runes[0] = r1
-
-		for i := 1; i < 4; i++ {
-			r, _, err := readRune(r)
-			if err == io.EOF {
-				return errors.New("Unexpected end of data, input data size not multiple of 4")
-			} else if err != nil {
-				return err
-			}
-			runes[i] = r
+		if numRead == 0 {
+			return nil
 		}
 
-		bits1 := revEmojis[runes[0]]
-		bits2 := revEmojis[runes[1]]
-		bits3 := revEmojis[runes[2]]
-		var bits4 int
-
-		switch runes[3] {
-		case padding40:
-			bits4 = 0
-		case padding41:
-			bits4 = 1 << 8
-		case padding42:
-			bits4 = 2 << 8
-		case padding43:
-			bits4 = 3 << 8
-		default:
-			bits4 = revEmojis[runes[3]]
-
-		}
+		// Take the 4 10 bit ordinals associated with each emojis and shift them all into a 64 bit integer.
+		bits := int64(emojis[0].ordinal)<<30 |
+			int64(emojis[1].ordinal)<<20 |
+			int64(emojis[2].ordinal)<<10 |
+			int64(emojis[3].ordinal)
 
 		out := []byte{0, 0, 0, 0, 0}
 
-		out[0] = byte(bits1 >> 2)
-		out[1] = byte((bits1 & 0x3 << 6) | (bits2 >> 4))
-		out[2] = byte((bits2 & 0xf << 4) | (bits3 >> 6))
-		out[3] = byte((bits3 & 0x3f << 2) | (bits4 >> 8))
-		out[4] = byte(bits4 & 0xff)
+		// Shift 5 8-bit integers out of the 40 bit integer created above to recover the encoded data.
+		out[0] = byte(bits >> 32)
+		out[1] = byte(bits >> 24)
+		out[2] = byte(bits >> 16)
+		out[3] = byte(bits >> 8)
+		out[4] = byte(bits)
 
+		// Inspect the input data for padding emojis to determine the length of the encoded data.
 		switch {
-		case runes[1] == padding:
+		case emojis[1].padding == padFill:
 			out = out[:1]
-		case runes[2] == padding:
+		case emojis[2].padding == padFill:
 			out = out[:2]
-		case runes[3] == padding:
+		case emojis[3].padding == padFill:
 			out = out[:3]
-		case runes[3] == padding40 || runes[3] == padding41 || runes[3] == padding42 || runes[3] == padding43:
+		case emojis[3].padding == padLast:
 			out = out[:4]
 		}
 
@@ -107,6 +177,4 @@ func Decode(r RuneReader, w io.Writer) (err error) {
 			out = out[num:]
 		}
 	}
-
-	return nil
 }
