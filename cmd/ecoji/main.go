@@ -31,7 +31,7 @@ Options:
 `
 
 var versionMessage = `Ecoji version 2.0.0
-  Copyright   : (C) 2021 Keith Turner
+  Copyright   : (C) 2022 Keith Turner
   License     : Apache 2.0
   Source code : https://github.com/keith-turner/ecoji
 `
