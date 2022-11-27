@@ -4,6 +4,11 @@
 : ${encode2_cmd:="ecoji -e -w 0"}
 : ${decode_cmd:="ecoji -d"}
 
+echo "INFO Ecoji V1 encode command : $encode1_cmd"
+echo "INFO Ecoji V2 encode command : $encode2_cmd"
+echo "INFO Ecoji decode command    : $decode_cmd"
+echo
+
 for plain_file in data/*.plain; do
 	bare_name=$(basename $plain_file .plain)
 

@@ -13,6 +13,7 @@ type RuneWriter interface {
 func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune, trim bool) error {
 
 	if len(s) == 0 {
+		// this should not happen unless there is a bug in this code, hence the panic
 		panic("expected data")
 	}
 
@@ -68,6 +69,7 @@ func encode(s []byte, w RuneWriter, emojis []rune, paddingLast []rune, trim bool
 		// Extract 4 10 bit integers and use them to lookup 4 emojis for encoding.
 		runes = []rune{emojis[bits>>30], emojis[0x3ff&(bits>>20)], emojis[0x3ff&(bits>>10)], emojis[0x3ff&bits]}
 	default:
+		// this should not happen unless there is a bug in this code, hence the panic
 		panic(fmt.Sprintf("unexpected length %d", len(s)))
 	}
 

@@ -231,6 +231,11 @@ func TestWrap(t *testing.T) {
 
 }
 
+func TestWindowsNewLine(t *testing.T) {
+	testDecode(t, "🎌\r\n🚟\r\n🦿🦣🎥🤠\r\n📠🐁👖📸🎈☕", []byte("1234567890abc"), "windows_newline_v2_1")
+	testDecode(t, "🎌🚟🎗🈸🎥🤠📠🐁👖📸🎈☕\r\n", []byte("1234567890abc"), "windows_newline_v2_2")
+}
+
 func decode(s string) ([]byte, error) {
 	reader := strings.NewReader(s)
 	buffer1 := &bytes.Buffer{}
@@ -328,6 +333,9 @@ func TestGarbage(t *testing.T) {
 	runes9 := [5]rune{emojisV2[1], emojisV2[2], emojisV2[3], emojisV2[4], emojisV2[5]}
 	testGarbageInput(t, string(runes9[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_2")
 
+	testGarbageInput(t, "🎌\r🚟\r🎗🈸🎥🤠\r📠🐁👖📸🎈☕", "Saw \r that was not followed by \n", "bad_newline_1")
+	testGarbageInput(t, "🎌🚟🎗🈸🎥🤠📠🐁👖📸🎈☕\r", "Saw \r that was not followed by \n", "bad_newline_2")
+
 }
 
 func TestDecodeMixed(t *testing.T) {
@@ -360,4 +368,38 @@ func TestDecodeMixed(t *testing.T) {
 	testGarbageInput(t, string(runes51[:]), "Emojis from different ecoji versions seen", "mixed_6")
 	runes52 := [4]rune{0x1f004, 0x1f004, 0x1f93f, paddingLastV1[1]}
 	testGarbageInput(t, string(runes52[:]), "Emojis from different ecoji versions seen", "mixed_7")
+}
+
+type singleRuneWriter struct {
+	writer io.Writer
+}
+
+func (srw *singleRuneWriter) Write(p []byte) (n int, err error) {
+	if len(p) > 0 {
+		return srw.writer.Write(p[0:1])
+	} else {
+		return srw.writer.Write(p)
+	}
+}
+
+func TestSingleByteWriter(t *testing.T) {
+
+	reader := strings.NewReader("👖📸🧈🌭👩☕💲🥇🪚☕")
+	buffer1 := &bytes.Buffer{}
+
+	srw := &singleRuneWriter{buffer1}
+
+	err := Decode(reader, srw)
+	if err != nil {
+		t.Error(err)
+	}
+
+	buf, err2 := io.ReadAll(buffer1)
+	if err2 != nil {
+		t.Error(err2)
+	}
+
+	if cmp := bytes.Compare([]byte("abcdefxyz"), buf); cmp != 0 {
+		t.Fatalf("single byte writer caused data corruption")
+	}
 }

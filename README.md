@@ -1,23 +1,11 @@
 # Ecoji 2.0 🏣🔉🦐🩻🍈🚞🤹🥷
 
-**WARNING :** This branch contains a work in progress version of Ecoji V2. Any
-data encoded using this branch may not be compatible with the final version of
-Ecoji V2.
-
 Ecoji encodes data using 1024 [emojis][emoji]. This repository contains the
 canonical implementation of the [Ecoji standard](docs/encoding.md) written in
 [Go](https://go.dev). Version 2 of the Ecoji standard was released in 2022 with
 an improved set of emojis.
 
 Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
-
-## Installing
-
-| Platform | Install |
-| -------- | ------- |
-| Windows | TODO |
-| Mac | TODO |
-| Ubuntu | Run : `sudo snap install ecoji` |
 
 ## Usage
 
@@ -97,12 +85,15 @@ https://ecoji.io/😉🤌🫢🏄
 
 ## Other Implementations
 
-Libraries implementing the Ecoji encoding standard. Submit PR to add a library to the table.
+Libraries implementing the Ecoji encoding standard. Submit a PR to add a
+library to the list. Libraries are given a quick review and tested before being
+added. However, libraries are not examined after being added. Adding something
+to the list is not an endorsement of its correctness or security.
 
 | Language | Version | Comments |
 |----------| ------- | -------- |
 | [D](https://github.com/ohdatboi/ecoji-d) | V1 | Implementation of Ecoji written in the D programming language. |
-| Go | V2 | This repository offers a Go library package with three functions [ecoji.Encode()](encode.go) [ecoji.Encode2()](encode.go) and [ecoji.Decode()](decode.go). |
+| Go | V1,V2 | This repository offers a Go library package with three functions [ecoji.Encode()](encode.go) [ecoji.Encode2()](encode.go) and [ecoji.Decode()](decode.go). |
 | [Java](https://github.com/netvl/ecoji-java) | V1 | Implementation of Ecoji written in Java, usable in any JVM language. |
 | [.NET](https://github.com/abock/dotnet-ecoji) | V1 | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji). |
 | [PHP](https://github.com/Rayne/ecoji-php) | V1 | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji). |

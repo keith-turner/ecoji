@@ -7,7 +7,7 @@ is a new implementation executable.  To test this executable run the following
 in this directory.
 
 ```bash
-encode1_cmd="/home/ubuntu/bin/myEcoji -w 0" \ 
+encode1_cmd="/home/ubuntu/bin/myEcoji -w 0" \
 encode2_cmd="/home/ubuntu/bin/myEcoji -e -w 0" \
 decode_cmd="/home/ubuntu/bin/myEcoji -d"  \
 ./ecoji_test.sh

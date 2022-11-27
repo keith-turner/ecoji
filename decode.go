@@ -33,6 +33,24 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 			return -1, e
 		}
 
+		// igore \r\n
+		if c == '\r' {
+			c, _, e := r.ReadRune()
+			if e != nil {
+				if e == io.EOF {
+					return -1, errors.New("Saw \r that was not followed by \n")
+				} else {
+					return -1, e
+				}
+			} else if c == '\n' {
+				//ignore \r\n
+				continue
+			} else {
+				return -1, errors.New("Saw \r that was not followed by \n")
+			}
+		}
+
+		// ignore new lines
 		if c == '\n' {
 			continue
 		}
