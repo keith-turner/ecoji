@@ -1,3 +1,3 @@
-module github.com/keith-turner/ecoji/v2
+module github.com/keith-turner/ecoji
 
 go 1.16
