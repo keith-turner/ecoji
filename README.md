@@ -93,7 +93,7 @@ to the list is not an endorsement of its correctness or security.
 | Language | Version | Comments |
 |----------| ------- | -------- |
 | [D](https://github.com/ohdatboi/ecoji-d) | V1 | Implementation of Ecoji written in the D programming language. |
-| Go | V1,V2 | This repository offers a Go library package with three functions [ecoji.Encode()](encode.go) [ecoji.Encode2()](encode.go) and [ecoji.Decode()](decode.go). |
+| Go | V1,V2 | This repository offers a Go library package with three functions [ecoji.Encode()](v2/encode.go) [ecoji.Encode2()](v2/encode.go) and [ecoji.Decode()](v2/decode.go). |
 | [Java](https://github.com/netvl/ecoji-java) | V1 | Implementation of Ecoji written in Java, usable in any JVM language. |
 | [.NET](https://github.com/abock/dotnet-ecoji) | V1 | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji). |
 | [PHP](https://github.com/Rayne/ecoji-php) | V1 | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji). |
