@@ -14,7 +14,7 @@ go 1.18
 
 module local/ecoji-example
 
-require github.com/keith-turner/ecoji/v2 v2.0.0
+require github.com/keith-turner/ecoji/v2 v2.0.1
 
 ```
 
