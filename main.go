@@ -2,13 +2,13 @@ package main
 
 import "strings"
 import "bytes"
-import "github.com/keith-turner/ecoji"
+import "github.com/keith-turner/ecoji/v2"
 import "syscall/js"
 
 func encode(this js.Value, p []js.Value) interface{} {
 	reader := strings.NewReader(p[0].String())
 	writer := new(bytes.Buffer)
-	ecoji.Encode(reader, writer, 0)
+	ecoji.EncodeV2(reader, writer, 0)
 	return js.ValueOf(writer.String())
 }
 
