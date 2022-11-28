@@ -332,10 +332,6 @@ func TestGarbage(t *testing.T) {
 	testGarbageInput(t, string(runes8[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_1")
 	runes9 := [5]rune{emojisV2[1], emojisV2[2], emojisV2[3], emojisV2[4], emojisV2[5]}
 	testGarbageInput(t, string(runes9[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_2")
-
-	testGarbageInput(t, "🎌\r🚟\r🎗🈸🎥🤠\r📠🐁👖📸🎈☕", "Saw \r that was not followed by \n", "bad_newline_1")
-	testGarbageInput(t, "🎌🚟🎗🈸🎥🤠📠🐁👖📸🎈☕\r", "Saw \r that was not followed by \n", "bad_newline_2")
-
 }
 
 func TestDecodeMixed(t *testing.T) {

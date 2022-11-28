@@ -30,9 +30,9 @@ To test new implementations of Ecoji, look at the [test script](../test_scripts/
 When encoding data, new lines can optionally be inserted to wrap data. Encoding
 should normally emit the Unix new line character of `\n` when wrapping, but
 could emit '\r\n' if desired.  Decoding data ignores all new lines, including
-windows new lines.   So decoding should ignore `\n` and `\r\n`.
+windows new lines.   So decoding should ignore `\n` and `\r`.
 
-The Go implementation only emits `\n`, but accepts `\n` or `\r\n`.
+The Go implementation only emits `\n`, but accepts `\n` or `\r`.
 
 ## Versions
 
