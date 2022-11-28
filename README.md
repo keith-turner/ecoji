@@ -113,6 +113,8 @@ go build ecoji.go
 ./ecoji --help
 ```
 
+For an example of how to use Ecoji as library see [library-example.md](docs/library-example.md).
+
 [emoji]: https://unicode.org/emoji/
 [video]: https://www.youtube.com/watch?v=XCsL89YtqCs
 [tour]: https://tour.golang.org/welcome/1
