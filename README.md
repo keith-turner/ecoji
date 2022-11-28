@@ -3,7 +3,8 @@
 Ecoji encodes data using 1024 [emojis][emoji]. This repository contains the
 canonical implementation of the [Ecoji standard](docs/encoding.md) written in
 [Go](https://go.dev). Version 2 of the Ecoji standard was released in 2022 with
-an improved set of emojis.
+an improved set of emojis. Ecoji version 2 produces output that is much more
+interesting and visually stimulating than what version 1 produced.
 
 Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
 
@@ -88,7 +89,8 @@ https://ecoji.io/😉🤌🫢🏄
 Libraries implementing the Ecoji encoding standard. Submit a PR to add a
 library to the list. Libraries are given a quick review and tested before being
 added. However, libraries are not examined after being added. Adding something
-to the list is not an endorsement of its correctness or security.
+to the list is not an endorsement of its correctness or the projects security
+practices.
 
 | Language | Version | Comments |
 |----------| ------- | -------- |
