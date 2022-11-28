@@ -1,3 +1,4 @@
+//go:build ignore
 // +build ignore
 
 // This program generates emojis.go. It can be invoked by running
@@ -17,8 +18,8 @@ func main() {
 	if user == "" {
 		user = "robots"
 	}
-	v1Lines := getLines("emojisV1.txt")
-	v2Lines := getLines("emojisV2.txt")
+	v1Lines := getLines("../emojisV1.txt")
+	v2Lines := getLines("../emojisV2.txt")
 
 	revMap := make(map[string]RuneInfo)
 

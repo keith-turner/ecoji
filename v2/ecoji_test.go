@@ -94,9 +94,9 @@ func check(t *testing.T, expectedV1 []rune, expectedV2 []rune, input []byte, nam
 	}
 
 	if name != "" {
-		writeBytes(t, input, "test_scripts/data/"+name+".plain")
-		writeRunes(t, expectedV1, "test_scripts/data/"+name+".ev1")
-		writeRunes(t, expectedV2, "test_scripts/data/"+name+".ev2")
+		writeBytes(t, input, "../test_scripts/data/"+name+".plain")
+		writeRunes(t, expectedV1, "../test_scripts/data/"+name+".ev1")
+		writeRunes(t, expectedV2, "../test_scripts/data/"+name+".ev2")
 	}
 }
 
@@ -261,8 +261,8 @@ func testDecode(t *testing.T, encoded string, expected []byte, name string) {
 	}
 
 	if name != "" {
-		writeBytes(t, expected, "test_scripts/data/"+name+".plaind")
-		writeRunes(t, []rune(encoded), "test_scripts/data/"+name+".enc")
+		writeBytes(t, expected, "../test_scripts/data/"+name+".plaind")
+		writeRunes(t, []rune(encoded), "../test_scripts/data/"+name+".enc")
 	}
 }
 
@@ -297,7 +297,7 @@ func testGarbageInput(t *testing.T, testData string, expectedErrMsg string, outp
 		return
 	}
 
-	writeRunes(t, []rune(testData), "test_scripts/data/"+outputFileName+".garbage")
+	writeRunes(t, []rune(testData), "../test_scripts/data/"+outputFileName+".garbage")
 
 }
 

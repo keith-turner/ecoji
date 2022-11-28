@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"github.com/keith-turner/ecoji"
+	"github.com/keith-turner/ecoji/v2"
 	"log"
 	"os"
 )

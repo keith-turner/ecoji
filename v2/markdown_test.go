@@ -12,7 +12,7 @@ import (
 
 func TestMakrdown(t *testing.T) {
 
-	f, err := os.Create("docs/emojis.md")
+	f, err := os.Create("../docs/emojis.md")
 	if err != nil {
 		t.Error(err)
 	}
@@ -41,7 +41,7 @@ func TestMakrdown(t *testing.T) {
 	fmt.Fprintln(writer, "The candidate column indicates if a V1 emoji was a [candidate](candidates.md) for V2.  If a V1 emojis was a candidate and was not used in V2 then someone decided against using it in V2.  If a V1 emoji was not a candidate, then it could not be used in V2 because it did not meet the selection criteria.")
 	fmt.Fprintln(writer)
 
-	candidatesMap := getCandidates("docs/candidates.txt")
+	candidatesMap := getCandidates("../docs/candidates.txt")
 
 	fmt.Fprintln(writer, "Ordinal | V1 codepoint | V1 emoji | candidate | V2 codepoint | V2 emoji")
 	fmt.Fprintln(writer, "-|-|-|-|-|-")

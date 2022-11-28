@@ -104,18 +104,13 @@ to the list is not an endorsement of its correctness or security.
 
 ## Building
 
-If you are new to Go I would recommend this [video] and the [tour].
+To build the command line version of ecoji, run the following commands.
 
 ```bash
-# The following are general Go setup instructions.
-export GOPATH=~/go
-export PATH=$GOPATH/bin:$PATH
-
-# This will download Ecoji to $GOPATH/src
-go get github.com/keith-turner/ecoji
-
-# This will build the ecoji command and put it in $GOPATH/bin
-go install github.com/keith-turner/ecoji/cmd/ecoji
+git clone https://github.com/keith-turner/ecoji.git
+cd ecoji/cmd
+go build ecoji.go
+./ecoji --help
 ```
 
 [emoji]: https://unicode.org/emoji/
