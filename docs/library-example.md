@@ -85,6 +85,10 @@ Now you should be able to encode and decode.  Below is an example.
 ```
 $ ./ecoji-ip 140.82.121.4
 🧳🏸🔔🥷
+$ ./ecoji-ip 104.244.42.129
+👴🚾🪹🛼
 $ ./ecoji-ip 🧳🏸🔔🥷
 140.82.121.4
+$ ./ecoji-ip 👴🚾🪹🛼
+104.244.42.129
 ```
