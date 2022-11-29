@@ -3,8 +3,8 @@
 This is an example that shows how to use Ecoji as a library.  Start off with a new directory.
 
 ```bash
-mkdir /tmp/ecoji-example
-cd /tmp/ecoji-example
+mkdir /tmp/ecoji-ip
+cd /tmp/ecoji-ip
 ```
 
 Then create a file called `go.mod` in that directory with the following contents.
@@ -12,70 +12,79 @@ Then create a file called `go.mod` in that directory with the following contents
 ```
 go 1.18
 
-module local/ecoji-example
+module local/ecoji-ip
 
 require github.com/keith-turner/ecoji/v2 v2.0.1
 
 ```
 
-Then create file named `ecoji-example.go` with the following contents.  This example program will read a file, encode with Ecoji V2, and write that to a new file.
+Then create file named `ecoji-ip.go` with the following contents.  This example program can encode and decode IPv4 addresses using Ecoji V2.
 
 ```go
 package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"github.com/keith-turner/ecoji/v2"
 	"log"
+	"net"
 	"os"
+	"strings"
 )
 
 func main() {
 
-	if len(os.Args) != 3 {
-		fmt.Printf("Usage : %s <input file> <output file>\n", os.Args[0])
+	if len(os.Args) != 2 {
+		fmt.Printf("Usage : %s <ip addr OR ecoji encoded ip>\n", os.Args[0])
 		os.Exit(1)
 	}
 
-	input := os.Args[1]
-	output := os.Args[2]
+	// attempt to pare an IP address
+	ip := net.ParseIP(os.Args[1])
 
-	infile, err1 := os.OpenFile(input, os.O_RDONLY, 0)
-	if err1 != nil {
-		log.Fatal(err1)
+	// this example does not handle IPv6
+
+	if ip != nil {
+		outbuf := bufio.NewWriter(os.Stdout)
+
+		//encode the 32 bit or 4 byte representation of the IP address as Ecoji
+
+		if err := ecoji.EncodeV2(bytes.NewReader(ip.To4()), outbuf, 4); err != nil {
+			log.Fatal(err)
+		}
+
+		outbuf.Flush()
+	} else {
+		buffer := bytes.NewBuffer(nil)
+		if err := ecoji.Decode(strings.NewReader(os.Args[1]), buffer); err != nil {
+			log.Fatal("Input is not Ecoji or an IP address.")
+		}
+
+		// ensure the encoded data is exactly 32 bits or 4 bytes
+		if len(buffer.Bytes()) != 4 {
+			log.Fatal("Encoded data does not appear to be an IP address")
+		}
+
+		ip = buffer.Bytes()
+		fmt.Println(ip.String())
 	}
-
-	outfile, err2 := os.Create(output)
-	if err2 != nil {
-		log.Fatal(err2)
-	}
-
-	outbuf := bufio.NewWriter(outfile)
-
-	//encode data using Ecoji V2 with a 72 emoji wrap
-	if err := ecoji.EncodeV2(bufio.NewReader(infile), outbuf, 72); err != nil {
-		log.Fatal(err)
-	}
-
-	infile.Close()
-	outbuf.Flush()
-	outfile.Close()
 }
 ```
 
-Then run the following commands to build the executable.
+Then run the following commands to build an executable.
 
 ```
 go mod download github.com/keith-turner/ecoji/v2
-go build ecoji-example.go
+go build ecoji-ip.go
 ```
 
-Now you should be able to use the executable to encode a file.  Below is an example if running it.
+Now you should be able to encode and decode.  Below is an example.
 
 ```
-/tmp/ecoji-example$ ./ecoji-example go.mod test.ecoji
-/tmp/ecoji-example$ cat test.ecoji 
-👮😽♏🧧🎌🤭🪜🕋💎🧵🐬🌭🍉😑🦎🛸💁🙁🐩🤜👺🕺🛫👉👖😢⛲🌭🛞🍯🍡👂💦🪳🍡🏮👮🪳🏨🌽👙😱🎨🤚🎅😁🐫👅👱😢🏫👃💊🔪🍓🤒👞🙁🖖🐀💩🚞⛵🔅🎀🙎🤹♍🛞☕
-
+$ ./ecoji-ip 140.82.121.4
+🧳🏸🔔🥷
+$ ./ecoji-ip 🧳🏸🔔🥷
+140.82.121.4
 ```
