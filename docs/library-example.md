@@ -7,17 +7,6 @@ mkdir /tmp/ecoji-ip
 cd /tmp/ecoji-ip
 ```
 
-Then create a file called `go.mod` in that directory with the following contents.
-
-```
-go 1.18
-
-module local/ecoji-ip
-
-require github.com/keith-turner/ecoji/v2 v2.0.1
-
-```
-
 Then create file named `ecoji-ip.go` with the following contents.  This example program can encode and decode IPv4 addresses using Ecoji V2.
 
 ```go
@@ -76,7 +65,8 @@ func main() {
 Then run the following commands to build an executable.
 
 ```
-go mod download github.com/keith-turner/ecoji/v2
+go mod init local/ecoji-ip
+go mod tidy
 go build ecoji-ip.go
 ```
 
