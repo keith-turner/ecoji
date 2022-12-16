@@ -3,118 +3,74 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
 		<script src="wasm_exec.js"></script>
 		<script>
-const go = new Go();
-const ecojiPromise = WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
-	go.run(result.instance);
+			const go = new Go();
+			const ecojiPromise = WebAssembly.instantiateStreaming(
+					fetch("main.wasm"),
+					go.importObject
+				)
+				.then(function(result) {
+					go.run(result.instance);
+				});
 
-});
-function doEncode(){
-	var data = document.getElementById('plain').value
-	var encoded = ecojiEncode(data)
-	document.getElementById('encoded').value = encoded
-}
+			function doEncode(){
+				const data = document.getElementById('plain').value
+				const encoded = ecojiEncode(data)
+				document.getElementById('encoded').value = encoded
+			}
 
-function doDecode(){
-	var data = document.getElementById('encoded').value
-	var decoded = ecojiDecode(data)
-	document.getElementById('plain').value = decoded
-}
+			function doDecode(){
+				const data = document.getElementById('encoded').value
+				const decoded = ecojiDecode(data)
+				document.getElementById('plain').value = decoded
+			}
 
-function doPopulate(ep) {
-	if(ep) {
-		document.getElementById('encoded').value = ep
-		var decoded = ecojiDecode(ep)
-		document.getElementById('plain').value = decoded
-	}
-}
+			function doPopulate(ep) {
+				if (ep) {
+					document.getElementById('encoded').value = ep
+					const decoded = ecojiDecode(ep)
+					document.getElementById('plain').value = decoded
+				}
+			}
 
-// https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
-function copyTextToClipboard(text) {
-	var textArea = document.createElement("textarea");
+			function doLinkCopy(){
+				const data = document.getElementById('plain').value
+				let encoded = ecojiEncode(data)
+				if (encoded) {
+					window.navigator.clipboard.writeText(
+						`${window.location.href.split('?')[0]}?d=${encoded}`
+					);
+				}
+			}
 
-	//
-	// *** This styling is an extra step which is likely not required. ***
-	//
-	// Why is it here? To ensure:
-	// 1. the element is able to have focus and selection.
-	// 2. if element was to flash render it has minimal visual impact.
-	// 3. less flakyness with selection and copying which **might** occur if
-	//    the textarea element is not visible.
-	//
-	// The likelihood is the element won't even render, not even a
-	// flash, so some of these are just precautions. However in
-	// Internet Explorer the element is visible whilst the popup
-	// box asking the user for permission for the web page to
-	// copy to the clipboard.
-	//
-
-	// Place in top-left corner of screen regardless of scroll position.
-	textArea.style.position = 'fixed';
-	textArea.style.top = 0;
-	textArea.style.left = 0;
-
-	// Ensure it has a small width and height. Setting to 1px / 1em
-	// doesn't work as this gives a negative w/h on some browsers.
-	textArea.style.width = '2em';
-	textArea.style.height = '2em';
-
-	// We don't need padding, reducing the size if it does flash render.
-	textArea.style.padding = 0;
-
-	// Clean up any borders.
-	textArea.style.border = 'none';
-	textArea.style.outline = 'none';
-	textArea.style.boxShadow = 'none';
-
-	// Avoid flash of white box if rendered for any reason.
-	textArea.style.background = 'transparent';
-
-
-	textArea.value = text;
-
-	document.body.appendChild(textArea);
-	textArea.focus();
-	textArea.select();
-
-	try {
-		var successful = document.execCommand('copy');
-		var msg = successful ? 'successful' : 'unsuccessful';
-		console.log('Copying text command was ' + msg);
-	} catch (err) {
-		console.log('Oops, unable to copy');
-	}
-
-	document.body.removeChild(textArea);
-}
-
-function doLinkCopy(){
-	var data = document.getElementById('plain').value
-	var encoded = ecojiEncode(data)
-	if(encoded) {
-		encoded = "https://ecoji.io/?d="+encoded
-		copyTextToClipboard(encoded)
-	}
-}
-
+			window.addEventListener("DOMContentLoaded", function() {
+				ecojiPromise.then(function() {
+					doPopulate(new URLSearchParams(window.location.search).get("d"))
+				});
+			})
 		</script>
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+		
 		<!-- Custom styles for this template -->
 		<link href="cover.css" rel="stylesheet">
 
 		<title>Ecoji.io</title>
 	</head>
+	
 	<body class="text-center">
+
 		<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
 			<header class="masthead mb-auto">
 				<div class="inner justify-content-left">
 					<h3 class="masthead-brand">Ecoji.io | 🏣🔉🦐🩻🎁🪲🥰☕</h3>
 				</div>
 			</header>
+			
 			<main role="main" class="inner cover">
 				<p class="lead">Encode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
 				<textarea id="plain" class="form-control" rows="4" oninput="doEncode()"></textarea>
@@ -127,23 +83,14 @@ function doLinkCopy(){
 				<button type="button" class="btn btn-primary" onclick="doLinkCopy()">Copy Link</button>
 			</main>
 
-
 			<footer class="mastfoot mt-auto">
 				<div class="inner">
 					<p>Now using Ecoji V2</p>
 					<p>🧠😢⛳🕍💪🔥⛵🌰👶🚮⛳🦮👮🔥♓✊👲🛃🏪🌻🎵😽🦏🤖💢🪡🐩🧰👞🙁🛌🤘👦🪳🏨🤌💢🫧🍣🩴💙🙁🐩🤜👺🕺🦓🌺👦🔥🦏🤕🦽🚂🌟🤒💝☕</p>
 				</div>
 			</footer>
+
 		</div>
-
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<script>
-			ecojiPromise.then(() => {doPopulate(new URLSearchParams(window.location.search).get("d"))})
-		</script>
-
+		
 	</body>
 </html>
