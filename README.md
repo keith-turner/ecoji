@@ -87,10 +87,13 @@ https://ecoji.io/😉🤌🫢🏄
 ## Other Implementations
 
 Libraries implementing the Ecoji encoding standard. Submit a PR to add a
-library to the list. Libraries are given a quick review and tested before being
-added. However, libraries are not examined after being added. Adding something
-to the list is not an endorsement of its correctness or the projects security
-practices.
+library to the list. Libraries are given a quick review if time permits and
+tested before being added. However, libraries are not examined after being
+added. Adding something to the list is not an endorsement of its correctness or
+the projects security practices.
+
+Before Ecoji V2 there was not a standard cross language test script, so the
+testing done for V1 only implementations was inconsistent adhoc manual tests.
 
 | Language | Version | Comments |
 |----------| ------- | -------- |
