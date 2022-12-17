@@ -97,6 +97,7 @@ practices.
 | [D](https://github.com/ohdatboi/ecoji-d) | V1 | Implementation of Ecoji written in the D programming language. |
 | Go | V1,V2 | This repository offers a Go library package with three functions [ecoji.Encode()](https://github.com/keith-turner/ecoji/blob/1afbae30233e80e8fb712b3521ab4cb5bf470002/v2/encode.go#L172) [ecoji.EncodeV2()](https://github.com/keith-turner/ecoji/blob/1afbae30233e80e8fb712b3521ab4cb5bf470002/v2/encode.go#L177) and [ecoji.Decode()](https://github.com/keith-turner/ecoji/blob/1afbae30233e80e8fb712b3521ab4cb5bf470002/v2/decode.go#L107). |
 | [Java](https://github.com/netvl/ecoji-java) | V1 | Implementation of Ecoji written in Java, usable in any JVM language. |
+| [JavaScript](https://github.com/UmamiAppearance/BaseExJS) | V1,V2 | A collection of base converters, which includes an implementation of Ecoji written in JavaScript. |
 | [.NET](https://github.com/abock/dotnet-ecoji) | V1 | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji). |
 | [PHP](https://github.com/Rayne/ecoji-php) | V1 | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji). |
 | [Python](https://github.com/mecforlove/ecoji-py) | V1 | Implementation of Ecoji written in the Python3 programming language. |
