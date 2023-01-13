@@ -104,6 +104,7 @@ testing done for V1 only implementations was inconsistent adhoc manual tests.
 | [.NET](https://github.com/abock/dotnet-ecoji) | V1 | Implementation of Ecoji written in C# targeting .NET Standard 2.0: [`dotnet add package Ecoji`](https://www.nuget.org/packages/Ecoji). |
 | [PHP](https://github.com/Rayne/ecoji-php) | V1 | PHP 7.x implementation of Ecoji. Available as [`rayne/ecoji` on Packagist](https://packagist.org/packages/rayne/ecoji). |
 | [Python](https://github.com/mecforlove/ecoji-py) | V1 | Implementation of Ecoji written in the Python3 programming language. |
+| [Ruby](https://github.com/makenowjust/ecoji.rb) | V1,V2 | Implementation of Ecoji written in the Ruby programming language: [`gem install ecoji`](https://rubygems.org/gems/ecoji) |
 | [Rust](https://github.com/netvl/ecoji.rs) | V1 | Implementation of Ecoji written in the Rust programming language. |
 | [Swift](https://github.com/Robindiddams/ecoji-swift) | V1 | Implementation of Ecoji written in the Swift programming language. |
 
