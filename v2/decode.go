@@ -9,7 +9,7 @@ import (
 func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, error) {
 
 	index := 0
-	sawPadding := false
+	paddingSeen := 0
 
 	for index < 4 {
 		c, _, e := r.ReadRune()
@@ -17,7 +17,7 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 		if e == io.EOF {
 			if index == 0 {
 				return 0, nil
-			} else if sawPadding && (*expectedVer == evAll || *expectedVer == ev2) {
+			} else if paddingSeen == 1 && (*expectedVer == evAll || *expectedVer == ev2) {
 				// Ecoji V2 trims padding and does not pad out to all 4 chars. Therefore, the
 				// last bit of data may not be four runes. Let's go ahead and fill the remaining
 				// slots w/ padding to make decoding easier.
@@ -60,8 +60,8 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 		switch einfo.padding {
 		case padNone:
 			{
-				if sawPadding {
-					if *expectedVer == evAll || *expectedVer == ev2 {
+				if paddingSeen > 0 {
+					if (*expectedVer == evAll || *expectedVer == ev2) && paddingSeen == 1 {
 						// For Ecoji V2 it may trim padding and not pad out all 4 chars. So this could be
 						// concatenated Ecoji data, therefore let's put the rune back and return so the
 						// data up to the padding can be decoded
@@ -86,12 +86,15 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 				if index == 0 {
 					return -1, fmt.Errorf("Padding unexpectedly seen in first position %s", string(c))
 				}
-				sawPadding = true
+				paddingSeen++
 			}
 		case padLast:
 			{
 				if index != 3 {
 					return -1, fmt.Errorf("Last padding seen in unexpected position %s", string(c))
+				}
+				if paddingSeen > 0 {
+					return -1, errors.New("Unexpectedly saw last padding after padding")
 				}
 			}
 		}
@@ -103,7 +106,7 @@ func readFour(r io.RuneReader, expectedVer *ecojiver, emojis []emojiInfo) (int, 
 	return index, nil
 }
 
-//Decodes data encoded using the Ecoji version 1 or 2 standard back to the original data.
+// Decodes data encoded using the Ecoji version 1 or 2 standard back to the original data.
 func Decode(r io.RuneReader, w io.Writer) error {
 	expectedVer := evAll
 

@@ -106,6 +106,22 @@ func TestZeroByteEncode(t *testing.T) {
 
 func TestOneByteEncode(t *testing.T) {
 	check(t, []rune{emojisV1[int('k')<<2], padding, padding, padding}, []rune{emojisV2[int('k')<<2], padding}, []byte{'k'}, "one_byte", 0)
+	// find an emoji that differs in v1 and v2
+	for i := 8; i < 1024; i += 8 {
+		if emojisV1[i] != emojisV2[i] {
+			check(t, []rune{emojisV1[i], padding, padding, padding}, []rune{emojisV2[i], padding}, []byte{byte(i >> 2)}, "one_byte_differ", 0)
+			break
+		}
+	}
+
+	// find an emoji that is in v1 ad v2
+	for i := 8; i < 1024; i += 8 {
+		if emojisV1[i] == emojisV2[i] {
+			check(t, []rune{emojisV1[i], padding, padding, padding}, []rune{emojisV2[i], padding}, []byte{byte(i >> 2)}, "one_byte_both", 0)
+			break
+		}
+	}
+
 }
 
 func TestTwoByteEncode(t *testing.T) {
@@ -293,7 +309,7 @@ func testGarbageInput(t *testing.T, testData string, expectedErrMsg string, outp
 	}
 
 	if !strings.Contains(err.Error(), expectedErrMsg) {
-		t.Errorf("Unexpected error message: '%s'  expected '%s'", err.Error(), expectedErrMsg)
+		t.Errorf("Unexpected error message: '%s'  expected '%s' file '%s'", err.Error(), expectedErrMsg, outputFileName)
 		return
 	}
 
@@ -317,7 +333,7 @@ func TestGarbage(t *testing.T) {
 	runes4 := [4]rune{emojisV2[1], emojisV2[2], paddingLastV2[3], emojisV2[3]}
 	testGarbageInput(t, string(runes4[:]), "Last padding seen in unexpected position", "misplaced_padding_4")
 
-	//test an ecoji v1 data that must padd out to len 4 and does not
+	//test an ecoji v1 data that must pad out to len 4 and does not
 	runes5 := [4]rune{0x1f004, 0x1f170, padding, 0x1f93e}
 	testGarbageInput(t, string(runes5[:]), "Unexpectedly saw non-padding after padding", "misplaced_padding_5")
 
@@ -332,6 +348,33 @@ func TestGarbage(t *testing.T) {
 	testGarbageInput(t, string(runes8[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_1")
 	runes9 := [5]rune{emojisV2[1], emojisV2[2], emojisV2[3], emojisV2[4], emojisV2[5]}
 	testGarbageInput(t, string(runes9[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_2")
+
+	// find an emoji that is in v1 and v2 (so the expected padding is not known ahead of time) and only has two padding
+	for i := 8; i < 1024; i += 8 {
+		if emojisV1[i] == emojisV2[i] {
+			runes10 := [3]rune{emojisV1[i], padding, padding}
+			testGarbageInput(t, string(runes10[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_3")
+			runes11 := [4]rune{emojisV1[i], padding, padding, emojisV1[i]}
+			testGarbageInput(t, string(runes11[:]), "Unexpectedly saw non-padding after padding", "missing_padding_4")
+			runes12 := [4]rune{emojisV1[i], padding, padding, paddingLastV1[0]}
+			testGarbageInput(t, string(runes12[:]), "Unexpectedly saw last padding after padding", "missing_padding_5")
+			break
+		}
+	}
+
+	for i := 8; i < 1024; i += 8 {
+		if emojisV1[i] != emojisV2[i] {
+			runes10 := [3]rune{emojisV1[i], padding, padding}
+			testGarbageInput(t, string(runes10[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_6")
+			runes11 := [4]rune{emojisV1[i], padding, padding, emojisV1[i]}
+			testGarbageInput(t, string(runes11[:]), "Unexpectedly saw non-padding after padding", "missing_padding_7")
+			runes12 := [3]rune{emojisV2[i], padding, padding}
+			testGarbageInput(t, string(runes12[:]), "Unexpected end of data, input data size not multiple of 4", "missing_padding_8")
+			runes13 := [4]rune{emojisV2[i], padding, padding, emojisV2[i]}
+			testGarbageInput(t, string(runes13[:]), "Unexpectedly saw non-padding after padding", "missing_padding_9")
+			break
+		}
+	}
 }
 
 func TestDecodeMixed(t *testing.T) {

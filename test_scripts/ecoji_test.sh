@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 : ${encode1_cmd:="ecoji -w 0"}
 : ${encode2_cmd:="ecoji -e -w 0"}
