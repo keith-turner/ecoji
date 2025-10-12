@@ -8,6 +8,14 @@ interesting and visually stimulating than what version 1 produced.
 
 Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
 
+## Installing
+
+The following command will install the ecoji command in `$GOPATH/bin`.
+
+```
+go install github.com/keith-turner/ecoji/cmd/ecoji@latest
+```
+
 ## Usage
 
 ```bash
@@ -108,7 +116,6 @@ testing done for V1 only implementations was inconsistent adhoc manual tests.
 | [Rust](https://github.com/netvl/ecoji.rs) | V1 | Implementation of Ecoji written in the Rust programming language. |
 | [Swift](https://github.com/Robindiddams/ecoji-swift) | V1 | Implementation of Ecoji written in the Swift programming language. |
 | [Zig](https://codeberg.org/keith-turner/ecoji-zig) | V1,V2 | Ecoji written in Zig that provides C and wasm libraries |
-
 
 ## Building
 
