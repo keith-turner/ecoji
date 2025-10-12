@@ -3,41 +3,138 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
-		<script src="wasm_exec.js"></script>
+
 		<script>
-			const go = new Go();
-			const ecojiPromise = WebAssembly.instantiateStreaming(
-					fetch("main.wasm"),
-					go.importObject
+            const ecojiPromise = WebAssembly.instantiateStreaming(
+					fetch("ecoji.wasm")
 				)
-				.then(function(result) {
-					go.run(result.instance);
-				});
+                .then((result) => {
+                    const { ecoji_encode_bytes, ecoji_decode_bytes, ecoji_allocate, ecoji_deallocate, ecoji_encode_len,ecoji_decode_len,memory } = result.instance.exports;
+
+                    function allocateAndCopy(input, outputLen) {
+
+                        // allocate memory within wasm memory space for the input data
+                        const inputStart = ecoji_allocate(input.length);
+                        console.log(`input start : ${inputStart} input.length:${input.length}`);
+
+                        if(inputStart < 0) {
+                            throw "unable to allocate memory";
+                        }
+
+                        // allocate memory within wasm memory space for the output data
+                        const outputStart = ecoji_allocate(outputLen);
+                        if(outputStart < 0){
+                            ecoji_deallocate(inputStart, input.length);
+                            throw "unable to allocate memory";
+                        }
+                        console.log(`outputStart : ${outputStart}`);
+
+                        // copy the input data from javascript memory to wasm memory
+                        const memView = new Uint8Array(memory.buffer, inputStart, input.length);
+                        for (let i = 0; i < input.length; i++) {
+                            memView[i] = input[i];
+                        }
+
+                        return {inputAddr:inputStart, inputLen:input.length, outputAddr:outputStart, outputLen:outputLen};
+                    }
+
+                    function deallocateAndCopy(allocations, actualOutputLen) {
+                        // copy the data from wasm memory to javascript memory
+                        const outputCopy = new TextDecoder().decode(new Uint8Array(memory.buffer, allocations.outputAddr, actualOutputLen));
+
+                        //dealloc after copying as it may zero wasm memory
+                        ecoji_deallocate(allocations.inputAddr, allocations.inputLen);
+                        ecoji_deallocate(allocations.outputAddr, allocations.outputLen);
+
+                        return outputCopy;
+                    }
+
+                    function ecojiEncode(inputStr) {
+                        console.log("ecojiEncode:", inputStr);
+
+                        if(inputStr === ""){
+                            return "";
+                        }
+
+                        // convert input string to a utf8 byte array
+                        const input = new TextEncoder().encode(inputStr);
+
+                        // compute the maximum size that will be needed for output data
+                        const maxOutputLen = ecoji_encode_len(input.length);
+                        //console.log(`maxOutputLen : ${maxOutputLen}`);
+
+                        // allocate memory in wasm and copy input data into wasm memory
+                        const allocations = allocateAndCopy(input, maxOutputLen);
+
+                        // call the ecoji encoding function that is wasm code
+                        const outputLen = ecoji_encode_bytes(allocations.inputAddr, allocations.inputLen, allocations.outputAddr, allocations.outputAddr);
+
+                        console.log("outputLen: " + outputLen);
+
+                        // check for errors encoding
+                        if(outputLen < 0){
+                            return  "ERROR:Failed to encode input!";
+                        }
+
+                        return deallocateAndCopy(allocations, outputLen);
+                    }
+
+                    function ecojiDecode(inputStr) {
+                        console.log("ecojiDecode: " + inputStr);
+                        if(inputStr === ""){
+                            return "";
+                        }
+
+                        // encode input string as utf8 array
+                        const input = new TextEncoder().encode(inputStr);
+
+                        // compute the maximum size that will be needed for output data
+                        const maxOutputLen = ecoji_decode_len(input.length);
+
+                        // allocate memory in wasm and copy input data into wasm memory
+                        const allocations = allocateAndCopy(input, maxOutputLen);
+
+                        const outputLen = ecoji_decode_bytes(allocations.inputAddr, allocations.inputLen, allocations.outputAddr, allocations.outputLen);
+
+                        console.log("outputLen: " + outputLen);
+
+                        if(outputLen < 0) {
+                            return "🤨 It seems the input was not Ecoji™ encoded";
+                        }
+
+                        return deallocateAndCopy(allocations, outputLen);
+                    }
+
+                   return {encode : ecojiEncode, decode : ecojiDecode};
+                });
+
 
 			function doEncode(){
-				const data = document.getElementById('plain').value
-				const encoded = ecojiEncode(data)
-				document.getElementById('encoded').value = encoded
+                ecojiPromise.then((ecoji)=>{
+                    const data = document.getElementById('plain').value
+                    document.getElementById('encoded').value = ecoji.encode(data)
+                })
 			}
 
 			function doDecode(){
-				const data = document.getElementById('encoded').value
-				const decoded = ecojiDecode(data)
-				document.getElementById('plain').value = decoded
+                ecojiPromise.then((ecoji)=> {
+                    const data = document.getElementById('encoded').value
+                    document.getElementById('plain').value = ecoji.decode(data)
+                })
 			}
 
 			function doPopulate(ep) {
 				if (ep) {
-					document.getElementById('encoded').value = ep
-					const decoded = ecojiDecode(ep)
-					document.getElementById('plain').value = decoded
+                    ecojiPromise.then((ecoji)=> {
+                        document.getElementById('encoded').value = ep
+                        document.getElementById('plain').value = ecoji.decode(ep)
+                    })
 				}
 			}
 
 			function doLinkCopy(){
 				const data = document.getElementById('plain').value
-				let encoded = ecojiEncode(data)
+				let encoded = ecoji.encode(data)
 				if (encoded) {
 					window.navigator.clipboard.writeText(
 						`${window.location.href.split('?')[0]}?d=${encoded}`
