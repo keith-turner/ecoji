@@ -107,6 +107,7 @@ testing done for V1 only implementations was inconsistent adhoc manual tests.
 | [Ruby](https://github.com/makenowjust/ecoji.rb) | V1,V2 | Implementation of Ecoji written in the Ruby programming language: [`gem install ecoji`](https://rubygems.org/gems/ecoji) |
 | [Rust](https://github.com/netvl/ecoji.rs) | V1 | Implementation of Ecoji written in the Rust programming language. |
 | [Swift](https://github.com/Robindiddams/ecoji-swift) | V1 | Implementation of Ecoji written in the Swift programming language. |
+| [Zig](https://codeberg.org/keith-turner/ecoji-zig) | V1,V2 | Ecoji written in Zig that provides C and wasm libraries |
 
 
 ## Building
