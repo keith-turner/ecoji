@@ -117,7 +117,7 @@ To build the command line version of ecoji, run the following commands.
 ```bash
 git clone https://github.com/keith-turner/ecoji.git
 cd ecoji/cmd/ecoji
-# build the egoji library code locally instead of fetching from github
+# build the ecoji library code locally instead of fetching from github
 go mod edit -replace github.com/keith-turner/ecoji/v2=../../v2
 go build ecoji.go
 ./ecoji --help
