@@ -1,3 +1,8 @@
+//
+// ecoji.wasm was built from the following commit using Zig 0.15.1
+//
+// https://codeberg.org/keith-turner/ecoji-zig/commit/fc530f226ea3f3c8d94f9e41bd67e0643fcf4e6f
+//
 const ecojiPromise = WebAssembly.instantiateStreaming(
     fetch("ecoji.wasm")
 ).then((result) => {
