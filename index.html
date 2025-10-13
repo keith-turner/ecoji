@@ -1,96 +1,86 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
-		<script src="wasm_exec.js"></script>
-		<script>
-			const go = new Go();
-			const ecojiPromise = WebAssembly.instantiateStreaming(
-					fetch("main.wasm"),
-					go.importObject
-				)
-				.then(function(result) {
-					go.run(result.instance);
-				});
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="ecoji.js"></script>
+    <script>
 
-			function doEncode(){
-				const data = document.getElementById('plain').value
-				const encoded = ecojiEncode(data)
-				document.getElementById('encoded').value = encoded
-			}
+        function doEncode() {
+            ecojiEncode(document.getElementById('plain').value).then((encoded) => document.getElementById('encoded').value = encoded)
+        }
 
-			function doDecode(){
-				const data = document.getElementById('encoded').value
-				const decoded = ecojiDecode(data)
-				document.getElementById('plain').value = decoded
-			}
+        function doDecode() {
+            ecojiDecode(document.getElementById('encoded').value).then((decoded) => document.getElementById('plain').value = decoded)
+        }
 
-			function doPopulate(ep) {
-				if (ep) {
-					document.getElementById('encoded').value = ep
-					const decoded = ecojiDecode(ep)
-					document.getElementById('plain').value = decoded
-				}
-			}
+        function doPopulate(ep) {
+            if (ep) {
+                ecojiDecode(ep).then((decoded) => {
+                    document.getElementById('plain').value = decoded
+                    document.getElementById('encoded').value = ep
+                })
+            }
+        }
 
-			function doLinkCopy(){
-				const data = document.getElementById('plain').value
-				let encoded = ecojiEncode(data)
-				if (encoded) {
-					window.navigator.clipboard.writeText(
-						`${window.location.href.split('?')[0]}?d=${encoded}`
-					);
-				}
-			}
+        function doLinkCopy() {
+            ecojiEncode(document.getElementById('plain').value).then((encoded) => {
+                if (encoded) {
+                    window.navigator.clipboard.writeText(
+                        `${window.location.href.split('?')[0]}?d=${encoded}`
+                    );
+                }
+            })
+        }
 
-			window.addEventListener("DOMContentLoaded", function() {
-				ecojiPromise.then(function() {
-					doPopulate(new URLSearchParams(window.location.search).get("d"))
-				});
-			})
-		</script>
+        window.addEventListener("DOMContentLoaded", function () {
+            ecojiPromise.then(function () {
+                doPopulate(new URLSearchParams(window.location.search).get("d"))
+            });
+        })
+    </script>
 
-		<!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-		
-		<!-- Custom styles for this template -->
-		<link href="cover.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-		<title>Ecoji.io</title>
-	</head>
-	
-	<body class="text-center">
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
 
-		<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <title>Ecoji.io</title>
+</head>
 
-			<header class="masthead mb-auto">
-				<div class="inner justify-content-left">
-					<h3 class="masthead-brand">Ecoji.io | 🏣🔉🦐🩻🎁🪲🥰☕</h3>
-				</div>
-			</header>
-			
-			<main role="main" class="inner cover">
-				<p class="lead">Encode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
-				<textarea id="plain" class="form-control" rows="4" oninput="doEncode()"></textarea>
-				<br/>
-				<p/>
-				<p class="lead">Decode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
-				<textarea id="encoded" class="form-control" rows="4" oninput="doDecode()"></textarea>
-				<p/>
-				<br/>
-				<button type="button" class="btn btn-primary" onclick="doLinkCopy()">Copy Link</button>
-			</main>
+<body class="text-center">
 
-			<footer class="mastfoot mt-auto">
-				<div class="inner">
-					<p>Now using Ecoji V2</p>
-					<p>🧠😢⛳🕍💪🔥⛵🌰👶🚮⛳🦮👮🔥♓✊👲🛃🏪🌻🎵😽🦏🤖💢🪡🐩🧰👞🙁🛌🤘👦🪳🏨🤌💢🫧🍣🩴💙🙁🐩🤜👺🕺🦓🌺👦🔥🦏🤕🦽🚂🌟🤒💝☕</p>
-				</div>
-			</footer>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
-		</div>
-		
-	</body>
+    <header class="masthead mb-auto">
+        <div class="inner justify-content-left">
+            <h3 class="masthead-brand">Ecoji.io | 🏣🔉🦐🩻🎁🪲🥰☕</h3>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <p class="lead">Encode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
+        <textarea id="plain" class="form-control" rows="4" oninput="doEncode()"></textarea>
+        <br/>
+        <p/>
+        <p class="lead">Decode using <a class="text-primary" href="https://github.com/keith-turner/ecoji">Ecoji</a></p>
+        <textarea id="encoded" class="form-control" rows="4" oninput="doDecode()"></textarea>
+        <p/>
+        <br/>
+        <button type="button" class="btn btn-primary" onclick="doLinkCopy()">Copy Link</button>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>Now using Ecoji V2</p>
+            <p>
+                🧠😢⛳🕍💪🔥⛵🌰👶🚮⛳🦮👮🔥♓✊👲🛃🏪🌻🎵😽🦏🤖💢🪡🐩🧰👞🙁🛌🤘👦🪳🏨🤌💢🫧🍣🩴💙🙁🐩🤜👺🕺🦓🌺👦🔥🦏🤕🦽🚂🌟🤒💝☕</p>
+        </div>
+    </footer>
+
+</div>
+
+</body>
 </html>
