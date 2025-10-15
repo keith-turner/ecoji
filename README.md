@@ -106,6 +106,7 @@ testing done for V1 only implementations was inconsistent adhoc manual tests.
 | Language | Version | Comments |
 |----------| ------- | -------- |
 | [D](https://github.com/ohdatboi/ecoji-d) | V1 | Implementation of Ecoji written in the D programming language. |
+| [Gleam](https://github.com/lpil/ecoji) | V1 | Implementation of Ecoji written in Gleam. |
 | Go | V1,V2 | This repository offers a Go library package with three functions [ecoji.Encode()](https://github.com/keith-turner/ecoji/blob/1afbae30233e80e8fb712b3521ab4cb5bf470002/v2/encode.go#L172) [ecoji.EncodeV2()](https://github.com/keith-turner/ecoji/blob/1afbae30233e80e8fb712b3521ab4cb5bf470002/v2/encode.go#L177) and [ecoji.Decode()](https://github.com/keith-turner/ecoji/blob/1afbae30233e80e8fb712b3521ab4cb5bf470002/v2/decode.go#L107). |
 | [Java](https://github.com/netvl/ecoji-java) | V1 | Implementation of Ecoji written in Java, usable in any JVM language. |
 | [JavaScript](https://github.com/UmamiAppearance/BaseExJS) | V1,V2 | A collection of base converters, which includes an implementation of Ecoji written in JavaScript. |
