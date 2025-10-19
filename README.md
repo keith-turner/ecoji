@@ -10,6 +10,14 @@ Visit [ecoji.io](https://ecoji.io) to try Ecoji in your browser.
 
 ## Installing
 
+### Homebrew
+
+```
+$ brew install ecoji
+```
+
+### Go
+
 The following command will install the ecoji command in `$GOPATH/bin`.
 
 ```
@@ -24,8 +32,8 @@ usage: ecoji [OPTIONS]... [FILE]
 
 Encode or decode data as Unicode emojis. 😁
 
-For compatability, when given no options stdin will be encoded using Ecoji 
-version 1. When using the new -e option, stdin is encoded using Ecoji 
+For compatability, when given no options stdin will be encoded using Ecoji
+version 1. When using the new -e option, stdin is encoded using Ecoji
 version 2.  The -e and -d options are mutually exclusive.
 
 Options:
